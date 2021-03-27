@@ -13,6 +13,15 @@ class Project extends Model
     public static $imagesPath = "projects/";
 
     /**
+     * Define how routes should be
+     * handled
+     */
+    public function getRouteKeyName()
+    {
+      return 'slug';
+    }
+
+    /**
      * This function will get the URL
      * for this project
      */
