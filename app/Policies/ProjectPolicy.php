@@ -47,7 +47,10 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
-        //
+        //TODO change this (just an example)
+        return true
+            ? Response::allow()
+            : Response::deny('You cannot create a new project');
     }
 
     /**
