@@ -3,11 +3,12 @@
 namespace App\View\Components\cards;
 
 use Illuminate\View\Component;
+use App\Models\Project;
 
-class projectCard extends Component
+class ProjectCard extends Component
 {   
 
-    
+    public $project;
     public $title;
     public $description;
     public $link;
@@ -20,15 +21,19 @@ class projectCard extends Component
      *
      * @return void
      */
-    public function __construct($title,$description,$category,$link,$imagePath,$imageAlt)
+    public function __construct($project)
     {
-      $this->title = $title;
-      $this->description = $description;
-      $this->category = $category;
-      $this->link = $link;
-      $this->imagePath = $imagePath;
-      $this->imageAlt = $imageAlt;
+      $this->project = $project;
+      $this->title = $project->name;
+      $this->description = $project->short_desc;
+      $this->category = "Category";
+      $this->link = $project->get_url();
+      $this->imagePath = $project->get_image();;
       
+    }
+
+    public function getAlt(){
+      return "Image for ".$this->title;
     }
 
     /**
@@ -40,4 +45,6 @@ class projectCard extends Component
     {
         return view('components.cards.project-card');
     }
+
+
 }

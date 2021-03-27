@@ -11,26 +11,7 @@
     <div class="container px-5 py-24 mx-auto">
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         @foreach ($projects as $project)
-          @component('components.cards.project-card')
-            @slot('title')
-              {{$project->name}}
-            @endslot
-            @slot('description')
-              {{$project->short_desc}}
-            @endslot
-            @slot('category')
-              Category
-            @endslot
-            @slot('link')
-              /link
-            @endslot
-            @slot('imagePath')
-              {{$project->get_image()}}
-            @endslot
-            @slot('imageAlt')
-              Placeholder
-            @endslot
-          @endcomponent
+          <x-cards.project-card :project="$project"/>
         @endforeach
       </div>
     </div>
