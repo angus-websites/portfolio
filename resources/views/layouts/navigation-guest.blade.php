@@ -36,14 +36,14 @@
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="/" class="text-blue-600 px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
+            <a href="/" class="text-blue-600 px-3 py-2 text-md font-medium" aria-current="page">Home</a>
 
-            <a href="/projects" class="text-gray-500 hover:bg-blue-100 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+            <a href="/projects" class="text-gray-500 hover:bg-blue-100 hover:text-blue-600 px-3 py-2 rounded-md text-md font-medium">Projects</a>
           </div>
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <a href="#" class="text-gray-500 hover:bg-blue-100 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+        <a href="#" class="text-gray-500 hover:bg-blue-100 hover:text-blue-600 px-3 py-2 rounded-md text-md font-medium">Contact</a>
       </div>
     </div>
   </div>
