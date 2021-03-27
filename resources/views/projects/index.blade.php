@@ -25,7 +25,7 @@
               /link
             @endslot
             @slot('imagePath')
-              /path/to/image
+              {{$project->get_image()}}
             @endslot
             @slot('imageAlt')
               Placeholder
