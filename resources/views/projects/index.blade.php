@@ -9,32 +9,29 @@
     </div>
     <!--Projects-->
     <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-wrap -m-4">
-
-        @for ($i = 0; $i <= 10; $i++)
-          <div class="p-4 md:w-1/3">
-            @component('components.cards.project-card')
-              @slot('title')
-                  Title here
-              @endslot
-              @slot('description')
-                  A short description goes here
-              @endslot
-              @slot('category')
-                Category
-              @endslot
-              @slot('link')
-                /link
-              @endslot
-              @slot('imagePath')
-                /path/to/image
-              @endslot
-              @slot('imageAlt')
-                Placeholder
-              @endslot
-            @endcomponent
-          </div>
-        @endfor
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        @foreach ($projects as $project)
+          @component('components.cards.project-card')
+            @slot('title')
+              {{$project->name}}
+            @endslot
+            @slot('description')
+              {{$project->short_desc}}
+            @endslot
+            @slot('category')
+              Category
+            @endslot
+            @slot('link')
+              /link
+            @endslot
+            @slot('imagePath')
+              /path/to/image
+            @endslot
+            @slot('imageAlt')
+              Placeholder
+            @endslot
+          @endcomponent
+        @endforeach
       </div>
     </div>
   </section>
