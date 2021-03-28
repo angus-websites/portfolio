@@ -46,7 +46,7 @@
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <a href="/login" class="text-gray-500 hover:bg-green-100 hover:text-green-600 px-3 py-2 rounded-md text-md font-medium">Login</a>
+        <a href="/login" class="px-3 py-2 text-md font-medium rounded-md {{ Request::is('login') ? 'text-green-600' : 'text-gray-500 hover:bg-green-100 hover:text-green-600' }}" aria-current="page">Login</a>
       </div>
     </div>
   </div>
