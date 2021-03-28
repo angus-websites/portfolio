@@ -12,6 +12,22 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * Fetch a list of roles this 
+     * User belongs to
+     */
+    public function roles() {
+        return $this->belongsToMany(Role::class, 'user_roles');
+    }
+
+    /**
+     * Check if this user is an admin
+     * @return boolean
+     */
+    public function is_admin(){
+        return $this->roles()->where('name', 'Admin')->exists();
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
