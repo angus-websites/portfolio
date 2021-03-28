@@ -10,8 +10,10 @@
       </div>
     </div>
   </a>
-  <div class="mt-3 flex">
-    <x-link-button href="#" class="text-center bg-indigo-100 hover:bg-indigo-300 text-indigo-600 hover:text-white flex-grow">Edit</x-link-button>
-  </div>
+  @can('update', $project)
+    <div class="mt-3 flex">
+      <x-link-button href="#" class="text-center bg-indigo-100 hover:bg-indigo-300 text-indigo-600 hover:text-white flex-grow">Edit</x-link-button>
+    </div>
+  @endcan
 </div>
 
