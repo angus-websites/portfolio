@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <a href="#" class="text-gray-500 hover:bg-green-100 hover:text-green-600 px-3 py-2 rounded-md text-md font-medium">Login</a>
+        <a href="/login" class="text-gray-500 hover:bg-green-100 hover:text-green-600 px-3 py-2 rounded-md text-md font-medium">Login</a>
       </div>
     </div>
   </div>

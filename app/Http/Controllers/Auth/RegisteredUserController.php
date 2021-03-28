@@ -19,6 +19,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
+        //TODO remove this
         return view('auth.register');
     }
 

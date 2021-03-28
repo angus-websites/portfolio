@@ -26,6 +26,7 @@ class CreateProjectsTable extends Migration
             $table->text('web_link')->nullable();
             $table->date('date_made');
             $table->text('img')->nullable();
+            $table->text('logo')->nullable();
 
         });
     }
