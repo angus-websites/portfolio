@@ -28,6 +28,8 @@ class CreateRolesTable extends Migration
                 ->references('id')->on('users');
             $table->foreign('role_id')
                 ->references('id')->on('roles');
+
+            $table->unique(array('user_id', 'role_id'));
         });
     }
 
@@ -38,7 +40,8 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
         Schema::dropIfExists('user_roles');
+        Schema::dropIfExists('roles');
+        
     }
 }

@@ -27,5 +27,9 @@ Route::get('/dashboard', function () {
 //My Projects
 Route::resource('projects', ProjectController::class);
 
+//Contact
+Route::get('/contact', function () {
+    return view('contact');
+});
 
 require __DIR__.'/auth.php';

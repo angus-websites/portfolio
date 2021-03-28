@@ -65,6 +65,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        return "You are ready to edit this project";
     }
 
     /**

@@ -29,6 +29,10 @@ class Project extends Model
       return "/projects/".$this->slug;
     }
 
+    public function get_edit_url(){
+      return $this->get_url()."/edit";
+    }
+
     /**
      * Get the category this project belongs
      * to
