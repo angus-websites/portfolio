@@ -1,5 +1,5 @@
 <x-guest-layout>
-  <section class="text-gray-600 body-font overflow-hidden">
+  <section class="container mx-auto">
     <div class="container px-5 py-24 mx-auto">
       <div class="lg:w-4/5 mx-auto ">
 
@@ -11,7 +11,7 @@
           <span>Projects</span>
         </a>
 
-
+        <!--Project details-->
         <div class="flex flex-wrap">
           <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{{$project->get_image()}}">
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -22,7 +22,7 @@
                 <span class="text-gray-600">{{$project->date_made}}</span>
               </span>
             </div>
-            <p class="leading-relaxed">{{$project->long_desc}}</p>
+            <p class="leading-relaxed">{{$project->short_desc}}</p>
             <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
               <!--Tags-->
               <div
@@ -129,6 +129,13 @@
             
           </div>
         </div>
+
+        <!--Description-->
+        <div class="mt-16 md:w-1/2">
+          <h1 class="text-gray-900 text-2xl title-font font-medium mb-3">Details</h1>
+          <p class="leading-relaxed">{{$project->long_desc}}</p>
+        </div>
+
       </div>
     </div>
   </section>
