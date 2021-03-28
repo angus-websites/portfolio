@@ -3,7 +3,7 @@
   <head>
     @include('includes.head-tags')
   </head>
-  <body class="font-sans antialiased">
+  <body class="font-sans antialiased ">
     {{ $slot }}
   </body>
 </html>

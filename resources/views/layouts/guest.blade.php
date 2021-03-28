@@ -1,7 +1,7 @@
 <x-master-layout>
   @include('includes.navigation-guest')
-  <div class="font-sans text-gray-600 body-font overflow-hidden min-h-screen antialiased">
+  <main class="text-gray-600 body-font overflow-hidden min-h-screen">
     {{ $slot }}
-  </div>
+  </main>
   @include('includes.footer-guest')
 </x-master-layout>

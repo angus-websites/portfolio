@@ -7,7 +7,7 @@
     </div>
   </header>
   <!-- Page Content -->
-  <main>
+  <main class="text-gray-600 body-font overflow-hidden min-h-screen">
     {{ $slot }}
   </main>
   @include('includes.footer-guest')
