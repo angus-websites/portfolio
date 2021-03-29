@@ -97,20 +97,21 @@
       </div>
     </div>
   </section>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type="text/javascript">
-
-    //When a checkbox is clicked
-    $(".toggle_block").click(function() {
-        if($(this).is(":checked")){
-          //Show
-          $("#"+$(this).attr("id")+"_block").show(200);
-          //Make required
-          $("#"+$(this).attr("id")+"_input").prop("required",true);
-        }else{
-          $("#"+$(this).attr("id")+"_block").hide(200);
-          $("#"+$(this).attr("id")+"_input").prop("required",false);
-        }
+    window.addEventListener("DOMContentLoaded", () => {
+      //When a checkbox is clicked
+      $(".toggle_block").click(function() {
+          if($(this).is(":checked")){
+            //Show
+            $("#"+$(this).attr("id")+"_block").show(200);
+            //Make required
+            $("#"+$(this).attr("id")+"_input").prop("required",true);
+          }else{
+            $("#"+$(this).attr("id")+"_block").hide(200);
+            $("#"+$(this).attr("id")+"_input").prop("required",false);
+          }
+      });
     });
+    
   </script>
 </x-app-layout>
