@@ -4,16 +4,19 @@
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Edit Project</h1>
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
     </div>
+
+
     <div class="mt-10 sm:mt-0">
       <div class="mt-5 md:mt-0 md:col-span-2">
-        <form action="#" method="POST">
+        <form method="POST" action="{{{ route('projects.update',$project->slug) }}}">
+          @method('PUT')
+          @csrf
           <div class="shadow overflow-hidden sm:rounded-md">
             <div class="px-4 py-5 bg-white sm:p-6">
               <div class="grid grid-cols-6 gap-6">
-
                 <div class="col-span-6 sm:col-span-3">
-                  <label for="project_name" class="block text-sm font-medium text-gray-700">Project Name</label>
-                  <input type="text" name="project_name" id="project_name" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$project->name}}" required>
+                  <label for="name" class="block text-sm font-medium text-gray-700">Project Name</label>
+                  <input type="text" name="name" id="project_name" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$project->name}}" required>
                 </div>
 
                 <!--Slug-->
@@ -24,8 +27,8 @@
 
                 <!--Date-->
                 <div class="col-span-6 sm:col-span-4">
-                  <label for="date_created" class="block text-sm font-medium text-gray-700">Date Created</label>
-                  <input type="date" name="date_created" id="date_created" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="day/month/year" value="{{$project->get_date_created()}}" required>
+                  <label for="date_made" class="block text-sm font-medium text-gray-700">Date Created</label>
+                  <input type="date" name="date_made" id="date_made" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="day/month/year" value="{{$project->get_date_created()}}" required>
                 </div>
 
                 <!--Short description-->
@@ -53,7 +56,7 @@
                 <div class="col-span-6 sm:col-span-4" id="has_git_block" style="{{ isset($project->git_link) ? "" : "display: none;" }}">
                   <!--Input for git-->
                   <label for="git_url" class="block text-sm font-medium text-gray-700">Github URL</label>
-                  <input type="text" name="git_url" id="has_git_input" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($project->git_link) ? $project->git_link : "" }}">
+                  <input type="text" name="git_link" id="has_git_input" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($project->git_link) ? $project->git_link : "" }}">
                 </div>
                 <!--Web checkbox-->
                 <div class="col-span-6 sm:col-span-4 flex items-start">
@@ -68,7 +71,7 @@
                 <div class="col-span-6 sm:col-span-4" id="has_web_block" style="{{ isset($project->web_link) ? "" : "display: none;" }}">
                   <!--Input for Web-->
                   <label for="web_url" class="block text-sm font-medium text-gray-700">Web URL</label>
-                  <input type="text" name="web_url" id="has_web_input" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($project->web_link) ? $project->web_link : "" }}">
+                  <input type="text" name="web_link" id="has_web_input" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($project->web_link) ? $project->web_link : "" }}">
                 </div>
 
 

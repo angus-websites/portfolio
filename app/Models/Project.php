@@ -12,6 +12,7 @@ class Project extends Model
     //Statics
     public static $placeholder = "/assets/images/placeholders/project_placeholder.svg";
     public static $imagesPath = "projects/";
+    protected $fillable = ['name','short_desc','long_desc','git_link','web_link','img','logo'];
 
     /**
      * Define how routes should be
@@ -37,6 +38,7 @@ class Project extends Model
     public function get_edit_url(){
       return $this->get_url()."/edit";
     }
+
 
     /**
      * Get the category this project belongs

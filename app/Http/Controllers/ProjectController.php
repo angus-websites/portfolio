@@ -76,8 +76,13 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Project $project)
-    {
-        //
+    {   
+
+        //$date = date('Y-m-d H:i:s', strtotime(str_replace("/","-",$_POST['php_date'])));
+        $project = Project::where('id', '=', $project->id)->first();
+        $project->update($request->all());
+        return redirect()->back();
+
     }
 
     /**
