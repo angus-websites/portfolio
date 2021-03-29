@@ -64,8 +64,8 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Project $project)
-    {
-        return "You are ready to edit this project";
+    {   
+        return view('projects.edit', ["project" => $project]);
     }
 
     /**

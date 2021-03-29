@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Project extends Model
 {
     use HasFactory;
+    //Statics
     public static $placeholder = "/assets/images/placeholders/project_placeholder.svg";
     public static $imagesPath = "projects/";
 
@@ -29,6 +30,10 @@ class Project extends Model
       return "/projects/".$this->slug;
     }
 
+    /**
+     * Get the url to edit
+     * this project
+     */
     public function get_edit_url(){
       return $this->get_url()."/edit";
     }
@@ -39,6 +44,14 @@ class Project extends Model
      */
     public function get_category(){
         return "";
+    }
+
+    /**
+     * Return the date created
+     * in a standard format
+     */
+    public function get_date_created(){
+      return date("d/m/Y", strtotime($this->date_made));
     }
 
     /**
