@@ -1,5 +1,5 @@
 
-<div class="projectCard">
+<div class="projectCard h-full">
   <a href="{{$link}}">
     <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
       <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{$imagePath}}" alt="{{$getAlt()}}">
