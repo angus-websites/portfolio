@@ -77,8 +77,19 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {   
-
-        //$date = date('Y-m-d H:i:s', strtotime(str_replace("/","-",$_POST['php_date'])));
+        //Remove website link if checkbox not checked
+        if(!isset($request->has_web)){
+            $request->merge([
+                'web_link' => null,
+            ]);
+        }
+        //Remove Git link if not specifed
+        if(!isset($request->has_git)){
+            $request->merge([
+                'git_link' => null,
+            ]);
+        }
+        //Update the project and redirect
         $project = Project::where('id', '=', $project->id)->first();
         $project->update($request->all());
         return redirect()->back()->with('success', 'Project updated!');
