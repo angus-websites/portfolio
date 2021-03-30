@@ -20,6 +20,7 @@ class CreateTagsTable extends Migration
             //Fields
             $table->text('name');
             $table->text('colour')->nullable();
+            $table->text('text_colour')->nullable();
         });
     }
 
