@@ -48,7 +48,7 @@ class TagSeeder extends Seeder
 
       //Bulma
       Tag::create([
-        'name' => "PHP",
+        'name' => "Bulma",
         'colour' => "green-500",
         'text_colour' => "green-900"
       ]);

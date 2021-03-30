@@ -5,6 +5,7 @@ use Illuminate\Database\Seeder;
 
 //Models
 use App\Models\Project;
+use App\Models\Tag;
 
 //Support
 use Illuminate\Support\Facades\DB;
@@ -25,10 +26,11 @@ class ProjectSeeder extends Seeder
       //Clear data
       DB::statement('SET FOREIGN_KEY_CHECKS=0');
       Project::truncate();
+      DB::table('project_tags')->truncate();
       DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
       //Redwood
-      Project::create([
+      $redwood=Project::create([
           'name' => "Redwood",
           'slug'=> Str::slug('redwood', '-'),
           'short_desc' => "A website for a small marketing company",
@@ -38,8 +40,17 @@ class ProjectSeeder extends Seeder
           'img' => "redwood.jpg",
       ]);
 
+      //Redwood Tags
+      $data = [
+          ['project_id'=> $redwood->id, 'tag_id'=> Tag::where('name', '=', 'Web')->firstOrFail()->id],
+          ['project_id'=> $redwood->id, 'tag_id'=> Tag::where('name', '=', 'PHP')->firstOrFail()->id],
+          ['project_id'=> $redwood->id, 'tag_id'=> Tag::where('name', '=', 'BOOTSTRAP')->firstOrFail()->id],
+      ];
+      DB::table('project_tags')->insert($data);
+
+
       //Passworld
-      Project::create([
+      $passworld=Project::create([
           'name' => "Passworld",
           'slug'=> Str::slug('passworld', '-'),
           'short_desc' => "A website for a generating and learning about passwords",
@@ -48,5 +59,15 @@ class ProjectSeeder extends Seeder
           'date_made' => Carbon::parse('2021-08-01'),
           'img' => "passworld.jpg",
       ]);
+
+      //Password Tags
+      $data = [
+          ['project_id'=> $passworld->id, 'tag_id'=> Tag::where('name', '=', 'Web')->firstOrFail()->id],
+          ['project_id'=> $passworld->id, 'tag_id'=> Tag::where('name', '=', 'PHP')->firstOrFail()->id],
+          ['project_id'=> $passworld->id, 'tag_id'=> Tag::where('name', '=', 'Bulma')->firstOrFail()->id],
+          ['project_id'=> $passworld->id, 'tag_id'=> Tag::where('name', '=', 'jQuery')->firstOrFail()->id],
+
+      ];
+      DB::table('project_tags')->insert($data);
     }
 }
