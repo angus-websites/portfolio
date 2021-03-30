@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
@@ -65,7 +67,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {   
-        return view('projects.edit', ["project" => $project]);
+        $categories = Category::all();
+        return view('projects.edit', ["project" => $project,"categories"=>$categories]);
     }
 
     /**
@@ -89,6 +92,12 @@ class ProjectController extends Controller
                 'git_link' => null,
             ]);
         }
+
+        //Convert date to correct format
+        $request->merge([
+            'date_made' => date("Y-m-d H:i:s",strtotime(str_replace('/', '-', $request->date_made )))
+        ]);
+
         //Update the project and redirect
         $project = Project::where('id', '=', $project->id)->first();
         $project->update($request->all());

@@ -12,7 +12,7 @@ class Project extends Model
     //Statics
     public static $placeholder = "/assets/images/placeholders/project_placeholder.svg";
     public static $imagesPath = "projects/";
-    protected $fillable = ['name','short_desc','long_desc','git_link','web_link','img','logo'];
+    protected $fillable = ['name','short_desc','long_desc','git_link','web_link','img','logo','date_made'];
 
     /**
      * Define how routes should be

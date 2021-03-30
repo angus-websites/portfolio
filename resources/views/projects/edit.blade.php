@@ -19,14 +19,8 @@
                   <input type="text" name="name" id="project_name" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$project->name}}" required>
                 </div>
 
-                <!--Slug-->
-                <div class="col-span-6 sm:col-span-3">
-                  <label for="project_slug" class="block text-sm font-medium text-gray-700">Slug</label>
-                  <input disabled type="text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$project->slug}}">
-                </div>
-
                 <!--Date-->
-                <div class="col-span-6 sm:col-span-4">
+                <div class="col-span-6 sm:col-span-3">
                   <label for="date_made" class="block text-sm font-medium text-gray-700">Date Created</label>
                   <input type="date" name="date_made" id="date_made" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="day/month/year" value="{{$project->get_date_created()}}" required>
                 </div>
@@ -43,6 +37,18 @@
                   <textarea type="text" name="long_desc" id="long_desc" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{$project->long_desc}}</textarea>
                 </div>
 
+                <!--Category-->
+                <div class="col-span-6 sm:col-span-3">
+                  <label for="country" class="block text-sm font-medium text-gray-700">Category</label>
+                  <select id="country" name="country" autocomplete="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    @foreach($categories as $category)
+                      <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+
+
                 <!--Github checkbox-->
                 <div class="col-span-6 sm:col-span-4 flex items-start">
                   <div class="flex items-center h-5">
@@ -53,7 +59,7 @@
                     <p class="text-gray-500">Does this project include a public github link?</p>
                   </div>
                 </div>
-                <div class="col-span-6 sm:col-span-4" id="has_git_block" style="{{ isset($project->git_link) ? "" : "display: none;" }}">
+                <div class="col-span-6 sm:col-span-3" id="has_git_block" style="{{ isset($project->git_link) ? "" : "display: none;" }}">
                   <!--Input for git-->
                   <label for="git_url" class="block text-sm font-medium text-gray-700">Github URL</label>
                   <input type="text" name="git_link" id="has_git_input" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($project->git_link) ? $project->git_link : "" }}">
@@ -68,22 +74,16 @@
                     <p class="text-gray-500">Does this project include a live website link?</p>
                   </div>
                 </div>
-                <div class="col-span-6 sm:col-span-4" id="has_web_block" style="{{ isset($project->web_link) ? "" : "display: none;" }}">
+                <div class="col-span-6 sm:col-span-3" id="has_web_block" style="{{ isset($project->web_link) ? "" : "display: none;" }}">
                   <!--Input for Web-->
                   <label for="web_url" class="block text-sm font-medium text-gray-700">Web URL</label>
                   <input type="text" name="web_link" id="has_web_input" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($project->web_link) ? $project->web_link : "" }}">
                 </div>
 
 
-                <!--Category-->
-               {{--  <div class="col-span-6 sm:col-span-3">
-                  <label for="country" class="block text-sm font-medium text-gray-700">Category</label>
-                  <select id="country" name="country" autocomplete="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option>Web</option>
-                    <option>Desktop</option>
-                    <option>Mobile</option>
-                  </select>
-                </div> --}}
+                
+
+
 
               </div>
             </div>
