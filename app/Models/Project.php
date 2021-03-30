@@ -24,6 +24,13 @@ class Project extends Model
     }
 
     /**
+     * Fetch all the tags for a project
+     */
+    public function tags() {
+        return $this->belongsToMany(Tag::class, 'project_tags');
+    }
+
+    /**
      * This function will get the URL
      * for this project
      */

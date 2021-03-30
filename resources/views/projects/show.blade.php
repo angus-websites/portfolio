@@ -25,7 +25,14 @@
             <p class="leading-relaxed">{{$project->short_desc}}</p>
             <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
               <!--Tags-->
-              <div
+
+              @foreach($project->tags()->get() as $tag)
+                <div
+                  class="text-xs mr-3 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-{{ isset($tag->colour) ? $tag->colour : "gray-300" }} text-{{ isset($tag->text_colour) ? $tag->text_colour : "gray-600" }} rounded-full">
+                  {{$tag->name}}
+                </div>
+              @endforeach
+              {{-- <div
                 class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full">
                 Web
               </div>
@@ -112,7 +119,8 @@
                   <line x1="10" y1="16" x2="10.01" y2="16"></line>
                 </svg>
                 Tag
-              </div>
+              </div> --}}
+
             </div>
             <div class="flex-1">
               @if(isset($project->git_link))

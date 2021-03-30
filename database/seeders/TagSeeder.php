@@ -34,14 +34,14 @@ class TagSeeder extends Seeder
       //PHP
       Tag::create([
         'name' => "PHP",
-        'colour' => "indigo-500",
-        'text_colour' => "indigo-900"
+        'colour' => "indigo-300",
+        'text_colour' => "indigo-600"
       ]);
 
       //Bootstrap
       Tag::create([
         'name' => "Bootstrap",
-        'colour' => "indigo-700",
+        'colour' => "indigo-500",
         'text_colour' => "white"
       ]);
 
@@ -49,8 +49,8 @@ class TagSeeder extends Seeder
       //Bulma
       Tag::create([
         'name' => "Bulma",
-        'colour' => "green-500",
-        'text_colour' => "green-900"
+        'colour' => "green-300",
+        'text_colour' => "green-600"
       ]);
 
       //Python
