@@ -3,13 +3,24 @@
     <div class="container px-5 py-24 mx-auto">
       <div class="lg:w-4/5 mx-auto ">
 
+
+        <div class="flex flex-row ...">
+          <!--Back-->
+          <a href="/projects" class="hover:bg-gray-100 font-bold py-2 px-4 rounded inline-flex items-center mb-4">
+            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <span>Projects</span>
+          </a>
+          @can('update', $project)
+            <a href="{{$project->get_edit_url()}}" class="ml-4 bg-indigo-100 hover:bg-indigo-300 text-indigo-600 hover:text-white font-bold py-2 px-4 rounded inline-flex items-center mb-4">
+              <span>Edit</span>
+            </a>
+          @endcan
+        </div>
+
         <!--Back button-->
-        <a href="/projects" class="hover:bg-gray-100 font-bold py-2 px-4 rounded inline-flex items-center mb-4">
-          <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-          <span>Projects</span>
-        </a>
+        
 
         <!--Project details-->
         <div class="flex flex-wrap">

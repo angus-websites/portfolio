@@ -33,7 +33,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('projects.create', ["project" => $project,"categories"=>$categories]);
     }
 
     /**
@@ -101,6 +102,8 @@ class ProjectController extends Controller
         //Update the project and redirect
         $project = Project::where('id', '=', $project->id)->first();
         $project->update($request->all());
+
+        //TODO Update the name and slug
         return redirect()->back()->with('success', 'Project updated!');
 
     }
