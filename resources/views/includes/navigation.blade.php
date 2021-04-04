@@ -75,7 +75,7 @@
       <x-responsive-nav-link href="/projects" :active="request()->routeIs('projects')">
         {{ __('Projects') }}
       </x-responsive-nav-link>
-      <x-responsive-nav-link href="/contact" :active="request()->routeIs('index')">
+      <x-responsive-nav-link href="/contact" :active="request()->routeIs('contact')">
         {{ __('Contact') }}
       </x-responsive-nav-link>
     </div>

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ContactController;
+use Illuminate\Http\Request;
 
 
 /*
@@ -27,9 +29,14 @@ Route::get('/dashboard', function () {
 //My Projects
 Route::resource('projects', ProjectController::class);
 
+
 //Contact
 Route::get('/contact', function () {
-    return view('contact');
+    return (new ContactController())->show();
 });
+Route::post('/contact', function (Request $request) {
+    return (new ContactController())->send($request);
+});
+
 
 require __DIR__.'/auth.php';
