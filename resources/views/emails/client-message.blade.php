@@ -60,22 +60,21 @@
           <table role="presentation" style="width:94%;max-width:600px;border:none;border-spacing:0;text-align:left;font-family:Arial,sans-serif;font-size:16px;line-height:22px;color:#363636;">
             <tr>
               <td style="padding:40px 30px 30px 30px;text-align:center;font-size:24px;font-weight:bold;">
-                <a href="<?get_public_prefix()?>" style="text-decoration:none;"><img src="<?=get_portal_prefix()?>/assets/images/core/logo.svg" width="165" alt="Logo" style="width:80%;max-width:165px;height:auto;border:none;text-decoration:none;color:#ffffff;"></a>
+                <a href="" style="text-decoration:none;"><img src="/assets/images/core/logo.svg" width="165" alt="Logo" style="width:80%;max-width:165px;height:auto;border:none;text-decoration:none;color:#ffffff;"></a>
               </td>
             </tr>
             <tr>
               <td style="padding:30px;background-color:#ffffff;">
                 <h1 style="margin-top:0;margin-bottom:16px;font-size:26px;line-height:32px;font-weight:bold;letter-spacing:-0.02em;">New Message</h1>
-                <p style="margin:0; margin-bottom: 5px;"><b>Name: <span>{{$name}}</span></b> </p>
-        <p style="margin:0;"><b>Email:</b> <span>{{$email}}</span></p>
+                <p style="margin:0; margin-bottom: 5px;"><b>Name:</b> {{$name}}</p>
+        <p style="margin:0;"><b>Email:</b> {{$email}}</p>
                 <br>
         <p style="margin:0; margin-bottom: 5px;"><b>Message:</b> </p> 
-                <p style="margin:0;">{{$message}}</p>
+                <p style="margin:0;">{{$content}}</p>
               </td>
             </tr>
             <tr>
               <td style="padding:30px;text-align:center;font-size:12px;background-color:#404040;color:#cccccc;">
-                <p style="margin:0 0 8px 0;"><a href="http://www.facebook.com/" style="text-decoration:none;"><img src="<?get_public_prefix()?>/assets/images/icons/facebook_light.svg" width="40" height="40" alt="f" style="display:inline-block;color:#cccccc;"></a> <a href="http://www.twitter.com/" style="text-decoration:none;"><img src="<?get_public_prefix()?>/assets/images/icons/instagram_light.svg" width="40" height="40" alt="t" style="display:inline-block;color:#cccccc;"></a></p>
                 <p style="margin:0;font-size:14px;line-height:20px;">&reg; Angus 2021<br></p>
               </td>
             </tr>

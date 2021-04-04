@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Mail\ClientMessage;
+use Illuminate\Support\Facades\Mail;
+
 class ContactController extends Controller
 {
     /**
@@ -26,6 +29,12 @@ class ContactController extends Controller
         'message' => 'required'
       ]);
 
-      return "Valid";
+      $name=$request->name;
+      $email=$request->email;
+      $message=$request->message;
+
+      Mail::to("angus@angusgoody.com")->send(new ClientMessage($name,$email,$message));
+
+      return redirect()->back()->with('success', 'Email sent!');
     }
 }

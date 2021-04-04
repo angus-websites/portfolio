@@ -13,7 +13,7 @@ class ClientMessage extends Mailable
 
     public $name;
     public $email;
-    public $message;
+    public $content;
 
     /**
      * Create a new message instance.
@@ -23,8 +23,8 @@ class ClientMessage extends Mailable
     public function __construct($name,$email,$message)
     {
         $this->name=$name;
-        $this->email=$name;
-        $this->message=$message;
+        $this->email=$email;
+        $this->content=$message;
     }
 
     /**
@@ -34,6 +34,6 @@ class ClientMessage extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.client-message');
     }
 }
