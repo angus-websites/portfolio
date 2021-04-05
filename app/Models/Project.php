@@ -51,8 +51,8 @@ class Project extends Model
      * Get the category this project belongs
      * to
      */
-    public function get_category(){
-        return "";
+    public function category(){
+      return $this->belongsTo(Category::class)->first();
     }
 
     /**

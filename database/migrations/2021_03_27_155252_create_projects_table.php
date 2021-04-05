@@ -20,6 +20,9 @@ class CreateProjectsTable extends Migration
             //Fields
             $table->text('name');
             $table->string('slug')->unique();
+            $table->foreignId('category_id')->constrained("categories")
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->text('short_desc')->nullable();
             $table->text('long_desc')->nullable();
             $table->text('git_link')->nullable();

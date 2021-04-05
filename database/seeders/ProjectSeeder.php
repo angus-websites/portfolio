@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 //Models
 use App\Models\Project;
 use App\Models\Tag;
+use App\Models\Category;
 
 //Support
 use Illuminate\Support\Facades\DB;
@@ -33,6 +34,7 @@ class ProjectSeeder extends Seeder
       $redwood=Project::create([
           'name' => "Redwood",
           'slug'=> Str::slug('redwood', '-'),
+          'category_id' => Category::where('name', '=', 'Websites')->firstOrFail()->id,
           'short_desc' => "A website for a small marketing company",
           'long_desc' => "A long description describing the Redwood website would go here",
           'web_link' => "https://www.redwood.business",
@@ -53,6 +55,7 @@ class ProjectSeeder extends Seeder
       $passworld=Project::create([
           'name' => "Passworld",
           'slug'=> Str::slug('passworld', '-'),
+          'category_id' => Category::where('name', '=', 'Websites')->firstOrFail()->id,
           'short_desc' => "A website for a generating and learning about passwords",
           'long_desc' => "A long description describing the Passworld website would go here",
           'web_link' => "https://www.passworld.co.uk",
