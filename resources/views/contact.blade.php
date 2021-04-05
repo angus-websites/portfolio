@@ -1,3 +1,6 @@
+
+@section('title', 'Contact')
+
 <x-app-layout>
   <div class="container px-5 py-24 mx-auto">
     @if ($errors->any())

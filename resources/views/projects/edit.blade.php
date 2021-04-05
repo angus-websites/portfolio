@@ -1,3 +1,5 @@
+@section('title', 'Edit - '.$project->name)
+
 <x-app-layout>
   <section class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-10">
