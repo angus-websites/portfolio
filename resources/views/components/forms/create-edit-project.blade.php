@@ -131,6 +131,23 @@
         <input type="text" name="web_link" id="has_web_input" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$webLink}}">
       </div>
 
+      <!--Tags-->
+      <div class="col-span-6 sm:col-span-4">
+        <label class="block text-sm font-medium text-gray-700">Tags</label>
+        <!--List the tags-->
+        <div class="py-2">
+          @foreach($tags as $tag)
+            <div
+              class="text-xs mr-3 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-{{ isset($tag->colour) ? $tag->colour : "gray-300" }} text-{{ isset($tag->text_colour) ? $tag->text_colour : "gray-600" }} rounded-full">
+              {{$tag->name}}
+            </div>
+          @endforeach
+        </div>
+        <!--Add new tags-->
+        <input type="text" id="add_tags" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add tags">
+
+      </div>
+
     </div>
   </div>
   <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">

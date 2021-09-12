@@ -20,13 +20,12 @@
             </a>
           @endcan
         </div>
-
-        <!--Back button-->
-        
-
+      
         <!--Project details-->
         <div class="flex flex-wrap">
-          <img alt="{{$project->name}}" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{{$project->get_image()}}">
+          <!--Image-->
+          <img alt="{{$project->name}}" class="lg:w-1/2 w-full lg:h-full h-64 object-cover object-center rounded" src="{{$project->get_image()}}">
+          <!--Details-->
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             
             @if ($project->has_logo())
@@ -47,7 +46,6 @@
             <p class="leading-relaxed">{{$project->short_desc}}</p>
             <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
               <!--Tags-->
-
               @foreach($project->tags()->get() as $tag)
                 <div
                   class="text-xs mr-3 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-{{ isset($tag->colour) ? $tag->colour : "gray-300" }} text-{{ isset($tag->text_colour) ? $tag->text_colour : "gray-600" }} rounded-full">
@@ -71,8 +69,6 @@
                 </a>
               @endif
             </div>
-
-            
           </div>
         </div>
 

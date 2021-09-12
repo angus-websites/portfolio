@@ -16,6 +16,8 @@ class CreateEditProject extends Component
     public $shortDesc;
     public $longDesc;
     public $categories;
+    public $tags;
+
 
     public $image;
     public $logo;
@@ -47,6 +49,7 @@ class CreateEditProject extends Component
 
         //Fetch array of category names
         $this->categories = Category::select('id','name')->get();
+        $this->tags = $this->project->tags()->select("id","name","colour","text_colour")->get();
     }
 
 
