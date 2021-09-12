@@ -7,7 +7,7 @@
         <label class="block text-sm font-medium text-gray-700">
           Project Image
         </label>
-        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md file-section">
           <div class="space-y-1 text-center">
             <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
               <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -15,7 +15,7 @@
             <div class="flex justify-center text-sm text-gray-600">
               <label for="image-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                 <span>Upload an image</span>
-                <input id="image-upload" name="image-upload" type="file" class="sr-only">
+                <input id="image-upload" name="imageUpload" type="file" class="sr-only file-upload">
               </label>
             </div>
             <p class="text-xs text-gray-500">
@@ -24,7 +24,7 @@
 
             <p class="pt-4">
               <p class="text-s text-blue-50 p-1 bg-blue-600 text-white rounded-full">
-                <span class="p-2" id="image-file-name">{{$image}}</span>
+                <span class="p-2 file-name">{{$image}}</span>
               </p>
             </p>
 
@@ -32,29 +32,31 @@
         </div>
       </div>
 
-      <!--Image-->
+      <!--Logo-->
       <div class="col-span-6 sm:col-span-3">
         <label class="block text-sm font-medium text-gray-700">
           Logo Image
         </label>
-        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md file-section">
           <div class="space-y-1 text-center">
             <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
               <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
+
             <div class="flex justify-center text-sm text-gray-600">
-              <label for="image-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+              <label for="logo-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                 <span>Upload an image</span>
-                <input id="image-upload" name="image-upload" type="file" class="sr-only">
+                <input id="logo-upload" name="logoUpload" type="file" class="sr-only file-upload">
               </label>
             </div>
+
             <p class="text-xs text-gray-500">
               SVG, PNG, JPG
             </p>
 
             <p class="pt-4">
               <p class="text-s text-blue-50 p-1 bg-blue-600 text-white rounded-full">
-                <span class="p-2" id="image-file-name">{{$image}}</span>
+                <span class="p-2 file-name">{{$logo}}</span>
               </p>
             </p>
 
@@ -155,9 +157,9 @@
     });
 
     //Handle upload
-    $('#image-upload').change(function() {
+    $('.file-section .file-upload').change(function() {
       if ($(this).prop("files").length > 0) {
-        $('#image-file-name').text($(this).prop("files")[0].name);
+        $(this).closest(".file-section").find(".file-name").text($(this).prop("files")[0].name);
       }
     });
   });

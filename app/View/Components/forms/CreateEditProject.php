@@ -18,6 +18,7 @@ class CreateEditProject extends Component
     public $categories;
 
     public $image;
+    public $logo;
     public $gitLink;
     public $webLink;
 
@@ -39,6 +40,8 @@ class CreateEditProject extends Component
 
         //Booleans
         $this->image = basename($this->project->get_image());
+        $this->logo = basename($this->project->get_logo());
+
         $this->gitLink = $this->project->git_link ?? null;
         $this->webLink = $this->project->web_link ?? null;
 

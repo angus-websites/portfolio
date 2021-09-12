@@ -89,6 +89,7 @@ class ProjectController extends Controller
           'long_desc' => 'required',
           'date_made' => 'date',
           'image' => 'image|max:2048',
+          'logo' => 'image|max:2048',
           "git_link"  => "nullable|url",
           "web_link"  => "nullable|url",
         ]);
@@ -108,10 +109,30 @@ class ProjectController extends Controller
             ]);
         }
 
+        //If an image is specified
+        if($request->has('imageUpload')){
+          //Rename and move to storage
+          $imageName = uniqid().'.'.$request->imageUpload->extension();    
+          $request->imageUpload->move(public_path('images/projects'), $imageName);
+          //Update the image in the project
+          $project->img= $imageName;
+        }
+
+        //If a logo is specified
+        if($request->has('logoUpload')){
+          //Rename and move to storage
+          $imageName = uniqid().'.'.$request->logoUpload->extension();    
+          $request->logoUpload->move(public_path('images/logos'), $imageName);
+          //Update the image in the project
+          $project->logo= $imageName;
+        }
+
+
+
         //Update the project and redirect
         $project->update($request->all());
 
-        //TODO Update the name and slug
+        //Redirect
         return redirect()->back()->with('success', 'Project updated!');
 
     }

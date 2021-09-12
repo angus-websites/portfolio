@@ -9,7 +9,7 @@
 
     <div class="mt-10 sm:mt-0">
       <div class="mt-5 md:mt-0 md:col-span-2">
-        <form method="POST" action="{{{ route('projects.update',$project->slug) }}}">
+        <form method="POST" action="{{{ route('projects.update',$project->slug) }}}" enctype='multipart/form-data'>
           @method('PUT')
           @csrf
           <x-forms.create-edit-project :project="$project"/>

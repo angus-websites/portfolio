@@ -15,7 +15,7 @@ class Project extends Model
     public static $logo_placeholder = "/assets/images/placeholders/logo_placeholder.svg";
     public static $imagesPath = "projects/";
     public static $logoPath = "logos/";
-    protected $fillable = ['name','short_desc','long_desc','git_link','web_link','img','logo','date_made'];
+    protected $fillable = ['name','short_desc','long_desc','git_link','web_link','date_made'];
 
     /**
      * Define how routes should be
@@ -104,7 +104,7 @@ class Project extends Model
     public function get_logo(){
       if($this->logo){
         //Find this image in storage
-        $path = "images/".$this::$logoPath.$this->img;
+        $path = "images/".$this::$logoPath.$this->logo;
         if(Storage::disk('public')->exists($path)){
           return asset($path);
         }else{
