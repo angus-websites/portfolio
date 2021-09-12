@@ -12,7 +12,9 @@ class Project extends Model
     
     //Statics
     public static $placeholder = "/assets/images/placeholders/project_placeholder.svg";
+    public static $logo_placeholder = "/assets/images/placeholders/logo_placeholder.svg";
     public static $imagesPath = "projects/";
+    public static $logoPath = "logos/";
     protected $fillable = ['name','short_desc','long_desc','git_link','web_link','img','logo','date_made'];
 
     /**
@@ -69,7 +71,7 @@ class Project extends Model
      */
     public function get_image(){
       if($this->img){
-        //Find this logo in storage
+        //Find this image in storage
         $path = "images/".$this::$imagesPath.$this->img;
         if(Storage::disk('public')->exists($path)){
           return asset($path);
@@ -82,5 +84,36 @@ class Project extends Model
         return $this::$placeholder;
       }
 
+    }
+
+    /**
+     * Does this project have a logo
+     * stored?
+     * @return boolean
+     */
+    public function has_logo(){
+      if($this->logo){
+        return 1;
+      }
+      return 0;
+    }
+
+    /**
+     * Get the logo for this project
+     */
+    public function get_logo(){
+      if($this->logo){
+        //Find this image in storage
+        $path = "images/".$this::$logoPath.$this->img;
+        if(Storage::disk('public')->exists($path)){
+          return asset($path);
+        }else{
+          return $this::$logo_placeholder;
+        }
+      }
+      //No image, return a placeholder
+      else{
+        return $this::$logo_placeholder;
+      }
     }
 }
