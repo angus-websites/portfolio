@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Project extends Model
 {
     use HasFactory;
+    
     //Statics
     public static $placeholder = "/assets/images/placeholders/project_placeholder.svg";
     public static $imagesPath = "projects/";

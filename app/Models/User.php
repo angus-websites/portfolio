@@ -28,6 +28,24 @@ class User extends Authenticatable
     }
 
     /**
+     * Ensure the password is hashed
+     * before it is stored
+     */
+    public function setPasswordAttribute($password)
+    {   
+       $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Retrieve the name of the user
+     * and automatically capitalize it
+     */
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
+    
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
