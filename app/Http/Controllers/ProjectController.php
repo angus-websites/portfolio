@@ -80,27 +80,35 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Project $project)
-    {   
+    {
+
+        //Validation
+        $validated = $request->validate([
+          'name' => 'required',
+          'short_desc' => 'required',
+          'long_desc' => 'required',
+          'date_made' => 'date',
+          'image' => 'image|max:2048',
+          "git_link"  => "nullable|url",
+          "web_link"  => "nullable|url",
+        ]);
+
+
         //Remove website link if checkbox not checked
-        if(!isset($request->has_web)){
+        if(!$request->has('has_web')){
             $request->merge([
                 'web_link' => null,
             ]);
         }
-        //Remove Git link if not specifed
-        if(!isset($request->has_git)){
+
+        //Remove github link if checkbox not checked
+        if(!$request->has('has_git')){
             $request->merge([
                 'git_link' => null,
             ]);
         }
 
-        //Convert date to correct format
-        $request->merge([
-            'date_made' => date("Y-m-d H:i:s",strtotime(str_replace('/', '-', $request->date_made )))
-        ]);
-
         //Update the project and redirect
-        $project = Project::where('id', '=', $project->id)->first();
         $project->update($request->all());
 
         //TODO Update the name and slug

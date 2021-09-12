@@ -30,3 +30,15 @@
     </button>
   </div>
 @endif
+
+@if ($errors->any())
+  <div class="text-red-700 px-6 py-4 border-0 rounded relative mb-4 bg-red-100 text-center">
+    <span class="inline-block align-middle mr-8">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </span>
+  </div>
+@endif
