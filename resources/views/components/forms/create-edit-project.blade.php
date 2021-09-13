@@ -139,12 +139,35 @@
           @foreach($tags as $tag)
             <div
               class="text-xs mr-3 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-{{ isset($tag->colour) ? $tag->colour : "gray-300" }} text-{{ isset($tag->text_colour) ? $tag->text_colour : "gray-600" }} rounded-full">
+              <!--Close button-->
+              <button type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <!--Tag name-->
               {{$tag->name}}
             </div>
           @endforeach
         </div>
         <!--Add new tags-->
         <input type="text" id="add_tags" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add tags">
+        <div class="my-3">
+          <ul id="tag-results" >
+            <li><p class="p-2 block text-black hover:bg-indigo-100 cursor-pointer rounded">
+                USA
+            </p></li>
+            <li><p class="p-2 block text-black hover:bg-indigo-100 cursor-pointer rounded">Montenegro</p></li>
+          </ul>
+        </div>
+        <!--Create new tag button-->
+        <button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Create new tag
+        </button>
+
+
+        
+
 
       </div>
 
@@ -179,5 +202,55 @@
         $(this).closest(".file-section").find(".file-name").text($(this).prop("files")[0].name);
       }
     });
+
+    //When someone starts typing in tags field
+    $("#add_tags").on('keyup', function (event) {
+      runSearch();
+    });
+
+    // Attach a delegated event handler (Adding a tag)
+    $( "#tag-results" ).on( "click", ".add-tag-button", function( event ) {
+      button = $(this);
+      alert("Clicked bro "+button.text());
+
+    });
+
+
+    /**
+     * Display the tag on the screen
+     */
+    function displayTagResult(display,colour,text){
+      data=
+      `
+      <li><button text="${text}" background="${colour}" type="button" class="add-tag-button p-2 block text-black hover:bg-indigo-100 cursor-pointer rounded">
+          ${display}
+      </button></li>
+      `
+      //Append
+      $("#tag-results").append(data);
+    }
+
+    //Run search
+    function runSearch(){
+      $("#tag-results").empty();
+      $.ajax({
+        type:"GET",
+        url: '/tagSearch',
+        data: {text: $("#add_tags").val()},
+        success: function(data) {
+          console.log(data);
+          for (var i = 0; i < data.length; i++) {
+            var current_data=data[i]["name"];
+            var colour=data[i]["colour"];
+            var text=data[i]["text_colour"];
+            //Display the data onto the screen
+            displayTagResult(current_data,colour,text);
+          }
+        },
+        error: function (){
+           console.log("Error during ajax request")
+        }
+      })
+    }
   });
 </script>

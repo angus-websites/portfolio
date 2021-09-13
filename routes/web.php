@@ -38,5 +38,9 @@ Route::post('/contact', function (Request $request) {
     return (new ContactController())->send($request);
 });
 
+//AJAX
+Route::get('/tagSearch', 'App\Http\Controllers\HelperController@tagSearch');
+
+
 
 require __DIR__.'/auth.php';
