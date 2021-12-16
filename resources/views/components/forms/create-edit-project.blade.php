@@ -135,12 +135,12 @@
       <div class="col-span-6 sm:col-span-4">
         <label class="block text-sm font-medium text-gray-700">Tags</label>
         <!--List the tags-->
-        <div class="py-2">
+        <div class="py-2" id="tag-list">
           @foreach($tags as $tag)
             <div
-              class="text-xs mr-3 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-{{ isset($tag->colour) ? $tag->colour : "gray-300" }} text-{{ isset($tag->text_colour) ? $tag->text_colour : "gray-600" }} rounded-full">
+              class="text-xs mr-3 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-{{ isset($tag->colour) ? $tag->colour : "gray-300" }} text-{{ isset($tag->text_colour) ? $tag->text_colour : "gray-600" }} rounded-full tagParent">
               <!--Close button-->
-              <button type="button">
+              <button type="button" class="remove-tag-button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -154,21 +154,8 @@
         <input type="text" id="add_tags" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add tags">
         <div class="my-3">
           <ul id="tag-results" >
-            <li><p class="p-2 block text-black hover:bg-indigo-100 cursor-pointer rounded">
-                USA
-            </p></li>
-            <li><p class="p-2 block text-black hover:bg-indigo-100 cursor-pointer rounded">Montenegro</p></li>
           </ul>
         </div>
-        <!--Create new tag button-->
-        <button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          Create new tag
-        </button>
-
-
-        
-
-
       </div>
 
     </div>
@@ -182,6 +169,13 @@
 
 <script type="text/javascript">
   window.addEventListener("DOMContentLoaded", () => {
+
+
+    //--------VARIABLES----------
+
+
+
+
 
     //When a checkbox is clicked
     $(".toggle_block").click(function() {
@@ -205,33 +199,78 @@
 
     //When someone starts typing in tags field
     $("#add_tags").on('keyup', function (event) {
-      runSearch();
+      tagSearch();
     });
 
     // Attach a delegated event handler (Adding a tag)
     $( "#tag-results" ).on( "click", ".add-tag-button", function( event ) {
       button = $(this);
-      alert("Clicked bro "+button.text());
+      name= button.text();
+      colour = button.attr("backgroundColour");
+      textColour = button.attr("textColour");
+      addNewTag(name,colour,textColour);
 
     });
 
+    // Attach a delegated event handler (Removing a tag)
+    $( "#tag-list" ).on( "click", ".remove-tag-button", function( event ) {
+      var target=$(this).closest('.tagParent');
+      target.hide("fast", function(){ target.remove(); });
+
+    });
+
+    /**
+     * Will return
+     * @return {Boolean} [description]
+     */
+    function isTagValid(){
+
+    }
+
+    /**
+     * Add a tag to the list of 
+     * tags for this project
+     */
+    function addNewTag(name,colour="gray-300",textColour="gray-600"){
+      //Check the tag is not already in this project
+      data=`
+      <div
+        class="text-xs mr-3 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-${colour} text-${textColour} rounded-full tagParent">
+        <!--Close button-->
+        <button type="button" class="remove-tag-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <!--Tag name-->
+        ${name}
+      </div>
+      `
+      $("#tag-list").append(data);
+
+    }
 
     /**
      * Display the tag on the screen
      */
-    function displayTagResult(display,colour,text){
+    function displayTagResult(name,colour,textColour){
+      if (!colour) colour = "gray-300";
+      if (!textColour) textColour = "gray-600";
       data=
       `
-      <li><button text="${text}" background="${colour}" type="button" class="add-tag-button p-2 block text-black hover:bg-indigo-100 cursor-pointer rounded">
-          ${display}
+      <li><button textColour="${textColour}" backgroundColour="${colour}" type="button" class="add-tag-button p-2 block text-black hover:bg-indigo-100 cursor-pointer rounded">
+          ${name}
       </button></li>
       `
       //Append
       $("#tag-results").append(data);
     }
 
-    //Run search
-    function runSearch(){
+    /**
+     * Run the ajax search and fetch the
+     * tags
+     */
+    function tagSearch(){
       $("#tag-results").empty();
       $.ajax({
         type:"GET",
@@ -242,9 +281,9 @@
           for (var i = 0; i < data.length; i++) {
             var current_data=data[i]["name"];
             var colour=data[i]["colour"];
-            var text=data[i]["text_colour"];
+            var textColour=data[i]["text_colour"];
             //Display the data onto the screen
-            displayTagResult(current_data,colour,text);
+            displayTagResult(current_data,colour,textColour);
           }
         },
         error: function (){
