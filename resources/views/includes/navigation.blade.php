@@ -11,11 +11,11 @@
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="/" class="px-3 py-2 text-md font-medium rounded-md {{ Request::is('/') ? 'text-blue-600' : 'text-gray-500 hover:bg-blue-100 hover:text-blue-600' }}" aria-current="page">Home</a>
+            <a href="/" class="px-3 py-2 text-md font-medium rounded-md {{ Request::is('/') ? 'text-primary-focus' : 'text-gray-500 hover:bg-blue-100 hover:text-blue-600' }}" aria-current="page">Home</a>
 
-            <a href="/projects" class="px-3 py-2 text-md font-medium rounded-md {{ Request::is('projects') ? 'text-blue-600' : 'text-gray-500 hover:bg-blue-100 hover:text-blue-600' }}" aria-current="page">Projects</a>
+            <a href="/projects" class="px-3 py-2 text-md font-medium rounded-md {{ Request::is('projects') ? 'text-primary-focus' : 'text-gray-500 hover:bg-blue-100 hover:text-blue-600' }}" aria-current="page">Projects</a>
 
-            <a href="/contact" class="px-3 py-2 text-md font-medium rounded-md {{ Request::is('contact') ? 'text-blue-600' : 'text-gray-500 hover:bg-blue-100 hover:text-blue-600' }}" aria-current="page">Contact</a>
+            <a href="/contact" class="px-3 py-2 text-md font-medium rounded-md {{ Request::is('contact') ? 'text-primary-focus' : 'text-gray-500 hover:bg-blue-100 hover:text-blue-600' }}" aria-current="page">Contact</a>
 
           </div>
         </div>

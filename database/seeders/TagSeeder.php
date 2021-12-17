@@ -34,44 +34,44 @@ class TagSeeder extends Seeder
       //PHP
       Tag::create([
         'name' => "PHP",
-        'colour' => "indigo-300",
-        'text_colour' => "indigo-600"
+        'colour' => "#A5B4FB",
+        'text_colour' => "#6364af"
       ]);
 
       //Bootstrap
       Tag::create([
         'name' => "Bootstrap",
-        'colour' => "indigo-500",
-        'text_colour' => "white"
+        'colour' => "#8113F4",
+        'text_colour' => "#FFFFFF"
       ]);
 
 
       //Bulma
       Tag::create([
         'name' => "Bulma",
-        'colour' => "green-300",
-        'text_colour' => "green-600"
+        'colour' => "#00C7A9",
+        'text_colour' => "#116652"
       ]);
 
       //Python
       Tag::create([
          'name' => "Python",
-         'colour' => "yellow-400",
-         'text_colour' => "yellow-700"
+         'colour' => "#FECE3A",
+         'text_colour' => "#8E7935"
       ]);
 
       //Javascript
       Tag::create([
          'name' => "Javascript",
-         'colour' => "yellow-400",
-         'text_colour' => "yellow-700"
+         'colour' => "#EFDC4F",
+         'text_colour' => "#000000"
       ]);
 
       //Jquery
       Tag::create([
          'name' => "jQuery",
-         'colour' => "blue-500",
-         'text_colour' => "white"
+         'colour' => "#0268AD",
+         'text_colour' => "#FFFFFF"
       ]);
 
     }
