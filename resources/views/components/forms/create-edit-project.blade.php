@@ -141,7 +141,7 @@
       <div class="col-span-6 sm:col-span-3" id="has_web_block" style="{{ isset($webLink) ? "" : "display: none;" }}">
         <!--Input for Web-->      
         <div class="form-control">
-          <x-label for="git_link" :value="__('Website URL')" />
+          <x-label for="web_link" :value="__('Website URL')" />
           <x-input id="web_link" class="input-bordered" type="text" name="web_link" :value="old('webLink') ?? $webLink" />
         </div>
       </div>

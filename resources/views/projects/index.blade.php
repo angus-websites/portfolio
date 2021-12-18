@@ -9,10 +9,10 @@
   </div>
   <!--Create project-->
   @can('create', App\Models\Project::class)
-    <div class="mt-3 flex">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-auto">
+    <div class="mt-3 flex justify-center">
+      <x-button class="btn-primary">
         New Project
-      </button>
+      </x-button>
     </div>
   @endcan
   <!--Projects-->
