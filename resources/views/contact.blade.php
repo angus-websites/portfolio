@@ -23,26 +23,20 @@
         <div class="flex flex-wrap -m-2">
           <div class="p-2 w-1/2">
             <div class="form-control">
-              <label class="label">
-                <span class="label-text">Name</span>
-              </label> 
-              <x-input type="text" placeholder="" required></x-input>
+              <x-label for="name" :value="__('Name')" />
+              <x-input name="name" type="text" placeholder="" required></x-input>
             </div>
           </div>
           <div class="p-2 w-1/2">
             <div class="form-control">
-              <label class="label">
-                <span class="label-text">Email</span>
-              </label> 
-              <x-input type="email" placeholder="" required></x-input>
+              <x-label for="email" :value="__('Email')" />
+              <x-input name="email" type="email" placeholder="" required></x-input>
             </div>
           </div>
           <div class="p-2 w-full">
             <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Your message</span>
-                </label> 
-                <textarea class="textarea h-24" placeholder=""></textarea>
+                <x-label for="message" :value="__('Your Message')" />
+                <textarea name="message" class="textarea h-24" placeholder=""></textarea>
             </div>
           </div>
           <div class="p-2 w-full mt-4">

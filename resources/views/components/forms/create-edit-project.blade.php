@@ -65,34 +65,45 @@
       </div>
 
       <div class="col-span-6 sm:col-span-3">
-        <label for="name" class="block text-sm font-medium text-gray-700">Project Name</label>
-        <input type="text" name="name" id="project_name" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{old('name') ?? $name}}" required>
+        <div class="form-control">
+          <x-label for="name" :value="__('Project Name')" />
+          <x-input id="project_name" class="input-bordered" type="text" name="name" :value="old('name') ?? $name" required />
+        </div>
       </div>
 
       <!--Date-->
       <div class="col-span-6 sm:col-span-3">
-        <label for="date_made" class="block text-sm font-medium text-gray-700">Date Created</label>
-        <input type="date" name="date_made" id="date_made" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="day/month/year" value="{{ old('dateMade') ?? $dateMade}}" required>
+        <div class="form-control">
+          <x-label for="date_made" :value="__('Date Created')" />
+          <x-input type="date" name="date_made" id="date_made" class="input-bordered" placeholder="day/month/year" :value="old('dateMade') ?? $dateMade" required />
+        </div>
       </div>
 
       <!--Short description-->
-      <div class="col-span-6 sm:col-span-4">
-        <label for="short_desc" class="block text-sm font-medium text-gray-700">Short Description</label>
-        <input type="text" name="short_desc" id="short_desc" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ old('shortDesc') ?? $shortDesc}}">
+      <div class="col-span-6 sm:col-start-1 sm:col-end-4">
+        <div class="form-control">
+          <x-label for="short_desc" :value="__('Short Description')" />
+          <x-input type="text" name="short_desc" id="short_desc" class="input-bordered" :value="old('shortDesc') ?? $shortDesc" />
+        </div>
       </div>
 
       <!--Long description-->
-      <div class="col-span-6 sm:col-span-4">
-        <label for="long_desc" class="block text-sm font-medium text-gray-700">Long Description</label>
-        <textarea type="text" name="long_desc" id="long_desc" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{old('longDesc') ?? $longDesc}}</textarea>
+      <div class="col-span-6 sm:col-start-1 sm:col-end-4">
+        <div class="form-control">
+          <x-label for="longDesc" :value="__('Long Description')" />
+          <textarea type="text" name="long_desc" id="long_desc" autocomplete="false" class="textarea h-24 textarea-bordered" >{{old('longDesc') ?? $longDesc}}</textarea>
+        </div>
       </div>
 
       <!--Category-->
-      <div class="col-span-6 sm:col-span-3">
-        <label for="country" class="block text-sm font-medium text-gray-700">Category</label>
-        <select id="country" name="country" autocomplete="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      <div class="col-span-6 sm:col-start-1 sm:col-end-4">
+        <x-label for="country" :value="__('Category')" />
+        <select id="country" name="country" class="select select-bordered w-full max-w-xs" required>
+          <option disabled="disabled">Choose a category</option> 
           @foreach($categories as $category)
-            <option value="{{$category->id}}">{{$category->name}}</option>
+            <option value="{{$category->id}}" @if($currentCategoryId == $category->id) selected="selected" @endif>
+              {{$category->name}}
+            </option>
           @endforeach
         </select>
       </div>
@@ -102,7 +113,7 @@
       <!--Github checkbox-->
       <div class="col-span-6 sm:col-span-4 flex items-start">
         <div class="flex items-center h-5">
-          <input id="has_git" name="has_git" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded toggle_block" {{ isset($gitLink) ? "checked='true'" : "" }}>
+          <input id="has_git" name="has_git" type="checkbox" class="checkbox checkbox-sm toggle_block" {{ isset($gitLink) ? "checked='true'" : "" }}>
         </div>
         <div class="ml-3 text-sm">
           <label for="has_git" class="font-medium text-gray-700">Github Link</label>
@@ -111,14 +122,16 @@
       </div>
       <div class="col-span-6 sm:col-span-3" id="has_git_block" style="{{ isset($gitLink) ? "" : "display: none;" }}">
         <!--Input for git-->
-        <label for="git_url" class="block text-sm font-medium text-gray-700">Github URL</label>
-        <input type="text" name="git_link" id="has_git_input" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$gitLink}}">
+        <div class="form-control">
+          <x-label for="git_link" :value="__('Github URL')" />
+          <x-input id="git_link" class="input-bordered" type="text" name="git_link" :value="old('gitLink') ?? $gitLink" />
+        </div>
       </div>
 
       <!--Web checkbox-->
       <div class="col-span-6 sm:col-span-4 flex items-start">
         <div class="flex items-center h-5">
-          <input id="has_web" name="has_web" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded toggle_block" {{ isset($webLink) ? "checked='true'" : "" }}>
+          <input id="has_web" name="has_web" type="checkbox" class="checkbox checkbox-sm toggle_block" {{ isset($webLink) ? "checked='true'" : "" }}>
         </div>
         <div class="ml-3 text-sm">
           <label for="has_web" class="font-medium text-gray-700">Website Link</label>
@@ -126,32 +139,35 @@
         </div>
       </div>
       <div class="col-span-6 sm:col-span-3" id="has_web_block" style="{{ isset($webLink) ? "" : "display: none;" }}">
-        <!--Input for Web-->
-        <label for="web_url" class="block text-sm font-medium text-gray-700">Web URL</label>
-        <input type="text" name="web_link" id="has_web_input" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{$webLink}}">
+        <!--Input for Web-->      
+        <div class="form-control">
+          <x-label for="git_link" :value="__('Website URL')" />
+          <x-input id="web_link" class="input-bordered" type="text" name="web_link" :value="old('webLink') ?? $webLink" />
+        </div>
       </div>
 
       <!--Tags-->
-      <div class="col-span-6 sm:col-span-4">
+      <div class="col-span-6  sm:col-start-1 sm:col-end-4">
         <label class="block text-sm font-medium text-gray-700">Tags</label>
         <!--List the tags-->
-        <div class="py-2" id="tag-list">
+        <div class="py-2 flex space-x-1" id="tag-list">
           @foreach($tags as $tag)
-            <div
-              class="text-xs mr-3 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-{{ isset($tag->colour) ? $tag->colour : "gray-300" }} text-{{ isset($tag->text_colour) ? $tag->text_colour : "gray-600" }} rounded-full tagParent">
+            <x-tag :colour="$tag->colour" :textcolour="$tag->text_colour" class="tagParent">
               <!--Close button-->
-              <button type="button" class="remove-tag-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              <button class="remove-tag-button" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current">   
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>                       
                 </svg>
               </button>
               <!--Tag name-->
               {{$tag->name}}
-            </div>
+            </x-tag>
           @endforeach
         </div>
         <!--Add new tags-->
-        <input type="text" id="add_tags" autocomplete="false" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add tags">
+        <div class="form-control mt-2">
+          <x-input placeholder="Add tags" id="add_tags" autocomplete="false" class="input-bordered" type="text"/>
+        </div>
         <div class="my-3">
           <ul id="tag-results" >
           </ul>
@@ -161,9 +177,9 @@
     </div>
   </div>
   <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-    <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <x-button type="submit" class="btn-primary">
       Save
-    </button>
+    </x-button>
   </div>
 </div>
 
@@ -205,7 +221,8 @@
     // Attach a delegated event handler (Adding a tag)
     $( "#tag-results" ).on( "click", ".add-tag-button", function( event ) {
       button = $(this);
-      name= button.text();
+      name= button.siblings(".buttonText").text();
+      console.log("Name is: "+button.children())
       colour = button.attr("backgroundColour");
       textColour = button.attr("textColour");
       addNewTag(name,colour,textColour);
@@ -231,18 +248,16 @@
      * Add a tag to the list of 
      * tags for this project
      */
-    function addNewTag(name,colour="gray-300",textColour="gray-600"){
+    function addNewTag(name,colour="#000000",textColour="#FFFFFF"){
       //Check the tag is not already in this project
       data=`
-      <div
-        class="text-xs mr-3 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-${colour} text-${textColour} rounded-full tagParent">
+      <div class="badge border-0 tagParent" style="color: ${textColour}; background-color: ${colour};">
         <!--Close button-->
         <button type="button" class="remove-tag-button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <!--Tag name-->
         ${name}
       </div>
       `
@@ -254,13 +269,20 @@
      * Display the tag on the screen
      */
     function displayTagResult(name,colour,textColour){
-      if (!colour) colour = "gray-300";
-      if (!textColour) textColour = "gray-600";
+      if (!colour) colour = "#000000";
+      if (!textColour) textColour = "#FFFFFF";
       data=
       `
-      <li><button textColour="${textColour}" backgroundColour="${colour}" type="button" class="add-tag-button p-2 block text-black hover:bg-indigo-100 cursor-pointer rounded">
-          ${name}
-      </button></li>
+      <div class="badge border-0" style="color: ${textColour}; background-color: ${colour};">
+        <!--Add button-->
+        <button class="add-tag-button" type="button" textColour="${textColour}" backgroundColour="${colour}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+        </button>
+        <span class="buttonText">${name}</span>
+      </div>
+
       `
       //Append
       $("#tag-results").append(data);

@@ -17,6 +17,7 @@ class CreateEditProject extends Component
     public $longDesc;
     public $categories;
     public $tags;
+    public $currentCategoryId;
 
 
     public $image;
@@ -39,6 +40,7 @@ class CreateEditProject extends Component
         $this->dateMade=$project->date_made;
         $this->shortDesc=$project->short_desc;
         $this->longDesc=$project->long_desc;
+        $this->currentCategoryId=$project->category_id;
 
         //Booleans
         $this->image = basename($this->project->get_image());

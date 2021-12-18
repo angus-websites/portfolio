@@ -6,5 +6,6 @@
 
 :root {
   --btn-text-case: normal; /* default text case for buttons */
+  --select-text-weight: normal;
 }
 
