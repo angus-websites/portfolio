@@ -1,6 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
-    mode: 'jit',
     purge: {
         enabled: false,
         content:[
@@ -13,6 +12,7 @@ module.exports = {
     theme: {
 
         screens: {
+          'xxs': '375px',
           'xs': '475px',
           ...defaultTheme.screens,
         },
