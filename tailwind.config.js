@@ -19,7 +19,7 @@ module.exports = {
 
         extend: {
             fontFamily: {
-                sans: ['Questrial', ...defaultTheme.fontFamily.sans],
+                sans: ['Poppins', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 white:{
