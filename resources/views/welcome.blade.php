@@ -26,6 +26,31 @@
         </a>
       </x-button-group>
     </div>
+    <!--My skills-->
+    <div class="text-center mt-40">
+      <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">My Skills</h1>
+        <!--Skills flex-->
+        <div class="grid grid-cols-1 gap-x-6 gap-y-10 xs:grid-cols-2 md:grid-cols-3 my-16 px-5">
+          @foreach($skills as $skill)
+            <!--Skill container-->
+            <div>
+              <!--Logo-->
+              <div class="avatar">
+                <div class="mb-8 rounded-full w-24 h-24 ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img src="http://daisyui.com/tailwind-css-component-profile-1@94w.png">
+                </div>
+              </div>
+              <!--Skill name-->
+              <p class="uppercase text-lg font-bold">{{$skill->name}}</p>
+              <!--Description-->
+              <p class="mt-5 text-base text-justify">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+              </p>
+            </div>
+          @endforeach
+        </div>
+      
+    </div>
   </div>
 
 </x-app-layout>
