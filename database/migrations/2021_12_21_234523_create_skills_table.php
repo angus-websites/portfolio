@@ -20,7 +20,7 @@ class CreateSkillsTable extends Migration
             $table->text('name');
             $table->bigInteger('skill_section_id')->unsigned();
             $table->text('description')->nullable();
-            $table->date('icon')->nullable();
+            $table->text('icon')->nullable();
 
             //Foreign keys
             $table->foreign('skill_section_id')
