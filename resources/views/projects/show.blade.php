@@ -25,17 +25,18 @@
           <!--Image-->
           <img alt="{{$project->name}}" class="lg:w-1/2 w-full lg:h-full h-64 object-cover object-center rounded" src="{{$project->get_image()}}">
           <!--Details-->
-          <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-            
+          <div class="lg:w-1/2 w-full lg:pl-10 lg:pb-6 mt-6 lg:mt-0">
+  
             @if ($project->has_logo())
               <!--Project image-->
-              <div class="mb-5 rounded-full w-16 h-16">
-                  <img class="inline-block h-16 w-16 rounded-full shadow-sm object-cover" src="{{$project->get_logo()}}" alt="">
-
-              </div>
+              <div class="avatar">
+                <div class="rounded-full w-16 h-16 shadow-md">
+                  <img src="{{$project->get_logo()}}" alt="">
+                </div>
+              </div> 
             @endif
 
-            <h1 class="text-3xl title-font font-medium mb-1">{{$project->name}}</h1>
+            <h1 class="text-3xl title-font font-medium mt-7 mb-1">{{$project->name}}</h1>
             <!--Date-->
             <div class="flex mb-4">
               <span class="flex items-center">
