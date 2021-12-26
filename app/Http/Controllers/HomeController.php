@@ -17,7 +17,7 @@ class HomeController extends Controller
     {
       $skills=Skill::all();
       $employment=Employment::all();
-      $education=Education::all();
+      $education=Education::orderBy('start_date')->get();
       return view('welcome',["skills" => $skills, "employment" => $employment, "education" => $education]);
     }
 }

@@ -61,13 +61,9 @@ class EducationSeeder extends Seeder
         // Sheffield
         $sheff = Education::create([
             'institute' => "University of Sheffield",
-            'level' => "Bsc",
+            'level' => "Bsc Computer Science",
             'start_date' => Carbon::parse('2019-01-09'),
             'description' => "Seshfield mate"
-        ]);
-        Subject::create([
-            'education_id' => $sheff->id,
-            'content' => "Computer science",
         ]);
     }
 }
