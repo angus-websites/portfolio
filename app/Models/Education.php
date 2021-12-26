@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Education extends Model
 {
     use HasFactory;
+
+    /**
+     * Get the subjects for the education.
+     */
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class);
+    }
 }

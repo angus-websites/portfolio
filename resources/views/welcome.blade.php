@@ -58,6 +58,11 @@
           <!--Skill container-->
           <div>
             <p>{{$edu->institute}}</p>
+            <ul class="list-disc">
+              @foreach ($edu->subjects()->get() as $s)
+                <li>{{$s->content}}</li>
+              @endforeach
+            </ul>
           </div>
         @endforeach
       </div>
@@ -69,7 +74,7 @@
           <!--Skill container-->
           <div>
             <p>{{$work->employer}}</p>
-            <ul>
+            <ul class="list-disc">
               @foreach ($work->responsibilities()->get() as $r)
                 <li>{{$r->content}}</li>
               @endforeach

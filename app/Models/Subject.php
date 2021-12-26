@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employment extends Model
+class Subject extends Model
 {
     use HasFactory;
 
     /**
-     * Get the responsibilities for the employment.
+     * Get the education that owns the subject.
      */
-    public function responsibilities()
+    public function education()
     {
-        return $this->hasMany(Responsibility::class);
+        return $this->belongsTo(Education::class);
     }
-
 }
