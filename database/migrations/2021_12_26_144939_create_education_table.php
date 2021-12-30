@@ -42,7 +42,7 @@ class CreateEducationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('education');
         Schema::dropIfExists('subjects');
+        Schema::dropIfExists('education');
     }
 }

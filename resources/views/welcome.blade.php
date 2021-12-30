@@ -1,6 +1,6 @@
 @section('title', 'Welcome')
 <x-app-layout>
-  <div class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+  <div class="my-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
 
     <!--Text align div-->
     <div class="sm:text-center lg:text-left">
@@ -51,78 +51,56 @@
         @endforeach
       </div>
 
-      <!--Education section-->
-      <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Education</h1>
-      <div class="grid grid-cols-1 gap-x-6 gap-y-10 my-16">
-        @foreach($education as $edu)
-          <!--Education card-->
-          <div class="rounded-lg bg-white p-5">
-            <div class="flex items-start gap-x-5">
-              <!--Image-->
-              <div class="flex-none">
-                <div class="avatar placeholder">
-                  <div class="bg-neutral-focus text-neutral-content rounded-full w-10 h-10">
-                    <span class="text-xl">{{$edu->institute[0]}}</span>
+      <div class="grid grid-cols-1 gap-y-16 gap-x-10 lg:grid-cols-2">
+
+        <!--Employment section-->
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Employment</h1>
+          <div class="grid grid-cols-1 gap-x-6 gap-y-10 mt-8 md:grid-cols-2 lg:grid-cols-1">
+            @foreach($employment as $work)
+              <x-cards.employment-card :employment="$work"/>
+            @endforeach
+          </div>
+
+        </div>
+        <!--Education section-->
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Education</h1>
+          <div class="grid grid-cols-1 gap-x-6 gap-y-10 mt-8 md:grid-cols-2 lg:grid-cols-1">
+            @foreach($education as $edu)
+              <!--Education card-->
+              <div class="rounded-lg bg-white p-5">
+                <div class="flex items-start gap-x-5">
+                  <!--Image-->
+                  <div class="flex-none">
+                    <div class="avatar placeholder">
+                      <div class="bg-neutral-focus text-neutral-content rounded-full w-10 h-10">
+                        <span class="text-xl">{{$edu->institute[0]}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!--Content-->
+                  <div class="flex-1">
+                    <div class="text-left">
+                      <p class="text-lg font-extrabold">{{$edu->institute}}</p>
+                      <p class="text-sm font-medium">{{$edu->level}}</p>
+                      <p class="text-sm font-light text-opacity-60">{{$edu->start_date}} - {{$edu->end_date}}</p>
+                      @if($edu->hasSubjects())
+                        <div class="my-3 text-sm text-base-content">
+                          <ul class="list-disc list-inside">
+                            @foreach ($edu->subjects()->get() as $s)
+                              <li>{{$s->content}}</li>
+                            @endforeach
+                          </ul>
+                        </div>
+                      @endif
+                    </div>
                   </div>
                 </div>
               </div>
-              <!--Content-->
-              <div class="flex-1">
-                <div class="text-left">
-                  <p class="text-lg font-extrabold">{{$edu->institute}}</p>
-                  <p class="text-sm font-medium">{{$edu->level}}</p>
-                  <p class="text-sm font-light text-opacity-60">{{$edu->start_date}} - {{$edu->end_date}}</p>
-                  @if($edu->hasSubjects())
-                    <div class="my-3 text-sm text-base-content">
-                      <ul class="list-disc list-inside">
-                        @foreach ($edu->subjects()->get() as $s)
-                          <li>{{$s->content}}</li>
-                        @endforeach
-                      </ul>
-                    </div>
-                  @endif
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
-        @endforeach
-      </div>
-
-      <!--Employment section-->
-      <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Employment</h1>
-      <div class="grid grid-cols-1 gap-x-6 gap-y-10 xs:grid-cols-2 md:grid-cols-3 my-16 px-5">
-        @foreach($employment as $work)
-
-          <!--Employment card-->
-          <div class="rounded-lg bg-white p-5">
-            <div class="flex items-start gap-x-5">
-              <!--Image-->
-              <div class="flex-none">
-                <div class="avatar placeholder">
-                  <div class="bg-neutral-focus text-neutral-content rounded-full w-10 h-10">
-                    <span class="text-xl">{{$work->employer[0]}}</span>
-                  </div>
-                </div>
-              </div>
-              <!--Content-->
-              <div class="flex-1">
-                <div class="text-left">
-                  <p class="text-lg font-extrabold">{{$work->employer}}</p>
-                  <p class="text-sm font-light text-opacity-60">{{$work->start_date}} - {{$work->end_date}}</p>
-                  @if($work->hasResponsibilities())
-                    <div class="my-3 text-sm text-base-content">
-                      <ul class="list-disc list-inside">
-                        @foreach ($work->responsibilities()->get() as $r)
-                          <li>{{$r->content}}</li>
-                        @endforeach
-                      </ul>
-                    </div>
-                  @endif
-                </div>
-              </div>
-            </div>
-          </div>
-        @endforeach
+        </div>
       </div>
     </div>
   </div>

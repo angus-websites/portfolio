@@ -31,6 +31,7 @@ class EmploymentSeeder extends Seeder
         // John Lewis
         $johnLewis = Employment::create([
             'employer' => "John Lewis",
+            'role' => "Stock Management",
             'start_date' => Carbon::parse('2018-01-10'),
             'end_date' => Carbon::parse('2019-01-01'),
             'description' => "Worked at John Lewis bruv"
@@ -51,6 +52,7 @@ class EmploymentSeeder extends Seeder
         // The Rose Inn
         $rose = Employment::create([
             'employer' => "The Rose Inn",
+            'role' => "Waiter",
             'start_date' => Carbon::parse('2016-01-08'),
             'end_date' => Carbon::parse('2017-01-01'),
             'description' => "Worked at the Rose Inn"
@@ -66,6 +68,13 @@ class EmploymentSeeder extends Seeder
         Responsibility::create([
             'employment_id' => $rose->id,
             'content' => "Tidied tables n stuff",
+        ]);
+
+        // ONS
+        $rose = Employment::create([
+            'employer' => "Office For National Statistics",
+            'role' => "Software Engineer",
+            'start_date' => Carbon::parse('2021-01-10'),
         ]);
     }
 }

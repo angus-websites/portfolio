@@ -17,6 +17,7 @@ class CreateEmploymentsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->text('employer');
+            $table->text('role');
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->text('icon')->nullable();

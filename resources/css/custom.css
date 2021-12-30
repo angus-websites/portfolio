@@ -9,3 +9,15 @@
   --select-text-weight: normal;
 }
 
+/*
+ * Make the collapse stay the same colour
+ */
+.collapse-open .collapse-title,
+.collapse:focus:not(.collapse-close) .collapse-title,
+.collapse:not(.collapse-close) input[type=checkbox]:focus ~ .collapse-title,
+.collapse:not(.collapse-close) input[type=checkbox]:checked ~ .collapse-title,
+.collapse-open .collapse-content,
+.collapse:focus:not(.collapse-close) .collapse-content,
+.collapse:not(.collapse-close) input[type=checkbox]:checked ~ .collapse-content{
+ background-color: inherit !important;
+}
