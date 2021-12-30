@@ -40,7 +40,7 @@ class EmploymentCard extends Component
      */
     public function isCollapse()
     {
-        return (!empty($this->description) || sizeof($this->employment->responsibilities()->get()) > 0);
+        return (!empty($this->description) || sizeof($this->responsibilities->get()) > 0);
     }
 
     /**

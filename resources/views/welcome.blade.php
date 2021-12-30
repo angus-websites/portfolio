@@ -68,36 +68,7 @@
           <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Education</h1>
           <div class="grid grid-cols-1 gap-x-6 gap-y-10 mt-8 md:grid-cols-2 lg:grid-cols-1">
             @foreach($education as $edu)
-              <!--Education card-->
-              <div class="rounded-lg bg-white p-5">
-                <div class="flex items-start gap-x-5">
-                  <!--Image-->
-                  <div class="flex-none">
-                    <div class="avatar placeholder">
-                      <div class="bg-neutral-focus text-neutral-content rounded-full w-10 h-10">
-                        <span class="text-xl">{{$edu->institute[0]}}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!--Content-->
-                  <div class="flex-1">
-                    <div class="text-left">
-                      <p class="text-lg font-extrabold">{{$edu->institute}}</p>
-                      <p class="text-sm font-medium">{{$edu->level}}</p>
-                      <p class="text-sm font-light text-opacity-60">{{$edu->start_date}} - {{$edu->end_date}}</p>
-                      @if($edu->hasSubjects())
-                        <div class="my-3 text-sm text-base-content">
-                          <ul class="list-disc list-inside">
-                            @foreach ($edu->subjects()->get() as $s)
-                              <li>{{$s->content}}</li>
-                            @endforeach
-                          </ul>
-                        </div>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <x-cards.education-card :education="$edu"/>
             @endforeach
           </div>
         </div>
