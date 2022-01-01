@@ -12,6 +12,21 @@ class SkillPolicy
     use HandlesAuthorization;
 
     /**
+     * Perform pre-authorization checks.
+     * TODO UNCOMMENT WHEN READY
+     *
+     * @param  \App\Models\User  $user
+     * @param  string  $ability
+     * @return void|bool
+     */
+    public function before(User $user, $ability)
+    {
+        if ($user->is_admin()) {
+            return true;
+        }
+    }
+
+    /**
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
@@ -56,9 +71,11 @@ class SkillPolicy
      * @param  \App\Models\Skill  $skill
      * @return mixed
      */
-    public function update(User $user, Skill $skill)
+    public function update(User $user)
     {
-        //
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny('You cannot edit a skill');
     }
 
     /**
@@ -68,9 +85,11 @@ class SkillPolicy
      * @param  \App\Models\Skill  $skill
      * @return mixed
      */
-    public function delete(User $user, Skill $skill)
+    public function delete(User $user)
     {
-        //
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny('You cannot delete a skill');
     }
 
     /**

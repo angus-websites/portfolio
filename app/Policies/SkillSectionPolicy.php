@@ -42,7 +42,9 @@ class SkillSectionPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny('You cannot create a skill section');
     }
 
     /**
@@ -52,9 +54,11 @@ class SkillSectionPolicy
      * @param  \App\Models\SkillSection  $skillSection
      * @return mixed
      */
-    public function update(User $user, SkillSection $skillSection)
+    public function update(User $user)
     {
-        //
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny('You cannot edit a skill section');
     }
 
     /**

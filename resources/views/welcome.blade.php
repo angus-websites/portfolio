@@ -31,7 +31,7 @@
 
       <!--Skills section-->
       <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">My Skills</h1>
-      @can('create', App\Models\Skill::class)
+      @can('delete', App\Models\Skill::class)
         <div class="my-5">
           <a href="{{{ route("skills.index") }}}" class="btn btn-secondary btn-sm">Manage</a>
         </div>
