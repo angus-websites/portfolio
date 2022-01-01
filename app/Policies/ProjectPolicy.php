@@ -47,8 +47,8 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
-        //TODO change this (just an example)
-        return true
+
+        return $user->is_admin()
             ? Response::allow()
             : Response::deny('You cannot create a new project');
     }
@@ -63,7 +63,7 @@ class ProjectPolicy
     public function update(User $user, Project $project)
     {
         return $user->is_admin();
-        
+
     }
 
     /**

@@ -30,24 +30,16 @@
     <div class="text-center mt-40">
 
       <!--Skills section-->
-      <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">My Skills</h1>
-      <div class="grid grid-cols-1 gap-x-6 gap-y-10 xs:grid-cols-2 md:grid-cols-3 my-16 px-5">
-        @foreach($skills as $skill)
-          <!--Skill container-->
-          <div>
-            <!--Logo-->
-            <div class="avatar">
-              <div class="mb-8 rounded-full w-24 h-24 ring ring-primary ring-offset-base-100 ring-offset-2">
-                <img src="{{$skill->get_image()}}">
-              </div>
-            </div>
-            <!--Skill name-->
-            <p class="uppercase text-lg font-bold">{{$skill->name}}</p>
-            <!--Description-->
-            <p class="mt-5 text-base text-justify">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-            </p>
-          </div>
+      <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">My Skills</h1>
+      @can('create', App\Models\Skill::class)
+        <div class="my-5">
+          <a href="{{{ route("skills.index") }}}" class="btn btn-secondary btn-sm">Manage</a>
+        </div>
+      @endcan
+      <div class="grid grid-cols-1 gap-x-6 gap-y-10 xs:grid-cols-2 md:grid-cols-3 my-16">
+        @foreach($skillSections as $section)
+          <!--Section container-->
+          <x-cards.skill-section-card :section="$section"/>
         @endforeach
       </div>
 
@@ -55,17 +47,18 @@
 
         <!--Employment section-->
         <div>
-          <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Employment</h1>
+          <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">Employment</h1>
           <div class="grid grid-cols-1 gap-x-6 gap-y-10 mt-8 md:grid-cols-2 lg:grid-cols-1">
             @foreach($employment as $work)
               <x-cards.employment-card :employment="$work"/>
             @endforeach
+
           </div>
 
         </div>
         <!--Education section-->
         <div>
-          <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Education</h1>
+          <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">Education</h1>
           <div class="grid grid-cols-1 gap-x-6 gap-y-10 mt-8 md:grid-cols-2 lg:grid-cols-1">
             @foreach($education as $edu)
               <x-cards.education-card :education="$edu"/>
