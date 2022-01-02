@@ -9,6 +9,8 @@ class CreateEditSkill extends Component
 
     private $skill;
     public $name;
+    public $description;
+
 
     /**
      * Create a new component instance.
@@ -19,6 +21,7 @@ class CreateEditSkill extends Component
     {
         $this->skill=$skill;
         $this->name = $skill->name ?? null;
+        $this->description = $skill->description ?? null;
     }
 
     /**
