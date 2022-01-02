@@ -38,7 +38,7 @@
             <div class="flex-0">
                 <hr>
                 <div class="text-center mt-5">
-                    <button class="btn btn-sm btn-warning">Edit Section</button>
+                    <a href="{{{route("section.edit", ["section" => $section])}}}" class="btn btn-sm btn-warning">Edit Section</a>
                 </div>
             </div>
         @endif

@@ -10,7 +10,7 @@ class SkillSectionController extends Controller
 
     public function __construct()
     {
-      $this->authorizeResource(SkillSection::class);
+      $this->authorizeResource(SkillSection::class, "section");
     }
 
     /**
@@ -61,9 +61,9 @@ class SkillSectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(SkillSection $section)
     {
-        //
+        return "Ready to edit skill section";
     }
 
     /**
@@ -73,9 +73,9 @@ class SkillSectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, SkillSection $section)
     {
-        //
+        return "Ready to update skill section";
     }
 
     /**

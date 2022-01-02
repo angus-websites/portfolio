@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 class SkillSectionCard extends Component
 {
 
-    private $section;
+    public $section;
     public $name;
     public $skills;
     public $editmode;

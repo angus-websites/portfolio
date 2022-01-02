@@ -19,7 +19,9 @@ class SkillSectionPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true
+            ? Response::allow()
+            : Response::deny("You cannot view word suggestions");
     }
 
     /**
@@ -29,9 +31,11 @@ class SkillSectionPolicy
      * @param  \App\Models\SkillSection  $skillSection
      * @return mixed
      */
-    public function view(User $user, SkillSection $skillSection)
+    public function view(User $user)
     {
-        //
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny("You cannot view this skill section");
     }
 
     /**
