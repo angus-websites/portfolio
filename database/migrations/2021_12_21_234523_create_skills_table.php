@@ -24,7 +24,7 @@ class CreateSkillsTable extends Migration
 
             //Foreign keys
             $table->foreign('skill_section_id')
-                ->references('id')->on('skill_sections');
+                ->references('id')->on('skill_sections')->onDelete('cascade');
         });
     }
 

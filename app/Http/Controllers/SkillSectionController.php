@@ -75,7 +75,15 @@ class SkillSectionController extends Controller
      */
     public function update(Request $request, SkillSection $section)
     {
-        return "Ready to update skill section";
+        //Validate - ignoring word id on update
+        $validated = $request->validate([
+        "name" => "required|unique:skill_sections,name,$section->id",
+        ]);
+
+        //Update
+        $section->update($request->all());
+
+        return redirect()->back()->with("success","Section updated");
     }
 
     /**
@@ -84,8 +92,9 @@ class SkillSectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SkillSection $section)
     {
-        //
+        $section->delete();
+        return redirect()->route('skills.index')->with("success","Section deleted");
     }
 }

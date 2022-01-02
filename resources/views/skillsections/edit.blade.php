@@ -16,30 +16,37 @@
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Here you can edit the details of this section or delete the section</p>
       @can("delete", App\Models\SkillSection::class)
           <div class="my-5">
-            <x-button class="btn-error btn-sm md:btn-md">Delete this section</x-button>
+            <form method="POST" method="POST" action="{{{ route("section.destroy", ["section" => $section] )}}}">
+              @csrf
+              @method("delete")
+              <x-button class="btn-error btn-sm md:btn-md">Delete this section</x-button>
+            </form>
           </div>
       @endcan
     </div>
   </div>
   <!--Edit-->
-  <div class="container px-5 my-10 mx-auto">
-    <div class="grid grid-cols-6">
-      <div class="col-span-6 md:col-span-3 lg:col-span-2">
-        <!-- Name -->
-        <div class="form-control mb-4">
-            <x-label for="name" :value="__('Section name')" />
-            <x-input id="name" class="input-bordered"
-                            type="text"
-                            name="name"
-                            :value="old('name') ?? $section->name"
-                            required />
-        </div>
+  <form method="POST" action="{{{route("section.update", ["section" => $section])}}}">
+    @method('PUT')
+    @csrf
+    <div class="container px-5 my-10 mx-auto">
+      <div class="grid grid-cols-6">
+        <div class="col-span-6 md:col-span-3 lg:col-span-2">
+          <!-- Name -->
+          <div class="form-control mb-4">
+              <x-label for="name" :value="__('Section name')" />
+              <x-input id="name" class="input-bordered"
+                              type="text"
+                              name="name"
+                              :value="old('name') ?? $section->name"
+                              required />
+          </div>
 
-        <div class="mt-8 text-center md:text-left">
-          <x-button class="btn-success btn-sm md:btn-md">Save</x-button>
+          <div class="mt-8 text-center md:text-left">
+            <x-button class="btn-success btn-sm md:btn-md">Save</x-button>
+          </div>
         </div>
       </div>
     </div>
-
-  </div>
+  </form>
 </x-app-layout>

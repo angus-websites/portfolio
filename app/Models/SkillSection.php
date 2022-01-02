@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class SkillSection extends Model
 {
     use HasFactory;
+    protected $fillable = ["name"];
+
 
     /**
      * Get the skills associated
