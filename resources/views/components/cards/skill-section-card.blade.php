@@ -7,6 +7,13 @@
     <div class="flex-1">
         <table class="my-5 w-full">
           <tbody>
+            @if(sizeof($skills) < 1)
+            <tr class="text-center">
+                <td class="font-medium">
+                    <div class="badge badge-outline">No skills found</div>
+                </td>
+            </tr>
+            @endif
             @foreach($skills as $skill)
               <tr>
                 <td>
@@ -17,7 +24,7 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-bold">
+                      <div class="font-medium">
                         {{$skill->name}}
                       </div>
                     </div>
