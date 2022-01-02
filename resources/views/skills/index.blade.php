@@ -7,7 +7,9 @@
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">My skills go here</p>
       @can("create", App\Models\SkillSection::class)
           <div class="my-5">
-            <button class="btn btn-primary">Create Section</button>
+            <x-link-button href="{{route('section.create') }}"  class="btn btn-primary">
+                Create Section
+            </x-link-button>
           </div>
       @endcan
     </div>

@@ -30,7 +30,7 @@ class SkillSectionController extends Controller
      */
     public function create()
     {
-        //
+        return view('skillsections.create');
     }
 
     /**
@@ -41,7 +41,15 @@ class SkillSectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+        "name" => "required|unique:skill_sections,name",
+        ]);
+
+        //Create the new section and save
+        $section = SkillSection::create($request->all());
+        return redirect()->route('section.edit', ['section' => $section])->with("success","Section created");
+
+
     }
 
     /**
