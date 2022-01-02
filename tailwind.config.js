@@ -85,7 +85,7 @@ module.exports = {
                'secondary' : '#004E64',         /* Secondary color */
                'secondary-focus' : '#1A4053',   /* Secondary color - focused */
                'secondary-content' : '#ffffff', /* Foreground content color to use on secondary color */
-               
+
                'accent' : '#d35281',            /* Accent color */
                'accent-focus' : '#c74b78',      /* Accent color - focused */
                'accent-content' : '#ffffff',    /* Foreground content color to use on accent color */
@@ -102,7 +102,7 @@ module.exports = {
                'info' : '#2094f3',              /* Info */
                'success' : '#009485',           /* Success */
                'warning' : '#ff9900',           /* Warning */
-               'error' : '#ff5724',             /* Error */
+               'error' : '#e35555',             /* Error */
             },
 
           },

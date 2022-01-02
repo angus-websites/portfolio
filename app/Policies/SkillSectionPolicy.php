@@ -72,9 +72,11 @@ class SkillSectionPolicy
      * @param  \App\Models\SkillSection  $skillSection
      * @return mixed
      */
-    public function delete(User $user, SkillSection $skillSection)
+    public function delete(User $user)
     {
-        //
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny('You cannot delete a skill section');
     }
 
     /**

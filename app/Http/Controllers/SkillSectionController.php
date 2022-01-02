@@ -63,7 +63,7 @@ class SkillSectionController extends Controller
      */
     public function edit(SkillSection $section)
     {
-        return "Ready to edit skill section";
+        return view('skillsections.edit',["section" => $section]);
     }
 
     /**
