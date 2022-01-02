@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Skill extends Model
 {
     use HasFactory;
+    protected $fillable = ["name","skill_section_id","description","icon"];
     public static $imagesPath = "skills/";
     public static $placeholder = "/assets/images/placeholders/skill_placeholder.svg";
 

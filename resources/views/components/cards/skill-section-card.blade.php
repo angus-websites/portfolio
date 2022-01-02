@@ -32,7 +32,9 @@
                 </td>
                 @can('update', App\Models\Skill::class)
                     @if($editmode)
-                        <td><button class="btn btn-xs btn-warning">Edit</button></td>
+                        <td>
+                            <x-link-button href="{{{route('skills.edit',['skill' => $skill])}}}" class="btn btn-xs btn-warning">Edit</x-link-button>
+                        </td>
                     @endif
                 @endcan
               </tr>

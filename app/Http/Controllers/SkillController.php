@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SkillSection;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class SkillController extends Controller
@@ -64,9 +65,9 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Skill $skill)
     {
-        //
+        return view('skills.edit',["skill" => $skill]);
     }
 
     /**
@@ -76,9 +77,17 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Skill $skill)
     {
-        //
+        //Validate - ignoring word id on update
+        $validated = $request->validate([
+        "name" => "required|unique:skills,name,$skill->id",
+        ]);
+
+        //Update
+        $skill->update($request->all());
+
+        return redirect()->back()->with("success","Skill updated");
     }
 
     /**
@@ -87,8 +96,9 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Skill $skill)
     {
-        //
+        $skill->delete();
+        return redirect()->route('skills.index')->with("success","Skill deleted");
     }
 }
