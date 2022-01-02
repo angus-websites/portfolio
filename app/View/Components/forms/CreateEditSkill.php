@@ -8,6 +8,8 @@ class CreateEditSkill extends Component
 {
 
     private $skill;
+    public $sections;
+    public $currentSection;
     public $name;
     public $description;
 
@@ -17,9 +19,11 @@ class CreateEditSkill extends Component
      *
      * @return void
      */
-    public function __construct($skill)
+    public function __construct($skill, $sections)
     {
         $this->skill=$skill;
+        $this->sections=$sections;
+        $this->currentSection=$skill->skill_section_id;
         $this->name = $skill->name ?? null;
         $this->description = $skill->description ?? null;
     }

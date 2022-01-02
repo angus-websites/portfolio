@@ -67,7 +67,8 @@ class SkillController extends Controller
      */
     public function edit(Skill $skill)
     {
-        return view('skills.edit',["skill" => $skill]);
+        $sections = SkillSection::all();
+        return view('skills.edit',["skill" => $skill, "sections" => $sections]);
     }
 
     /**
@@ -81,7 +82,12 @@ class SkillController extends Controller
     {
         //Validate - ignoring word id on update
         $validated = $request->validate([
-        "name" => "required|unique:skills,name,$skill->id",
+            "name" => "required|unique:skills,name,$skill->id",
+            'skill_section_id' => 'required|exists:skill_sections,id'
+        ],
+        [
+            "skill_section_id.required" => "Please select a skill section",
+            "skill_section_id.exists" => "This skill section does not exist"
         ]);
 
         //Update

@@ -29,6 +29,6 @@
   <form method="POST" action="{{{route('skills.update', ['skill' => $skill])}}}">
     @method('PUT')
     @csrf
-    <x-forms.create-edit-skill :skill="$skill"/>
+    <x-forms.create-edit-skill :skill="$skill" :sections="$sections"/>
   </form>
 </x-app-layout>
