@@ -19,7 +19,7 @@
         <!--Section-->
         <div class="form-control mb-4">
             <x-label for="section" :value="__('Skill Section')" />
-            <select id="section" name="skill_section_id" class="select select-bordered w-full max-w-xs" required>
+            <select id="section" name="skill_section_id" class="select select-bordered w-full" required>
               <option disabled="disabled">Choose a skill section</option>
               @foreach($sections as $section)
                 <option value="{{$section->id}}" @if($currentSection == $section->id) selected="selected" @endif>

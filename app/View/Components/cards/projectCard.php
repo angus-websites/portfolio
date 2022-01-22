@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\cards;
+namespace App\View\Components\Cards;
 
 use Illuminate\View\Component;
 use App\Models\Project;
