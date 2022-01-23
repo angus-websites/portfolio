@@ -20,6 +20,7 @@ Install NPM dependencies
 
 ```bash
 npm install
+npm run dev
 ```
 
 Make sure you create an ENV file or simple copy the example one provided and put the contents in .env and create a database password etc
