@@ -12,10 +12,18 @@ git clone git@github.com:angus-websites/portfolio.git
 
 CD into the portfolio directory
 
-Ensure you have the right requirements on your server / computer to run Laravel, if not you can install them
+Ensure you have the right requirements on your server / computer to run Laravel, if not you can install them (ubuntu)
 
 ```bash
 sudo apt install php libapache2-mod-php php-mbstring php-cli php-bcmath php-json php-xml php-zip php-pdo php-common php-tokenizer php-mysql
+```
+
+Next ensure you have composer installed, if not you can run the following commands...
+
+```bash
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar  /usr/local/bin/composer
+sudo chmod +x   /usr/local/bin/composer
 ```
 
 Install dependencies using composer
