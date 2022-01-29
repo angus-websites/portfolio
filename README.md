@@ -34,12 +34,19 @@ composer install
 
 Install NPM dependencies
 
+if you do not have NPM installed on your machine execute the following (ubuntu)
+
+```bash
+sudo apt-get install nodejs npm
+```
+
+then install the modules
 ```bash
 npm install
 npm run dev
 ```
 
-Make sure you create an ENV file or simple copy the example one provided and put the contents in .env and create a database password etc
+**Make sure you create an ENV file or simple copy the example one provided and put the contents in .env and create a database password etc**
 
 Generate an app encryption key
 
