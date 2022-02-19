@@ -18,6 +18,21 @@ Ensure you have the right requirements on your server / computer to run Laravel,
 sudo apt install php libapache2-mod-php php-mbstring php-cli php-bcmath php-json php-xml php-zip php-pdo php-common php-tokenizer php-mysql
 ```
 
+OR 
+
+if you are developing on another dev machine and plan to use SAIL you can execute the following commands to use docker to install dependancies...
+
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php81-composer:latest \
+    composer install --ignore-platform-reqs
+```
+more information about this command can be found [https://laravel.com/docs/8.x/sail#installing-composer-dependencies-for-existing-projects]here
+
+
 Next ensure you have composer installed, if not you can run the following commands...
 
 ```bash
