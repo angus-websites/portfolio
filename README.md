@@ -12,15 +12,9 @@ git clone git@github.com:angus-websites/portfolio.git
 
 CD into the portfolio directory
 
-Ensure you have the right requirements on your server / computer to run Laravel, if not you can install them (ubuntu)
+### Setup for dev (sail)
 
-```bash
-sudo apt install php libapache2-mod-php php-mbstring php-cli php-bcmath php-json php-xml php-zip php-pdo php-common php-tokenizer php-mysql
-```
-
-OR 
-
-if you are developing on another dev machine and plan to use SAIL you can execute the following commands to use docker to install dependancies...
+if you are developing on another dev machine and plan to use SAIL you can execute the following commands to use docker to install dependencies...
 
 ```bash
 docker run --rm \
@@ -32,7 +26,47 @@ docker run --rm \
 ```
 more information about this command can be found [here](https://laravel.com/docs/8.x/sail#installing-composer-dependencies-for-existing-projects)
 
+Run sail
 
+```bash
+./vendor/bin/sail up
+```
+
+then install the modules
+```bash
+./vendor/bin/sail npm install
+./vendor/bin/sail npm run dev
+```
+
+**Make sure you create an ENV file or simple copy the example one provided and put the contents in .env and create a database password etc**
+
+Generate an app encryption key
+
+```bash
+./vendor/bin/sail php artisan key:generate
+```
+
+Migrate the database
+
+```bash
+./vendor/bin/sail php artisan migrate
+```
+
+Seed the database tables
+
+```bash
+./vendor/bin/sail php artisan db:seed
+```
+
+
+### Setup for Production server
+
+Ensure you have the right requirements on your server / computer to run Laravel, if not you can install them (ubuntu)
+
+```bash
+sudo apt install php libapache2-mod-php php-mbstring php-cli php-bcmath php-json php-xml php-zip php-pdo php-common php-tokenizer php-mysql
+```
+ 
 Next ensure you have composer installed, if not you can run the following commands...
 
 ```bash
@@ -69,20 +103,14 @@ Generate an app encryption key
 php artisan key:generate
 ```
 
-Run sail
-
-```bash
-./vendor/bin/sail up
-```
-
 Migrate the database
 
 ```bash
-./vendor/bin/sail php artisan migrate
+php artisan migrate
 ```
 
 Seed the database tables
 
 ```bash
-./vendor/bin/sail php artisan db:seed
+php artisan db:seed
 ```
