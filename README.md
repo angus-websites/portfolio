@@ -30,7 +30,7 @@ docker run --rm \
     laravelsail/php81-composer:latest \
     composer install --ignore-platform-reqs
 ```
-more information about this command can be found [https://laravel.com/docs/8.x/sail#installing-composer-dependencies-for-existing-projects]here
+more information about this command can be found [here](https://laravel.com/docs/8.x/sail#installing-composer-dependencies-for-existing-projects)
 
 
 Next ensure you have composer installed, if not you can run the following commands...
