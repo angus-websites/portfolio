@@ -26,6 +26,8 @@ docker run --rm \
 ```
 more information about this command can be found [here](https://laravel.com/docs/8.x/sail#installing-composer-dependencies-for-existing-projects)
 
+**Make sure you create an ENV file or simple copy the example one provided and put the contents in .env and create a database password etc**
+
 Run sail
 
 ```bash
@@ -37,8 +39,6 @@ then install the modules
 ./vendor/bin/sail npm install
 ./vendor/bin/sail npm run dev
 ```
-
-**Make sure you create an ENV file or simple copy the example one provided and put the contents in .env and create a database password etc**
 
 Generate an app encryption key
 
