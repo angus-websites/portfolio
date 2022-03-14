@@ -3,5 +3,7 @@
   <main class="text-base-content overflow-hidden min-h-screen">
     {{ $slot }}
   </main>
-  @include('includes.footer')
+  @section("footer")
+    @include('includes.footer')
+  @endsection
 </x-master-layout>

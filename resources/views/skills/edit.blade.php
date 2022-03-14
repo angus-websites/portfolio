@@ -14,21 +14,10 @@
       </div>
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">{{$skill->name}}</h1>
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Here you can edit the details of this skill or delete the skill</p>
-      @can("delete", App\Models\Skill::class)
-          <div class="my-5">
-            <form method="POST" method="POST" action="{{{ route("skills.destroy", ["skill" => $skill] )}}}">
-              @csrf
-              @method("delete")
-              <x-button class="btn-error btn-sm md:btn-md">Delete this skill</x-button>
-            </form>
-          </div>
-      @endcan
     </div>
+
+    <!--Edit-->
+    @livewire("skills.edit", ['skill' => $skill])
   </div>
-  <!--Edit-->
-  <form method="POST" action="{{{route('skills.update', ['skill' => $skill])}}}">
-    @method('PUT')
-    @csrf
-    <x-forms.create-edit-skill :skill="$skill" :sections="$sections"/>
-  </form>
+  
 </x-app-layout>
