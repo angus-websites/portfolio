@@ -5,11 +5,13 @@
 $hasError = $errors->has($error);
 
 $classes = ($hasError ?? false)
-            ? "input input-error"
-            : ($showgreen ?? false ? "input input-success" : "input");
+            ? "textarea textarea-error"
+            : ($showgreen ?? false ? "textarea textarea-success" : "textarea");
 @endphp
 
-<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => $classes]) !!}>
+<textarea {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => $classes]) !!}>
+  {{$slot}}
+</textarea>
 @error($error)
   <label class="label">
       <span class="label-text-alt">{{ $message }}</span>
