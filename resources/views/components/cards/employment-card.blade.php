@@ -27,7 +27,8 @@
       <div class="flex items-start gap-x-5">
         <div class="w-10"></div>
         <div class="text-left text-sm text-base-content flex-1">
-          <article class="prose mt-5">
+          <hr>
+          <article class="prose mt-5 prose-sm">
             {!! $description !!}
           </article>
         </div>

@@ -24,19 +24,19 @@
           <div class="p-2 w-1/2">
             <div class="form-control">
               <x-label for="name" :value="__('Name')" />
-              <x-input name="name" type="text" placeholder="" required></x-input>
+              <x-input name="name" type="text" class="input-bordered" placeholder="" required></x-input>
             </div>
           </div>
           <div class="p-2 w-1/2">
             <div class="form-control">
               <x-label for="email" :value="__('Email')" />
-              <x-input name="email" type="email" placeholder="" required></x-input>
+              <x-input name="email" type="email" class="input-bordered" placeholder="" required></x-input>
             </div>
           </div>
           <div class="p-2 w-full">
             <div class="form-control">
                 <x-label for="message" :value="__('Your Message')" />
-                <textarea name="message" class="textarea h-24" placeholder=""></textarea>
+                <textarea name="message" class="textarea textarea-bordered h-24" placeholder=""></textarea>
             </div>
           </div>
           <div class="p-2 w-full mt-4">
