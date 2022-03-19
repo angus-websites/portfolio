@@ -1,6 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
-    purge: {
+    content: {
         enabled: false,
         content:[
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
@@ -99,8 +99,9 @@ module.exports = {
 
     plugins: [
     require('@tailwindcss/forms'),
-    require('daisyui'),],
-
+    require('@tailwindcss/typography'), 
+    require("daisyui"),
+    ],
     daisyui: {
         themes: [
           {
