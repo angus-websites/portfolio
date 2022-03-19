@@ -132,7 +132,7 @@ module.exports = {
                'success' : '#3EAF42',           /* Success */
                'success-content' : '#FFFFFF', 
                'warning' : '#EEBD13',           /* Warning */
-               'warning-content' : '#7B6517',
+               'warning-content' : '#7B6519',
                'error' : '#C23541',             /* Error */
                'error-content' : '#FFFFFF',
             },
