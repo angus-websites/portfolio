@@ -13,7 +13,6 @@ class EmploymentCard extends Component
     public $role;
     public $icon;
     public $description;
-    public $responsibilities;
 
     /**
      * Create a new component instance.
@@ -29,7 +28,6 @@ class EmploymentCard extends Component
         $this->role = $employment->role;
         $this->icon = $employment->icon;
         $this->description = $employment->description;
-        $this->responsibilities = $employment->responsibilities();
     }
 
     /**
@@ -40,15 +38,7 @@ class EmploymentCard extends Component
      */
     public function isCollapse()
     {
-        return (!empty($this->description) || sizeof($this->responsibilities->get()) > 0);
-    }
-
-    /**
-     * Does this employment collapse
-     * need to display responsibilities
-     */
-    public function hasResponsibilities(){
-        return $this->employment->hasResponsibilities();
+        return (!empty($this->description));
     }
 
     /**

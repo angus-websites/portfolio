@@ -23,16 +23,6 @@ class CreateEducationTable extends Migration
             $table->text('icon')->nullable();
             $table->text('description')->nullable();
         });
-
-        Schema::create('subjects', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->bigInteger('education_id')->unsigned();
-            $table->text('content');
-            //Foreign keys
-            $table->foreign('education_id')
-                ->references('id')->on('education');
-        });
     }
 
     /**
@@ -42,7 +32,6 @@ class CreateEducationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
         Schema::dropIfExists('education');
     }
 }

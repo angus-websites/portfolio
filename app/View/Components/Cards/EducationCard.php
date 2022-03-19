@@ -14,7 +14,6 @@ class EducationCard extends Component
     public $end_date;
     public $icon;
     public $description;
-    public $subjects;
 
     /**
      * Create a new component instance.
@@ -30,7 +29,6 @@ class EducationCard extends Component
         $this->end_date = $education->end_date;
         $this->icon = $education->icon;
         $this->description = $education->description;
-        $this->subjects = $education->subjects();
     }
 
     /**
@@ -41,19 +39,8 @@ class EducationCard extends Component
      */
     public function isCollapse()
     {
-        return (!empty($this->description) || sizeof($this->subjects->get()) > 0);
+        return (!empty($this->description));
     }
-
-    /**
-     * Does this education instance
-     * have subjects associated with it?
-     *
-     */
-    public function hasSubjects()
-    {
-        return $this->education->hasSubjects();
-    }
-
 
     /**
      * Get the view / contents that represent the component.

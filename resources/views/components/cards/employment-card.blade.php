@@ -27,16 +27,6 @@
       <div class="flex items-start gap-x-5">
         <div class="w-10"></div>
         <div class="text-left text-sm text-base-content flex-1">
-          @if($hasResponsibilities())
-            <div class="my-3">
-              <ul class="list-disc list-inside">
-                @foreach ($responsibilities->get() as $r)
-                  <li>{{$r->content}}</li>
-                @endforeach
-              </ul>
-            </div>
-          @endif
-          <hr>
           <p class="mt-5">{{$description}}</p>
         </div>
       </div>

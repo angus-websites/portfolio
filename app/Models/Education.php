@@ -28,22 +28,5 @@ class Education extends Model
 
     }
 
-    /**
-     * Boolean - Does this education
-     * have subjects
-     */
-    public function hasSubjects(){
-        return count($this->subjects()->get()) > 0;
-    }
-
-
-    /**
-     * Get the subjects for the education.
-     */
-    public function subjects()
-    {
-        return $this->hasMany(Subject::class);
-    }
-
 
 }
