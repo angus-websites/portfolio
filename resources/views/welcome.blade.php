@@ -5,7 +5,7 @@
     <!--Text align div-->
     <div class="sm:text-center lg:text-left">
       <!--Title-->
-      <h1 class="text-4xl tracking-tight font-bold text-gray-900 sm:text-5xl md:text-6xl">
+      <h1 class="text-4xl tracking-tight font-bold sm:text-5xl md:text-6xl">
         <span class="block xl:inline">Welcome to my</span>
         <span class="block text-golden xl:inline">website</span>
       </h1>

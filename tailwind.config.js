@@ -27,18 +27,45 @@ module.exports = {
                     50: "#FBFBFB"
                 },
 
-                blue: {
-                    100: '#e5f4f8',
-                    200: '#D1E8F7',
-                    300: '#C7DDEC',
-                    400: '#A6D4EC',
-                    500: '#84CC17',
-                    600: '#28596B',
-                    700: '#004F64', //Secondary
-                    800: '#3F6213',
-                    900: '#365314',
+                teal: {
+                    100: '#E4FFF7',
+                    200: '#C9ECE2',
+                    300: '#9DD1C2',
+                    400: '#5CB69C',
+                    500: '#139E76',
+                    600: '#188868',
+                    700: '#1E7059',
+                    800: '#195C49',
+                    900: '#154638',
 
                 },
+
+                violet: {
+                    100: '#EDE9FE',
+                    200: '#CBC1E2',
+                    300: '#A090C4',
+                    400: '#7E6CA6',
+                    500: '#64547E',
+                    600: '#55486A',
+                    700: '#4D3F65',
+                    800: '#433757',
+                    900: '#382E48',
+
+                },
+
+                pink: {
+                    100: '#F5DDE9',
+                    200: '#ECC0D6',
+                    300: '#DF96BC',
+                    400: '#CB5692',
+                    500: '#BE2C77',
+                    600: '#B32971',
+                    700: '#A7266B',
+                    800: '#982363',
+                    900: '#821E55',
+
+                },
+
 
                 golden: {
                     light: "#ddd7c1",
@@ -77,32 +104,36 @@ module.exports = {
     daisyui: {
         themes: [
           {
-            'passworld': {                       /* your theme name */
-               'primary' : '#6FB44E',           /* Primary color */
-               'primary-focus' : '#64A246',     /* Primary color - focused */
+            'portfolio': {                       /* your theme name */
+               'primary' : '#139E76',           /* Primary color */
+               'primary-focus' : '#25866A',     /* Primary color - focused */
                'primary-content' : '#ffffff',   /* Foreground content color to use on primary color */
 
-               'secondary' : '#004E64',         /* Secondary color */
-               'secondary-focus' : '#1A4053',   /* Secondary color - focused */
+               'secondary' : '#64547E',         /* Secondary color */
+               'secondary-focus' : '#4E3C6C',   /* Secondary color - focused */
                'secondary-content' : '#ffffff', /* Foreground content color to use on secondary color */
 
-               'accent' : '#d35281',            /* Accent color */
-               'accent-focus' : '#c74b78',      /* Accent color - focused */
+               'accent' : '#BE2C77',            /* Accent color */
+               'accent-focus' : '#A21B61',      /* Accent color - focused */
                'accent-content' : '#ffffff',    /* Foreground content color to use on accent color */
 
-               'neutral' : '#3d4451',           /* Neutral color */
-               'neutral-focus' : '#2a2e37',     /* Neutral color - focused */
-               'neutral-content' : '#ffffff',   /* Foreground content color to use on neutral color */
+               'neutral' : '#E8E1CC',           /* Neutral color */
+               'neutral-focus' : '#E1D8BC',     /* Neutral color - focused */
+               'neutral-content' : '#7B704E',   /* Foreground content color to use on neutral color */
 
-               'base-100' : '#ffffff',          /* Base color of page, used for blank backgrounds */
+               'base-100' : '#FFFCF3',          /* Base color of page, used for blank backgrounds */
                'base-200' : '#F1EFE9',          /* Base color, a little darker */
-               'base-300' : '#E5E4DF',          /* Base color, even more darker */
-               'base-content' : '#212613',      /* Foreground content color to use on base color */
+               'base-300' : '#ECE9E1',          /* Base color, even more darker */
+               'base-content' : '#4D4B45',      /* Foreground content color to use on base color */
 
-               'info' : '#2094f3',              /* Info */
-               'success' : '#009485',           /* Success */
-               'warning' : '#ff9900',           /* Warning */
-               'error' : '#e35555',             /* Error */
+               'info' : '#5071D2',              /* Info */
+               'info-content' : '#FFFFFF', 
+               'success' : '#3EAF42',           /* Success */
+               'success-content' : '#FFFFFF', 
+               'warning' : '#EEBD13',           /* Warning */
+               'warning-content' : '#7B6517',
+               'error' : '#C23541',             /* Error */
+               'error-content' : '#FFFFFF',
             },
 
           },
