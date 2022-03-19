@@ -7795,16 +7795,16 @@
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "1.0.11",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "d4b20828d155341c0cf7f0011b5bba73c6589acb"
+                "reference": "5b8c360d1f6bcba339a6d593efa02816c06d17c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/d4b20828d155341c0cf7f0011b5bba73c6589acb",
-                "reference": "d4b20828d155341c0cf7f0011b5bba73c6589acb",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/5b8c360d1f6bcba339a6d593efa02816c06d17c3",
+                "reference": "5b8c360d1f6bcba339a6d593efa02816c06d17c3",
                 "shasum": ""
             },
             "require": {
@@ -7878,7 +7878,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-19T16:53:39+00:00"
+            "time": "2022-03-19T17:03:56+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -7940,5 +7940,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.1.0"
 }

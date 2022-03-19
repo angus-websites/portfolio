@@ -14,7 +14,7 @@
             <form wire:submit.prevent="saveSkill">
                 <!-- Name -->
                 <div class="form-control mb-4">
-                    <x-label for="name" :value="__('Skill name')" />
+                    <x-label for="name" :value="__('Project name')" />
                     <x-input wire:model="skill.name"
                                 id="name"
                                 class="input-bordered"
@@ -37,7 +37,7 @@
                     <x-select wire:model="skill.skill_section_id" error="skill.skill_section_id" showgreen="true" id="section" name="skill_section_id" class="select-bordered w-full" required>
                       <option disabled="disabled">Choose a skill section</option>
                       @foreach($sections as $section)
-                        <option value="wd">
+                        <option value="{{$section->id}}">
                           {{$section->name}}
                         </option>
                       @endforeach

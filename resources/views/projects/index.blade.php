@@ -10,9 +10,9 @@
   <!--Create project-->
   @can('create', App\Models\Project::class)
     <div class="mt-3 flex justify-center">
-      <x-button class="btn-primary">
+      <x-link-button class="btn-primary" href="{{ route('projects.create') }}">
         New Project
-      </x-button>
+      </x-link-button>
     </div>
   @endcan
   <!--Projects-->
