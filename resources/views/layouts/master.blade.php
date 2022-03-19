@@ -14,9 +14,10 @@
   </head>
   <body class="font-sans antialiased bg-base-200">
     {{ $slot }}
+
+    <footer>
+      @stack('scripts')
+      @yield("footer")
+    </footer>
   </body>
-  <footer>
-    @stack('scripts')
-    @yield("footer")
-  </footer>
 </html>

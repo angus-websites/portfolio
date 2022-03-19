@@ -1,9 +1,9 @@
 <x-master-layout>
   @push("styleheets")
-    @livewireStyles
+    <livewire:styles />
   @endpush
   @push("scripts")
-    @livewireScripts
+    <livewire:scripts />
   @endpush
   @include('includes.navigation')
   @include('includes.flash')
