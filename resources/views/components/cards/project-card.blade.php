@@ -12,7 +12,7 @@
   </a>
   @can('update', $project)
     <div class="mt-3 flex">
-      <x-link-button href="{{$project->get_edit_url()}}" class="btn-accent btn-sm btn-block">Edit</x-link-button>
+      <x-link-button href="{{route('projects.edit', ['project' => $project])}}" class="btn-accent btn-sm btn-block">Edit</x-link-button>
     </div>
   @endcan
 </div>

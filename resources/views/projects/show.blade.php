@@ -16,7 +16,7 @@
           </x-link-button>
 
           @can('update', $project)
-            <x-link-button href="{{$project->get_edit_url()}}" class="btn-accent btn-sm">Edit</x-link-button>
+            <x-link-button href="{{route('projects.edit', ['project' => $project])}}" class="btn-accent btn-sm">Edit</x-link-button>
           @endcan
         </div>
       

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Project extends Model
 {
@@ -15,7 +16,20 @@ class Project extends Model
     public static $logo_placeholder = "/assets/images/placeholders/logo_placeholder.svg";
     public static $imagesPath = "projects/";
     public static $logoPath = "logos/";
-    protected $fillable = ['name','short_desc','long_desc','git_link','web_link','date_made'];
+    protected $fillable = ['name', 'category_id', 'short_desc','long_desc','git_link','web_link','date_made'];
+
+
+    protected static function boot()
+    {
+      /**
+       * Auto generate the slug
+       * when creating the model
+       */
+      parent::boot();
+      Project::creating(function($model) {
+        $model->slug = Str::of($model->name)->slug('-');
+      });
+    }
 
     /**
      * Define how routes should be
@@ -32,23 +46,6 @@ class Project extends Model
     public function tags() {
         return $this->belongsToMany(Tag::class, 'project_tags');
     }
-
-    /**
-     * This function will get the URL
-     * for this project
-     */
-    public function get_url(){
-      return "/projects/".$this->slug;
-    }
-
-    /**
-     * Get the url to edit
-     * this project
-     */
-    public function get_edit_url(){
-      return $this->get_url()."/edit";
-    }
-
 
     /**
      * Get the category this project belongs
