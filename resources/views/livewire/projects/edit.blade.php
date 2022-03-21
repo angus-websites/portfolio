@@ -136,15 +136,55 @@
                                 x-bind:required="show" />
                 </div>
             </div>
+        </div>
 
+        <h2 class="text-lg font-medium mt-7">Tags</h2>
+        <div class="grid md:grid-cols-2 gap-4 p-4">
+            <!--Tag search input -->
+            <div>
+                <!-- Tag search input -->
+                <div class="form-control">
+                    <x-label for="tagSearch" :value="__('Search for tags')" />
+                    <x-input   wire:model="tag_search"
+                               id="tagSearch"
+                               class="input-bordered"
+                               type="text"
+                               /> 
+                </div>
+                <div class="divider">Results</div>
+                <!-- Search results -->
+                <div class="flex flex-row justify-start items-center gap-4 mt-5 flex-wrap">
+                    @forelse($tags as $tag)
+                        <button wire:click="addTag({{ $tag->id }})" class="btn btn-sm" type="button">{{$tag->name}}</button>
+                    @empty
+                        <p class="text-center w-full"><span class="badge badge-error mx-auto">No results</span></p>
+                    @endforelse
+                </div>
+
+            </div>
+
+            <!-- Display the added tags -->
+            <div class="text-center">
+                <p>Added tags</p>
+                <div class="flex flex-row justify-center items-center gap-4 mt-5 flex-wrap">
+                    @forelse($added_tags as $tag)
+                        <button wire:click="removeTag({{ $tag->id }})" class="btn btn-success btn-sm gap-2" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                            {{ $tag->name }}
+                        </button>
+
+                    @empty
+                        <span class="badge badge-info mx-auto">No tags</span>
+                    @endforelse
+                </div>
+
+            </div>
         </div>
 
         <hr>
         <div class="py-4">
             <x-button class="btn-primary">{{$this->getButtonText()}}</x-button>
         </div>
-
-
 
     </form>
 

@@ -9,7 +9,7 @@
 
     <div class="mt-10">
       <!--Edit-->
-      @livewire("projects.create", ["project" => $project])
+      @livewire("projects.edit", ["project" => $project])
     </div>
   </section>
 </x-app-layout>

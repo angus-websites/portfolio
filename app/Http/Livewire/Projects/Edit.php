@@ -5,14 +5,19 @@ namespace App\Http\Livewire\Projects;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Project;
+use App\Models\Tag;
 
-class Create extends Component
+class Edit extends Component
 {
+
     public $project;
 
     public $has_git;
     public $has_web;
     public $is_create;
+
+    public $tag_search;
+    public $tag_list = [];
 
     protected function rules()
     {
@@ -45,8 +50,12 @@ class Create extends Component
     public function render()
     {
         $categories = Category::all();
-        return view('livewire.projects.create', [
-            "categories" => $categories
+        $tags = Tag::where('name', 'Like', '%' . $this->tag_search . '%')->whereNotIn('id', $this->tag_list)->take(10)->get();
+        $added_tags = Tag::findMany($this->tag_list);
+        return view('livewire.projects.edit', [
+            "categories" => $categories,
+            "tags" => $tags,
+            "added_tags" => $added_tags,
         ]);
     }
 
@@ -80,6 +89,29 @@ class Create extends Component
 
         session()->flash('success', 'Project successfully updated.');
     }
+
+    public function addTag($tag_id){
+        /**
+         * Store this tag in the list
+         * of saved tags
+         */
+        if(!in_array($tag_id, $this->tag_list)){
+            array_push($this->tag_list, $tag_id);
+        }
+        
+    }
+
+    public function removeTag($tag_id){
+        /**
+         * Remove this tag
+         * from the "added" tags
+         */
+        if (($key = array_search($tag_id, $this->tag_list)) !== false) {
+            unset($this->tag_list[$key]);
+        }
+    }
+
+
 
     public function hasGitLink()
     {
