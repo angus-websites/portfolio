@@ -65,23 +65,6 @@ class Edit extends Component
         $this->validateOnly($propertyName);
     }
 
-    private function save()
-    {
-        /**
-         * Function shared between
-         * creating and updating
-         * projects
-         */
-        
-        $this->validate();
-
-        //Attatch the tags
-        $this->project->tags()->sync($this->tag_list);
-        
-        // Save to DB
-        $this->project->save();
-    }
-
     public function createProject()
     {
         /**
@@ -89,7 +72,12 @@ class Edit extends Component
          */
         
 
-        $this->save();
+        $this->validate();
+        // We need to save first so we have a ID
+        $this->project->save();
+        $this->project->tags()->sync($this->tag_list);
+        $this->project->save();
+
 
         return redirect()->route('projects.show', ["project" => $this->project])->with("success","Project created!");
     }
@@ -100,7 +88,13 @@ class Edit extends Component
          * Update the existing project
          */
         
-        $this->save();
+        $this->validate();
+
+        //Attatch the tags
+        $this->project->tags()->sync($this->tag_list);
+
+        // Save to DB
+        $this->project->save();
 
         session()->flash('success', 'Project successfully updated.');
     }
