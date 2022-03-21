@@ -7,14 +7,9 @@
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
     </div>
 
-    <div class="mt-10 sm:mt-0">
-      <div class="mt-5 md:mt-0 md:col-span-2">
-        <form method="POST" action="{{{ route('projects.update',$project->slug) }}}" enctype='multipart/form-data'>
-          @method('PUT')
-          @csrf
-          <x-forms.create-edit-project :project="$project"/>
-        </form>
-      </div>
+    <div class="mt-10">
+      <!--Edit-->
+      @livewire("projects.create", ["project" => $project, "is_create" => false])
     </div>
   </section>
 </x-app-layout>

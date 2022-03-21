@@ -84,11 +84,11 @@
         <div class="p-4">
 
             <!--Github checkbox-->
-            <div x-data="{show: false}" class="mb-6" >
+            <div x-data="{show: {{$this->hasGitLink()}}}" class="mb-6" >
                 <div class="form-control">
                     <div class="col-span-6 sm:col-span-4 flex items-start">
                       <div class="flex items-center h-5">
-                        <input @click='show = !show' id="has_git" name="has_git" type="checkbox" class="checkbox checkbox-sm toggle_block">
+                        <input x-model="show" @click='show = !show' id="has_git" name="has_git" type="checkbox" class="checkbox checkbox-sm toggle_block" checked="{{$this->hasGitLink()}}">
                       </div>
                       <div class="ml-3 text-sm">
                         <label for="has_git" class="font-medium text-gray-700">Github Link</label>
@@ -112,11 +112,11 @@
 
 
             <!-- Website link -->
-            <div class="mb-6" x-data="{show: false}">
+            <div  x-data="{show: {{$this->hasWebLink()}} }" class="mb-6">
                 <div class="form-control">
                     <div class="col-span-6 sm:col-span-4 flex items-start">
                       <div class="flex items-center h-5">
-                        <input @click='show = !show' id="has_web" name="has_web" type="checkbox" class="checkbox checkbox-sm toggle_block">
+                        <input x-model="show" @click='show = !show' id="has_web" name="has_web" type="checkbox" class="checkbox checkbox-sm toggle_block">
                       </div>
                       <div class="ml-3 text-sm">
                         <label for="has_web" class="font-medium text-gray-700">Website Link</label>
@@ -141,16 +141,13 @@
 
         <hr>
         <div class="py-4">
-            <x-button class="btn-primary">Save</x-button>
+            <x-button class="btn-primary">{{$this->getButtonText()}}</x-button>
         </div>
 
 
 
     </form>
 
-    <p>Values</p>
-    <p>Name: {{$name}}</p>
-    <p>Long description: {{$long_desc}}</p>
 
     @push('stylesheets')
       <link rel="stylesheet" type="text/css" href="https://www.unpkg.com/trix@1.3.1/dist/trix.css">

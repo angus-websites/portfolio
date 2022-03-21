@@ -73,7 +73,9 @@
         <!--Description-->
         <div class="mt-16 md:w-1/2">
           <h1 class="text-gray-900 text-2xl title-font font-medium mb-3">Details</h1>
-          <p class="leading-relaxed">{{$project->long_desc}}</p>
+          <article class="prose prose-sm">
+            {!! $project->long_desc !!}
+          </article>
         </div>
 
       </div>

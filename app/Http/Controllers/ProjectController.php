@@ -33,7 +33,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        // Create a new empty project to pass to our livewire component
+        $new_project = new Project();
+        return view('projects.create', ["new_project" => $new_project]);
     }
 
     /**

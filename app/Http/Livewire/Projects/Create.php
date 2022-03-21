@@ -17,6 +17,12 @@ class Create extends Component
     public $git_link;
     public $web_link;
 
+    private $has_git;
+    private $has_web;
+
+    public $is_create;
+
+
     protected $rules = [
         'name' => 'required|string|min:1|unique:projects,name,slug',
         'date_made' => 'required|date',
@@ -26,6 +32,27 @@ class Create extends Component
         'git_link' => 'nullable|url',
         'web_link' => 'nullable|url',
     ];
+
+    public function mount(Project $project, $is_create=true)
+    {
+        $this->name = $project->name;
+        $this->date_made = $project->date_made;
+        $this->category_id = $project->category_id;
+        $this->short_desc = $project->short_desc;
+        $this->long_desc = $project->long_desc;
+        $this->git_link = $project->git_link;
+        $this->web_link = $project->web_link;
+        $this->is_create = $is_create;
+
+        if (!empty($this->git_link)){
+            $this->has_git = true;
+        }
+
+        if (!empty($this->web_link)){
+            $this->has_web = true;
+        }
+
+    }
 
     public function render()
     {
@@ -60,6 +87,26 @@ class Create extends Component
         ]);
 
         return redirect()->route('projects.show', ["project" => $project])->with("success","Project created!");
+    }
+
+    public function hasGitLink()
+    {
+        return $this->has_git ? 'true' : 'false';
+    }
+
+    public function hasWebLink()
+    {
+        return $this->has_web ? 'true' : 'false';
+    }
+
+    public function getButtonText()
+    {
+        /**
+         * Return button text depending
+         * on if we're creating or editing
+         */
+        return $this->is_create ? 'Create' : 'Update';
+        
     }
 
 }
