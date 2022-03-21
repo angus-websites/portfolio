@@ -157,7 +157,23 @@
                     @forelse($tags as $tag)
                         <button wire:click="addTag({{ $tag->id }})" class="btn btn-sm" type="button">{{$tag->name}}</button>
                     @empty
-                        <p class="text-center w-full"><span class="badge badge-error mx-auto">No results</span></p>
+                        @if ($this->isTagSearchTaken())
+                            <div class="text-center w-full">
+                                <span class="badge badge-error mx-auto">No results</span>
+                            </div>
+                        @else
+                            <div class="flex flex-col gap-y-2 mx-auto">
+                                <button wire:click="createTag()" class="btn btn-sm btn-outline btn-info mx-auto" type="button">
+                                    Create "{{$tag_search}}"
+                                </button>
+                                
+                                @error('tag_search')
+                                    <label class="label">
+                                        <span class="label-text text-error">{{ $message }}</span>
+                                    </label>
+                                @enderror
+                            </div>
+                        @endif                        
                     @endforelse
                 </div>
 

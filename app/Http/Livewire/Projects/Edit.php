@@ -99,7 +99,8 @@ class Edit extends Component
         session()->flash('success', 'Project successfully updated.');
     }
 
-    public function addTag($tag_id){
+    public function addTag($tag_id)
+    {
         /**
          * Store this tag in the list
          * of saved tags
@@ -110,7 +111,8 @@ class Edit extends Component
         
     }
 
-    public function removeTag($tag_id){
+    public function removeTag($tag_id)
+    {
         /**
          * Remove this tag
          * from the "added" tags
@@ -120,7 +122,30 @@ class Edit extends Component
         }
     }
 
+    public function createTag()
+    {
+       /**
+        * Create a new tag
+        * for this project to use
+        */
 
+        $this->validate(
+            ['tag_search' => 'required|unique:tags,name'],
+            [
+                'tag_search.required' => 'New tag cannot be empty',
+                'tag_search.unique' => 'This tag already exists',
+            ],
+        );
+
+        // Create the new tag and add it's id to this project
+        $tag = Tag::create([
+            "name" => $this->tag_search
+        ]);
+
+        array_push($this->tag_list, $tag->id);
+
+
+    }
 
     public function hasGitLink()
     {
@@ -148,6 +173,15 @@ class Edit extends Component
          * form function to use
          */
         return $this->is_create ? 'createProject' : 'updateProject';  
+    }
+
+    public function isTagSearchTaken()
+    {
+        /**
+         * Return true if the tag a user
+         * searched for exists in the database
+         */
+        return Tag::where('name', 'Like', '%' . $this->tag_search . '%')->exists();
     }
 
 }
