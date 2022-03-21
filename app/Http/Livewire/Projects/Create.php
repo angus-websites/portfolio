@@ -8,47 +8,35 @@ use App\Models\Project;
 
 class Create extends Component
 {
+    public $project;
 
-    public $name;
-    public $date_made;
-    public $category_id;
-    public $short_desc;
-    public $long_desc;
-    public $git_link;
-    public $web_link;
-
-    private $has_git;
-    private $has_web;
-
+    public $has_git;
+    public $has_web;
     public $is_create;
 
-
-    protected $rules = [
-        'name' => 'required|string|min:1|unique:projects,name,slug',
-        'date_made' => 'required|date',
-        'category_id' => 'required|exists:categories,id',
-        'short_desc' => 'nullable|string',
-        'long_desc' => 'nullable|string',
-        'git_link' => 'nullable|url',
-        'web_link' => 'nullable|url',
-    ];
-
-    public function mount(Project $project, $is_create=true)
+    protected function rules()
     {
-        $this->name = $project->name;
-        $this->date_made = $project->date_made;
-        $this->category_id = $project->category_id;
-        $this->short_desc = $project->short_desc;
-        $this->long_desc = $project->long_desc;
-        $this->git_link = $project->git_link;
-        $this->web_link = $project->web_link;
-        $this->is_create = $is_create;
+        return [
+            'project.name' => ["required", "string", "min:1", "unique:projects,name,". $this->project->id],
+            'project.date_made' => 'required|date',
+            'project.category_id' => 'required|exists:categories,id',
+            'project.short_desc' => 'nullable|string',
+            'project.long_desc' => 'nullable|string',
+            'project.git_link' => 'nullable|url',
+            'project.web_link' => 'nullable|url',
+        ];
+    }
 
-        if (!empty($this->git_link)){
+    public function mount(Project $project)
+    {
+        $this->project = $project;
+        $this->is_create = !$project->exists;
+
+        if (!empty($this->project->git_link)){
             $this->has_git = true;
         }
 
-        if (!empty($this->web_link)){
+        if (!empty($this->project->web_link)){
             $this->has_web = true;
         }
 
@@ -75,18 +63,22 @@ class Create extends Component
         
         $validatedData = $this->validate();
 
-        $project = Project::create([
-            'name' => $this->name,
-            'date_made' => $this->date_made,
-            'category_id' => $this->category_id,
-            'short_desc' => $this->short_desc,
-            'long_desc' => $this->long_desc,
-            'git_link' => $this->git_link,
-            'web_link' => $this->web_link,
+        $this->project->save();
 
-        ]);
+        return redirect()->route('projects.show', ["project" => $this->project])->with("success","Project created!");
+    }
 
-        return redirect()->route('projects.show', ["project" => $project])->with("success","Project created!");
+    public function updateProject()
+    {
+        /**
+         * Update the existing project
+         */
+        $validatedData = $this->validate();
+
+        // Save model
+        $this->project->save();
+
+        session()->flash('success', 'Project successfully updated.');
     }
 
     public function hasGitLink()
@@ -105,8 +97,16 @@ class Create extends Component
          * Return button text depending
          * on if we're creating or editing
          */
-        return $this->is_create ? 'Create' : 'Update';
-        
+        return $this->is_create ? 'Create' : 'Update';    
+    }
+
+    public function getFormRoute()
+    {
+        /**
+         * Get the name of the wire
+         * form function to use
+         */
+        return $this->is_create ? 'createProject' : 'updateProject';  
     }
 
 }

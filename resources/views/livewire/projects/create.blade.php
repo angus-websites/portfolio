@@ -9,39 +9,39 @@
         </div>
     @endif
 
-    <form wire:submit.prevent="createProject">
+    <form wire:submit.prevent="{{$this->getFormRoute()}}">
 
         <h2 class="text-lg font-medium">Basic details</h2>
         <div class="grid md:grid-cols-2 gap-4 p-4">
             <!-- Project name -->
             <div class="form-control">
                 <x-label for="name" :value="__('Project name')" />
-                <x-input wire:model="name"
+                <x-input wire:model="project.name"
                             id="name"
                             class="input-bordered"
                             type="text"
                             name="name"
-                            error="name"
+                            error="project.name"
                             required />
             </div>
 
             <!-- Date made -->
             <div class="form-control">
                 <x-label for="date_made" :value="__('Date created')" />
-                <x-input wire:model="date_made"
+                <x-input wire:model="project.date_made"
                             id="date_made"
                             class="input-bordered"
                             type="date"
                             name="date_made"
-                            error="date_made"
+                            error="project.date_made"
                             required />
             </div>
 
             <!--Category-->
             <div class="form-control">
                 <x-label for="category" :value="__('Category')" />
-                <x-select wire:model="category_id"
-                          error="category_id"
+                <x-select wire:model="project.category_id"
+                          error="project.category_id"
                           id="category" 
                           name="category_id" 
                           class="select-bordered w-full" 
@@ -58,12 +58,12 @@
             <!-- Short Description -->
             <div class="form-control md:col-start-1">
                 <x-label for="short_desc" :value="__('Short project description')" />
-                <x-input wire:model="short_desc"
+                <x-input wire:model="project.short_desc"
                             id="short_desc"
                             class="input-bordered"
                             type="text"
                             name="short_desc"
-                            error="short_desc"
+                            error="project.short_desc"
                             />
             </div>
 
@@ -73,7 +73,7 @@
                 <input id="trix" type="hidden">
                 <trix-editor
                     input="trix"
-                    wire:model.debounce.500ms="long_desc"
+                    wire:model.debounce.500ms="project.long_desc"
                     class="font-sans bg-white prose max-w-none">
                         
                 </trix-editor>
@@ -98,12 +98,12 @@
                 </div>
                 <div class="form-control" x-show="show" x-transition>
                     <x-label for="git_link" :value="__('Github link')" />
-                    <x-input wire:model="git_link"
+                    <x-input wire:model="project.git_link"
                                 id="git_link"
                                 class="input-bordered"
                                 type="url"
                                 name="git_link"
-                                error="git_link"
+                                error="project.git_link"
                                 showgreen="true"
                                 x-bind:required="show" />
                 </div>
@@ -126,12 +126,12 @@
                 </div>
                 <div class="form-control" x-show="show" x-transition:enter="transition ease-out duration-300" >
                     <x-label for="web_link" :value="__('Website link')" />
-                    <x-input wire:model="web_link"
+                    <x-input wire:model="project.web_link"
                                 id="web_link"
                                 class="input-bordered"
                                 type="url"
                                 name="web_link"
-                                error="web_link"
+                                error="project.web_link"
                                 showgreen="true"
                                 x-bind:required="show" />
                 </div>
