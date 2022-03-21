@@ -197,6 +197,47 @@
             </div>
         </div>
 
+        <h2 class="text-lg font-medium mt-7">Images</h2>
+        <div class="grid md:grid-cols-2 gap-4 p-4">
+            
+            <!-- Logo upload -->
+            <div class="form-control"
+                 x-data="{ isUploading: false, progress: 0 }"
+                 x-on:livewire-upload-start="isUploading = true"
+                 x-on:livewire-upload-finish="isUploading = false"
+                 x-on:livewire-upload-progress="progress = $event.detail.progress"
+                 >
+                <x-label for="short_desc" :value="__('Logo')" />
+                <input type="file" wire:model="logo_image">
+                <!-- Progress bar -->
+                <div x-show="isUploading">
+                    <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>    
+                </div>
+
+                @error('logo_image')
+                    <label class="label mt-2">
+                        <span class="label-text text-error">{{ $message }}</span>
+                    </label>
+                @enderror
+            </div>
+
+            <!-- Logo preview -->
+            <div class="text-center">
+                <p>Logo preview</p>
+                @if ($logo_image)
+                    <div class="avatar mx-auto mt-2">
+                      <div class="rounded-full w-32 h-32 shadow-md">
+                        <img src="{{$logo_image->temporaryUrl()}}">
+                      </div>
+                    </div> 
+                @endif
+            </div>
+
+            
+            
+
+        </div>
+
         <hr>
         <div class="py-4">
             <x-button class="btn-primary">{{$this->getButtonText()}}</x-button>

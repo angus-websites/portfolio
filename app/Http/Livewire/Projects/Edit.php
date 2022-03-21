@@ -6,12 +6,15 @@ use Livewire\Component;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\Tag;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
+    use WithFileUploads;
 
     public $project;
 
+    public $logo_image;
     public $has_git;
     public $has_web;
     public $is_create;
@@ -64,6 +67,14 @@ class Edit extends Component
     {
         $this->validateOnly($propertyName);
     }
+
+    public function updatedLogoImage()
+    {
+        $this->validate([
+            'logo_image' => 'image|max:1024', // 1MB Max
+        ]);
+    }
+
 
     public function createProject()
     {
