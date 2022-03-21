@@ -35,6 +35,7 @@ class Edit extends Component
     public function mount(Project $project)
     {
         $this->project = $project;
+        $this->tag_list = $project->tags()->pluck("id")->toArray();
         $this->is_create = !$project->exists;
 
         if (!empty($this->project->git_link)){
@@ -64,15 +65,31 @@ class Edit extends Component
         $this->validateOnly($propertyName);
     }
 
+    private function save()
+    {
+        /**
+         * Function shared between
+         * creating and updating
+         * projects
+         */
+        
+        $this->validate();
+
+        //Attatch the tags
+        $this->project->tags()->sync($this->tag_list);
+        
+        // Save to DB
+        $this->project->save();
+    }
+
     public function createProject()
     {
         /**
          * Create a new project
          */
         
-        $validatedData = $this->validate();
 
-        $this->project->save();
+        $this->save();
 
         return redirect()->route('projects.show', ["project" => $this->project])->with("success","Project created!");
     }
@@ -82,10 +99,8 @@ class Edit extends Component
         /**
          * Update the existing project
          */
-        $validatedData = $this->validate();
-
-        // Save model
-        $this->project->save();
+        
+        $this->save();
 
         session()->flash('success', 'Project successfully updated.');
     }

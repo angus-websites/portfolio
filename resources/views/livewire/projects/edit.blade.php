@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <h2 class="text-lg font-medium mt-7">More details</h2>
+        <h2 class="text-lg font-medium mt-7">Links</h2>
         <div class="p-4">
 
             <!--Github checkbox-->
