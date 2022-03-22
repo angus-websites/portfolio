@@ -28,7 +28,7 @@ class ProjectCard extends Component
       $this->description = $project->short_desc;
       $this->category = "Category";
       $this->link = route("projects.show",["project" => $project]);
-      $this->imagePath = $project->get_image();;
+      $this->imagePath = $project->getImage();;
       
     }
 

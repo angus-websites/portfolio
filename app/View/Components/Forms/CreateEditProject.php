@@ -43,8 +43,8 @@ class CreateEditProject extends Component
         $this->currentCategoryId=$project->category_id;
 
         //Booleans
-        $this->image = basename($this->project->get_image());
-        $this->logo = basename($this->project->get_logo());
+        $this->image = basename($this->project->getImage());
+        $this->logo = basename($this->project->getLogo());
 
         $this->gitLink = $this->project->git_link ?? null;
         $this->webLink = $this->project->web_link ?? null;

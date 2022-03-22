@@ -236,7 +236,7 @@
                         <h3 class="mb-4 font-medium text-center">Current logo</h3>
                         <div class="avatar mx-auto">
                             <div class="rounded-full w-24 h-24 shadow-md">
-                                <img src="{{$this->project->get_logo()}}">
+                                <img src="{{$this->project->getLogo()}}">
                             </div>
                         </div> 
                         <div class="text-center mt-2">

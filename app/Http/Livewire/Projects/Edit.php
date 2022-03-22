@@ -27,6 +27,8 @@ class Edit extends Component
     public $uploaded_logo;
     public $is_uploaded_logo_valid;
 
+    protected $casts = ['project.date_made' => "date:d-m-y"];
+
     protected function rules()
     {
         /**
@@ -55,6 +57,7 @@ class Edit extends Component
          */
         
         $this->project = $project;
+        $this->project->date_made = $this->project->getOriginal("date_made");
         $this->tag_list = $project->tags()->pluck("id")->toArray();
         $this->is_create = !$project->exists;
 
@@ -93,40 +96,6 @@ class Edit extends Component
          */
         
         $this->validateOnly($propertyName);
-    }
-
-    public function updatedUploadedLogo()
-    {
-        /**
-         * Called when the user
-         * uploads a logo for 
-         * the project
-         */
-        $this->is_uploaded_logo_valid = false;
-        $this->validateOnly("uploaded_logo");
-        $this->is_uploaded_logo_valid = true;
-    }
-
-    public function discardUploadedLogo()
-    {
-        /**
-         * Remove reference to the logo
-         * the user uploaded so it is
-         * not saved
-         */
-        $this->uploaded_logo = null;
-        $this->is_uploaded_logo_valid = false;
-    }
-
-    public function resetLogo()
-    {
-        /**
-         * Remove the currently
-         * uploaded logo for this project
-         * and reset to the placeholder
-         */
-        $this->project->removeLogo();
-        session()->flash('info', 'Logo reset to default');
     }
 
     private function updateProjectDetails()
@@ -169,6 +138,41 @@ class Edit extends Component
         $this->updateProjectDetails();
         session()->flash('success', 'Project successfully updated.');
     }
+
+    public function updatedUploadedLogo()
+    {
+        /**
+         * Called when the user
+         * uploads a logo for 
+         * the project
+         */
+        $this->is_uploaded_logo_valid = false;
+        $this->validateOnly("uploaded_logo");
+        $this->is_uploaded_logo_valid = true;
+    }
+
+    public function discardUploadedLogo()
+    {
+        /**
+         * Remove reference to the logo
+         * the user uploaded so it is
+         * not saved
+         */
+        $this->uploaded_logo = null;
+        $this->is_uploaded_logo_valid = false;
+    }
+
+    public function resetLogo()
+    {
+        /**
+         * Remove the currently
+         * uploaded logo for this project
+         * and reset to the placeholder
+         */
+        $this->project->removeLogo();
+        session()->flash('info', 'Logo reset to default');
+    }
+
 
     public function addTag($tag_id)
     {

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Project extends Model
 {
@@ -14,8 +15,8 @@ class Project extends Model
     //Statics
     public static $placeholder = "/assets/images/placeholders/project_placeholder.svg";
     public static $logo_placeholder = "/assets/images/placeholders/logo_placeholder.svg";
-    public static $imagesPath = "projects/";
-    public static $logoPath = "logos/";
+    public static $imagesPath = "\/images/projects/";
+    public static $logoPath = "\/images/logos/";
     protected $fillable = ['name', 'category_id', 'short_desc','long_desc','git_link','web_link','date_made'];
 
 
@@ -29,6 +30,18 @@ class Project extends Model
       Project::creating(function($model) {
         $model->slug = Str::of($model->name)->slug('-');
       });
+    }
+
+    protected function dateMade(): Attribute
+    {
+      /**
+       * Accessor for the dateMade
+       * attribute, convert to
+       * dd/mm/yy
+       */
+      return Attribute::make(
+          get: fn ($value) => date("d/m/Y", strtotime($value) ),
+      );
     }
 
     /**
@@ -56,20 +69,18 @@ class Project extends Model
     }
 
     /**
-     * Return the date created
-     * in a standard format
-     */
-    public function get_date_created(){
-      return date("d/m/Y", strtotime($this->date_made));
-    }
-
-    /**
      * Get the image for this project
      */
-    public function get_image(){
+    public function getImage()
+    {
+      /**
+       * Fetch the image associated
+       * with this project
+       */
+      
       if($this->img){
         //Find this image in storage
-        $path = "images/".$this::$imagesPath.$this->img;
+        $path = $this::$imagesPath.$this->img;
         if(Storage::disk('public')->exists($path)){
           return asset($path);
         }else{
@@ -83,15 +94,17 @@ class Project extends Model
 
     }
 
-    /**
-     * Remove the image
-     * for this project
-     */
-    public function removeImage(){
+    public function removeImage()
+    {
 
+      /**
+       * Remove the image
+       * associated with this project
+       * from storage and set to default
+       */
       if($this->img){
         // Remove the file from storage
-        $path = "images/".$this::$imagesPath.$this->img;
+        $path = $this::$imagesPath.$this->img;
         if (Storage::disk('public')->delete($path)){
           $this->img = null;
           $this->save();
@@ -100,48 +113,46 @@ class Project extends Model
       
     }
 
-    public function removeLogo(){
-
+    public function removeLogo()
+    {
+      /**
+       * Remove the logo
+       * associated with this project
+       * from storage and set to default
+       */
       if($this->logo){
         // Remove the file from storage
-        $path = "images/".$this::$logoPath.$this->logo;
-        Storage::disk('public')->delete($path);
-        $this->logo = null;
-        $this->save();
+        $path = $this::$logoPath.$this->logo;
+        if (Storage::disk('public')->delete($path)){
+          $this->logo = null;
+          $this->save();
+        }
       }
       
     }
 
     public function replaceLogo($uploaded_logo)
     {
-
+      /**
+       * Update the logo associated
+       * with this project & remove the old one
+       */
       $this->removeLogo();
       $imageName = uniqid().'.'.$uploaded_logo->extension();    
-      $uploaded_logo->storePubliclyAs('public/images/logos', $imageName);
+      $uploaded_logo->storePubliclyAs('public'.$this::$logoPath, $imageName);
       $this->logo = $imageName;
       $this->save();
     }
 
 
     /**
-     * Does this project have a logo
-     * stored?
-     * @return boolean
-     */
-    public function has_logo(){
-      if($this->logo){
-        return 1;
-      }
-      return 0;
-    }
-
-    /**
      * Get the logo for this project
      */
-    public function get_logo(){
+    public function getLogo()
+    {
       if($this->logo){
         //Find this image in storage
-        $path = "images/".$this::$logoPath.$this->logo;
+        $path = $this::$logoPath.$this->logo;
         if(Storage::disk('public')->exists($path)){
           return asset($path);
         }else{

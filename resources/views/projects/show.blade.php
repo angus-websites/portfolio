@@ -23,15 +23,15 @@
         <!--Project details-->
         <div class="flex flex-wrap">
           <!--Image-->
-          <img alt="{{$project->name}}" class="lg:w-1/2 w-full lg:h-full h-64 object-cover object-center rounded" src="{{$project->get_image()}}">
+          <img alt="{{$project->name}}" class="lg:w-1/2 w-full lg:h-full h-64 object-cover object-center rounded" src="{{$project->getImage()}}">
           <!--Details-->
           <div class="lg:w-1/2 w-full lg:pl-10 lg:pb-6 mt-6 lg:mt-0">
   
-            @if ($project->has_logo())
+            @if (!is_null($project->logo))
               <!--Project image-->
               <div class="avatar">
                 <div class="rounded-full w-16 h-16 shadow-md">
-                  <img src="{{$project->get_logo()}}" alt="">
+                  <img src="{{$project->getLogo()}}" alt="">
                 </div>
               </div> 
             @endif
@@ -40,7 +40,7 @@
             <!--Date-->
             <div class="flex mb-4">
               <span class="flex items-center">
-                <span class="">{{$project->get_date_created()}}</span>
+                <span class="">{{$project->date_made}}</span>
               </span>
             </div>
             <p class="leading-relaxed">{{$project->short_desc}}</p>
