@@ -29,6 +29,11 @@ class Edit extends Component
 
     protected function rules()
     {
+        /**
+         * The validation rules
+         * for all properties
+         * of a project
+         */
         return [
             'project.name' => ["required", "string", "min:1", "unique:projects,name,". $this->project->id],
             'project.date_made' => 'required|date',
@@ -60,7 +65,6 @@ class Edit extends Component
         if (!empty($this->project->web_link)){
             $this->has_web = true;
         }
-
     }
 
     public function render()
@@ -101,7 +105,6 @@ class Edit extends Component
         $this->is_uploaded_logo_valid = false;
         $this->validateOnly("uploaded_logo");
         $this->is_uploaded_logo_valid = true;
-
     }
 
     public function discardUploadedLogo()
@@ -126,6 +129,21 @@ class Edit extends Component
         session()->flash('info', 'Logo reset to default');
     }
 
+    private function updateProjectDetails()
+    {
+        // Attatch the tags
+        $this->project->tags()->sync($this->tag_list);
+
+        // Save the uploaded logo
+        if ($this->uploaded_logo){
+            $this->project->replaceLogo($this->uploaded_logo);
+        }
+
+
+        // Save to DB
+        $this->project->save(); 
+    }
+
     public function createProject()
     {
         /**
@@ -136,9 +154,7 @@ class Edit extends Component
         $this->validate();
         // We need to save first so we have a ID
         $this->project->save();
-        $this->project->tags()->sync($this->tag_list);
-        $this->project->save();
-
+        $this->updateProjectDetails();
 
         return redirect()->route('projects.show', ["project" => $this->project])->with("success","Project created!");
     }
@@ -150,16 +166,7 @@ class Edit extends Component
          */
         
         $this->validate();
-
-        // Attatch the tags
-        $this->project->tags()->sync($this->tag_list);
-
-        // Save the uploaded logo
-        $this->project->replaceLogo($this->uploaded_logo);
-
-        // Save to DB
-        $this->project->save();
-
+        $this->updateProjectDetails();
         session()->flash('success', 'Project successfully updated.');
     }
 
@@ -171,8 +178,7 @@ class Edit extends Component
          */
         if(!in_array($tag_id, $this->tag_list)){
             array_push($this->tag_list, $tag_id);
-        }
-        
+        }       
     }
 
     public function removeTag($tag_id)
@@ -207,8 +213,6 @@ class Edit extends Component
         ]);
 
         array_push($this->tag_list, $tag->id);
-
-
     }
 
     public function hasGitLink()
@@ -221,23 +225,6 @@ class Edit extends Component
         return $this->has_web ? 'true' : 'false';
     }
 
-    public function getButtonText()
-    {
-        /**
-         * Return button text depending
-         * on if we're creating or editing
-         */
-        return $this->is_create ? 'Create' : 'Update';    
-    }
-
-    public function getFormRoute()
-    {
-        /**
-         * Get the name of the wire
-         * form function to use
-         */
-        return $this->is_create ? 'createProject' : 'updateProject';  
-    }
 
     public function isTagSearchTaken()
     {

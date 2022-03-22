@@ -18,7 +18,7 @@
         </div>
     @endif
 
-    <form wire:submit.prevent="{{$this->getFormRoute()}}">
+    <form wire:submit.prevent="{{$this->is_create ? 'createProject' : 'updateProject'}}">
 
         <h2 class="text-lg font-medium">Basic details</h2>
         <div class="grid md:grid-cols-2 gap-4 p-4">
@@ -267,7 +267,7 @@
 
         <hr>
         <div class="py-4">
-            <x-button class="btn-primary">{{$this->getButtonText()}}</x-button>
+            <x-button class="btn-primary">{{$this->is_create ? 'Create' : 'Update'}}</x-button>
         </div>
 
     </form>
