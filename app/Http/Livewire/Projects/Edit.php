@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\Tag;
+use Illuminate\Validation\Validator;
+
 use Livewire\WithFileUploads;
 
 class Edit extends Component
@@ -14,13 +16,16 @@ class Edit extends Component
 
     public $project;
 
-    public $logo_image;
     public $has_git;
     public $has_web;
     public $is_create;
 
     public $tag_search;
     public $tag_list = [];
+
+    // Images
+    public $uploaded_logo;
+    public $is_uploaded_logo_valid;
 
     protected function rules()
     {
@@ -32,11 +37,18 @@ class Edit extends Component
             'project.long_desc' => 'nullable|string',
             'project.git_link' => 'nullable|url',
             'project.web_link' => 'nullable|url',
+            'uploaded_logo' => 'nullable|image|max:1024',
+            
         ];
     }
 
     public function mount(Project $project)
     {
+        /**
+         * This function is called
+         * when the page first loads
+         */
+        
         $this->project = $project;
         $this->tag_list = $project->tags()->pluck("id")->toArray();
         $this->is_create = !$project->exists;
@@ -53,6 +65,11 @@ class Edit extends Component
 
     public function render()
     {
+        /**
+         * Render the contents of the
+         * component
+         */
+        
         $categories = Category::all();
         $tags = Tag::where('name', 'Like', '%' . $this->tag_search . '%')->whereNotIn('id', $this->tag_list)->take(10)->get();
         $added_tags = Tag::findMany($this->tag_list);
@@ -65,16 +82,49 @@ class Edit extends Component
 
     public function updated($propertyName)
     {
+        /**
+         * Called when the user
+         * changes a single
+         * input / property on the page
+         */
+        
         $this->validateOnly($propertyName);
     }
 
-    public function updatedLogoImage()
+    public function updatedUploadedLogo()
     {
-        $this->validate([
-            'logo_image' => 'image|max:1024', // 1MB Max
-        ]);
+        /**
+         * Called when the user
+         * uploads a logo for 
+         * the project
+         */
+        $this->is_uploaded_logo_valid = false;
+        $this->validateOnly("uploaded_logo");
+        $this->is_uploaded_logo_valid = true;
+
     }
 
+    public function discardUploadedLogo()
+    {
+        /**
+         * Remove reference to the logo
+         * the user uploaded so it is
+         * not saved
+         */
+        $this->uploaded_logo = null;
+        $this->is_uploaded_logo_valid = false;
+    }
+
+    public function resetLogo()
+    {
+        /**
+         * Remove the currently
+         * uploaded logo for this project
+         * and reset to the placeholder
+         */
+        $this->project->removeLogo();
+        session()->flash('info', 'Logo reset to default');
+    }
 
     public function createProject()
     {
@@ -101,8 +151,11 @@ class Edit extends Component
         
         $this->validate();
 
-        //Attatch the tags
+        // Attatch the tags
         $this->project->tags()->sync($this->tag_list);
+
+        // Save the uploaded logo
+        $this->project->replaceLogo($this->uploaded_logo);
 
         // Save to DB
         $this->project->save();

@@ -9,6 +9,15 @@
         </div>
     @endif
 
+    @if (session()->has('info'))
+        <div class="alert alert-info shadow-lg mb-5">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span>{{ session('info') }}</span>
+          </div>
+        </div>
+    @endif
+
     <form wire:submit.prevent="{{$this->getFormRoute()}}">
 
         <h2 class="text-lg font-medium">Basic details</h2>
@@ -104,7 +113,6 @@
                                 type="url"
                                 name="git_link"
                                 error="project.git_link"
-                                showgreen="true"
                                 x-bind:required="show" />
                 </div>
             </div>
@@ -132,7 +140,6 @@
                                 type="url"
                                 name="web_link"
                                 error="project.web_link"
-                                showgreen="true"
                                 x-bind:required="show" />
                 </div>
             </div>
@@ -155,7 +162,7 @@
                 <!-- Search results -->
                 <div class="flex flex-row justify-start items-center gap-4 mt-5 flex-wrap">
                     @forelse($tags as $tag)
-                        <button wire:click="addTag({{ $tag->id }})" class="btn btn-sm" type="button">{{$tag->name}}</button>
+                        <x-button wire:click="addTag({{ $tag->id }})" class="btn btn-sm" type="button">{{$tag->name}}</x-button>
                     @empty
                         @if ($this->isTagSearchTaken())
                             <div class="text-center w-full">
@@ -163,9 +170,9 @@
                             </div>
                         @else
                             <div class="flex flex-col gap-y-2 mx-auto">
-                                <button wire:click="createTag()" class="btn btn-sm btn-outline btn-info mx-auto" type="button">
+                                <x-button wire:click="createTag()" class="btn btn-sm btn-outline btn-info mx-auto" type="button">
                                     Create "{{$tag_search}}"
-                                </button>
+                                </x-button>
                                 
                                 @error('tag_search')
                                     <label class="label">
@@ -181,13 +188,13 @@
 
             <!-- Display the added tags -->
             <div class="text-center">
-                <p>Added tags</p>
-                <div class="flex flex-row justify-center items-center gap-4 mt-5 flex-wrap">
+                <h3 class="mb-4 font-medium">Added tags</h3>
+                <div class="flex flex-row justify-center items-center gap-4 flex-wrap">
                     @forelse($added_tags as $tag)
-                        <button wire:click="removeTag({{ $tag->id }})" class="btn btn-success btn-sm gap-2" type="button">
+                        <x-button wire:click="removeTag({{ $tag->id }})" class="btn btn-success btn-sm gap-2" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                             {{ $tag->name }}
-                        </button>
+                        </x-button>
 
                     @empty
                         <span class="badge badge-info mx-auto">No tags</span>
@@ -208,33 +215,53 @@
                  x-on:livewire-upload-progress="progress = $event.detail.progress"
                  >
                 <x-label for="short_desc" :value="__('Logo')" />
-                <input type="file" wire:model="logo_image">
+                <input type="file" wire:model="uploaded_logo">
                 <!-- Progress bar -->
                 <div x-show="isUploading">
                     <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>    
                 </div>
 
-                @error('logo_image')
+                @error('uploaded_logo')
                     <label class="label mt-2">
                         <span class="label-text text-error">{{ $message }}</span>
                     </label>
                 @enderror
             </div>
 
-            <!-- Logo preview -->
-            <div class="text-center">
-                <p>Logo preview</p>
-                @if ($logo_image)
-                    <div class="avatar mx-auto mt-2">
-                      <div class="rounded-full w-32 h-32 shadow-md">
-                        <img src="{{$logo_image->temporaryUrl()}}">
-                      </div>
-                    </div> 
-                @endif
-            </div>
+            <!-- Logo previews -->
+            <div>
+                <div class="grid grid-cols-2">
+                    <!-- Current logo section -->
+                    <div class="flex flex-col gap-y-2 justify-center"> 
+                        <h3 class="mb-4 font-medium text-center">Current logo</h3>
+                        <div class="avatar mx-auto">
+                            <div class="rounded-full w-24 h-24 shadow-md">
+                                <img src="{{$this->project->get_logo()}}">
+                            </div>
+                        </div> 
+                        <div class="text-center mt-2">
+                            <x-button wire:click="resetLogo" type="button" class="btn-sm btn-outline btn-error">Reset</x-button>
+                        </div>
+                        
+                    </div>
 
-            
-            
+                    @if($is_uploaded_logo_valid && $uploaded_logo)
+                        <!-- Uploaded logo section-->
+                        <div class="flex flex-col gap-y-2 justify-center"> 
+                            <h3 class="mb-4 font-medium text-center">Uploaded logo</h3>
+                            <div class="avatar mx-auto">
+                                <div class="rounded-full w-24 h-24 shadow-md">
+                                    <img src="{{$uploaded_logo->temporaryUrl()}}">
+                                </div>
+                            </div>
+                            <div class="text-center mt-2">
+                                <x-button wire:click="discardUploadedLogo" type="button" class="btn-sm btn-outline btn-error">Discard</x-button>
+                            </div>
+                        </div>
+                    @endif
+
+                </div>
+            </div>
 
         </div>
 

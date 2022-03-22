@@ -84,6 +84,46 @@ class Project extends Model
     }
 
     /**
+     * Remove the image
+     * for this project
+     */
+    public function removeImage(){
+
+      if($this->img){
+        // Remove the file from storage
+        $path = "images/".$this::$imagesPath.$this->img;
+        if (Storage::disk('public')->delete($path)){
+          $this->img = null;
+          $this->save();
+        }
+      }
+      
+    }
+
+    public function removeLogo(){
+
+      if($this->logo){
+        // Remove the file from storage
+        $path = "images/".$this::$logoPath.$this->logo;
+        Storage::disk('public')->delete($path);
+        $this->logo = null;
+        $this->save();
+      }
+      
+    }
+
+    public function replaceLogo($uploaded_logo)
+    {
+
+      $this->removeLogo();
+      $imageName = uniqid().'.'.$uploaded_logo->extension();    
+      $uploaded_logo->storePubliclyAs('public/images/logos', $imageName);
+      $this->logo = $imageName;
+      $this->save();
+    }
+
+
+    /**
      * Does this project have a logo
      * stored?
      * @return boolean
