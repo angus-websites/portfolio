@@ -21,7 +21,7 @@
 @endif
 
 @if(session('message'))
-  <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500 text-center">
+  <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-blue-500 text-center">
     <span class="inline-block align-middle mr-8">
       {!! session('message') !!}
     </span>

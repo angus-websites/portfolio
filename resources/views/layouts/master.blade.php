@@ -19,5 +19,6 @@
       @stack('scripts')
       @yield("footer")
     </footer>
+  @stack('modals')
   </body>
 </html>

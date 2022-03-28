@@ -28,12 +28,38 @@
 
                 <!--Save button -->
                 <x-button-group class="mt-5 sm:mt-8 sm:justify-center lg:justify-start">
-                  <x-button class="btn btn-primary" type="submit">
-                    Save
-                  </x-button>
+                    <x-button class="btn btn-primary" type="submit">
+                        Save
+                    </x-button>
                 </x-button-group>
+
+                @if(!$is_create)
+                    <!--Delete button -->
+                    <x-button-group class="mt-10 sm:mt-8 sm:justify-center lg:justify-start">
+                        <label for="delete-section-modal" class="btn btn-error btn-sm modal-button">
+                            Delete
+                        </label>
+
+                    </x-button-group>
+                @endif
 
             </form>
         </div>
     </div>
+
+    @if(!$is_create)
+        <!-- Delete Modal -->
+        <input type="checkbox" id="delete-section-modal" class="modal-toggle">
+        <div class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <h3 class="font-bold text-lg">Are you sure?</h3>
+            <p class="py-4">Are you sure you want to delete this Section?</p>
+            <div class="modal-action">
+              <label for="delete-section-modal" class="btn">No</label>
+              <x-button wire:click="deleteSection" class="btn btn-error">Yes</x-button>
+            </div>
+          </div>
+        </div>
+    @endif
+
 </div>

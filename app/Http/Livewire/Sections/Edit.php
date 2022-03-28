@@ -4,10 +4,11 @@ namespace App\Http\Livewire\Sections;
 
 use Livewire\Component;
 use App\Models\SkillSection;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Edit extends Component
 {
-
+    use AuthorizesRequests;
     public $section;
     public $is_create;
 
@@ -51,14 +52,26 @@ class Edit extends Component
          * to update our section
          */
         $validatedData = $this->validate();
-        
-        // Save model
-        $this->section->save();
 
         if ($this->is_create){
-           return redirect()->route('skills.index')->with("success","Section created!");
+            $this->authorize('create', SkillSection::class);
+            $this->section->save();
+            return redirect()->route('skills.index')->with("success","Section created!");
  
+        }else{
+          $this->authorize('update', SkillSection::class);
+          $this->section->save();  
+          session()->flash('success', 'Section successfully updated.');
         }
-        session()->flash('success', 'Section successfully updated.');
+        
+    }
+
+    public function deleteSection()
+    {
+        /**
+         * Delete this section
+         */
+        $this->section->delete();
+        return redirect()->route('skills.index')->with("message","Section deleted");
     }
 }
