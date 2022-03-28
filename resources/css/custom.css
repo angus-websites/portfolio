@@ -1,0 +1,31 @@
+
+/*
+ Custom CSS
+ @author - Angus
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap')
+
+:root {
+  --btn-text-case: normal; /* default text case for buttons */
+  --select-text-weight: normal;
+}
+
+/*
+ * Make the collapse stay the same colour
+ */
+.collapse-open .collapse-title,
+.collapse:focus:not(.collapse-close) .collapse-title,
+.collapse:not(.collapse-close) input[type=checkbox]:focus ~ .collapse-title,
+.collapse:not(.collapse-close) input[type=checkbox]:checked ~ .collapse-title,
+.collapse-open .collapse-content,
+.collapse:focus:not(.collapse-close) .collapse-content,
+.collapse:not(.collapse-close) input[type=checkbox]:checked ~ .collapse-content{
+ background-color: inherit !important;
+}
+
+.square {
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+}

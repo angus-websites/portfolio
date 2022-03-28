@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SkillController;
+use App\Http\Controllers\SkillSectionController;
+
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +21,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [HomeController::class, 'index']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+//My Projects
+Route::resource('projects', ProjectController::class);
+Route::resource('skills', SkillController::class);
+Route::resource('section', SkillSectionController::class);
+
+
+//Contact
+Route::get('/contact', function () {
+    return (new ContactController())->show();
+});
+Route::post('/contact', function (Request $request) {
+    return (new ContactController())->send($request);
+});
+
+//AJAX
+Route::get('/tagSearch', 'App\Http\Controllers\HelperController@tagSearch');
+
+
 
 require __DIR__.'/auth.php';

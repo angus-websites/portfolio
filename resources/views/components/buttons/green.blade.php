@@ -1,0 +1,1 @@
+<x-button class="bg-green-500 active:bg-green-900 hover:bg-green-600 text-white">{{ $slot }}</x-button>
