@@ -137,7 +137,7 @@ module.exports = {
           },
           "light",
         ],
-      },
+    },
 
 
 };

@@ -27,7 +27,8 @@ class Edit extends Component
     public $uploaded_logo;
     public $is_uploaded_logo_valid;
 
-    protected $casts = ['project.date_made' => "date:d-m-y"];
+    public $uploaded_image;
+    public $is_uploaded_image_valid;
 
     protected function rules()
     {
@@ -45,6 +46,7 @@ class Edit extends Component
             'project.git_link' => 'nullable|url',
             'project.web_link' => 'nullable|url',
             'uploaded_logo' => 'nullable|image|max:1024',
+            'uploaded_image' => 'nullable|image|max:2048'
             
         ];
     }
@@ -106,6 +108,15 @@ class Edit extends Component
         // Save the uploaded logo
         if ($this->uploaded_logo){
             $this->project->replaceLogo($this->uploaded_logo);
+            $this->uploaded_logo = null;
+            $this->is_uploaded_logo_valid = false;
+        }
+
+        // Save the uploaded image
+        if ($this->uploaded_image){
+            $this->project->replaceImage($this->uploaded_image);
+            $this->uploaded_image = null;
+            $this->is_uploaded_image_valid = false;
         }
 
 
@@ -151,6 +162,8 @@ class Edit extends Component
         $this->is_uploaded_logo_valid = true;
     }
 
+
+
     public function discardUploadedLogo()
     {
         /**
@@ -172,6 +185,41 @@ class Edit extends Component
         $this->project->removeLogo();
         session()->flash('info', 'Logo reset to default');
     }
+
+    public function updatedUploadedImage()
+    {
+        /**
+         * Called when the user
+         * uploads a image for 
+         * the project
+         */
+        $this->is_uploaded_image_valid = false;
+        $this->validateOnly("uploaded_image");
+        $this->is_uploaded_image_valid = true;
+    }
+
+    public function discardUploadedImage()
+    {
+        /**
+         * Remove reference to the image
+         * the user uploaded so it is
+         * not saved
+         */
+        $this->uploaded_image = null;
+        $this->is_uploaded_image_valid = false;
+    }
+
+    public function resetImage()
+    {
+        /**
+         * Remove the currently
+         * uploaded image for this project
+         * and reset to the placeholder
+         */
+        $this->project->removeImage();
+        session()->flash('info', 'Image reset to default');
+    }
+
 
 
     public function addTag($tag_id)

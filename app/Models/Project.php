@@ -32,18 +32,6 @@ class Project extends Model
       });
     }
 
-    protected function dateMade(): Attribute
-    {
-      /**
-       * Accessor for the dateMade
-       * attribute, convert to
-       * dd/mm/yy
-       */
-      return Attribute::make(
-          get: fn ($value) => date("d/m/Y", strtotime($value) ),
-      );
-    }
-
     /**
      * Define how routes should be
      * handled
@@ -52,6 +40,15 @@ class Project extends Model
     {
       return 'slug';
     }
+
+    /**
+     * Return the date created
+     * in a standard format
+     */
+    public function dateMadeHuman(){
+      return date("d/m/Y", strtotime($this->date_made));
+    }
+
 
     /**
      * Fetch all the tags for a project
@@ -112,6 +109,20 @@ class Project extends Model
       }
       
     }
+
+    public function replaceImage($uploaded_image)
+    {
+      /**
+       * Update the iamge associated
+       * with this project & remove the old one
+       */
+      $this->removeImage();
+      $imageName = uniqid().'.'.$uploaded_image->extension();    
+      $uploaded_image->storePubliclyAs('public'.$this::$imagesPath, $imageName);
+      $this->img = $imageName;
+      $this->save();
+    }
+
 
     public function removeLogo()
     {

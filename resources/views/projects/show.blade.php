@@ -40,7 +40,7 @@
             <!--Date-->
             <div class="flex mb-4">
               <span class="flex items-center">
-                <span class="">{{$project->date_made}}</span>
+                <span class="">{{$project->dateMadeHuman()}}</span>
               </span>
             </div>
             <p class="leading-relaxed">{{$project->short_desc}}</p>

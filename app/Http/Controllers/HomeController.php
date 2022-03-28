@@ -17,8 +17,8 @@ class HomeController extends Controller
     public function index()
     {
       $skillSections = SkillSection::all();
-      $employment=Employment::orderBy('start_date')->get();
-      $education=Education::orderBy('start_date')->get();
+      $employment=Employment::orderBy('start_date', 'desc')->get();
+      $education=Education::orderBy('start_date', 'desc')->get();
       return view('welcome',["skillSections" => $skillSections, "employment" => $employment, "education" => $education]);
     }
 }

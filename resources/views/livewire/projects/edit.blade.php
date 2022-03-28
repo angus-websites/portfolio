@@ -239,9 +239,12 @@
                                 <img src="{{$this->project->getLogo()}}">
                             </div>
                         </div> 
-                        <div class="text-center mt-2">
-                            <x-button wire:click="resetLogo" type="button" class="btn-sm btn-outline btn-error">Reset</x-button>
-                        </div>
+
+                        @if(!empty($this->project->logo))
+                            <div class="text-center mt-2">
+                                <x-button wire:click="resetLogo" type="button" class="btn-sm btn-outline btn-error">Reset</x-button>
+                            </div>
+                        @endif
                         
                     </div>
 
@@ -256,6 +259,61 @@
                             </div>
                             <div class="text-center mt-2">
                                 <x-button wire:click="discardUploadedLogo" type="button" class="btn-sm btn-outline btn-error">Discard</x-button>
+                            </div>
+                        </div>
+                    @endif
+
+                </div>
+            </div>
+
+            <!-- Image upload -->
+            <div class="form-control"
+                 x-data="{ isUploading: false, progress: 0 }"
+                 x-on:livewire-upload-start="isUploading = true"
+                 x-on:livewire-upload-finish="isUploading = false"
+                 x-on:livewire-upload-progress="progress = $event.detail.progress"
+                 >
+                <x-label for="short_desc" :value="__('Image')" />
+                <input type="file" wire:model="uploaded_image">
+                <!-- Progress bar -->
+                <div x-show="isUploading">
+                    <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>    
+                </div>
+
+                @error('uploaded_image')
+                    <label class="label mt-2">
+                        <span class="label-text text-error">{{ $message }}</span>
+                    </label>
+                @enderror
+            </div>
+
+            <!-- Image previews -->
+            <div>
+                <div class="grid grid-cols-2">
+                    <!-- Current image section -->
+                    <div class="flex flex-col gap-y-2 justify-center"> 
+                        <h3 class="mb-4 font-medium text-center">Current Image</h3>
+                        <div class="mx-auto">
+                            <img class="object-cover h-48 w-96" src="{{$this->project->getImage()}}">
+                        </div> 
+                        @if(!empty($this->project->img))
+                            <div class="text-center mt-2">
+                                <x-button wire:click="resetImage" type="button" class="btn-sm btn-outline btn-error">Reset</x-button>
+                            </div>
+                        @endif
+                        
+                    </div>
+
+                    @if($is_uploaded_image_valid && $uploaded_image)
+
+                        <!-- Uploaded image section-->
+                        <div class="flex flex-col gap-y-2 justify-center"> 
+                            <h3 class="mb-4 font-medium text-center">Uploaded image</h3>
+                            <div class="mx-auto">
+                                <img class="object-cover h-48 w-96" src="{{$uploaded_image->temporaryUrl()}}">
+                            </div> 
+                            <div class="text-center mt-2">
+                                <x-button wire:click="discardUploadedImage" type="button" class="btn-sm btn-outline btn-error">Discard</x-button>
                             </div>
                         </div>
                     @endif
