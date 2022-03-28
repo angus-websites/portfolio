@@ -50,9 +50,9 @@
 
                 <!--Save button -->
                 <x-button-group class="mt-5 sm:mt-8 sm:justify-center lg:justify-start">
-                  <button href="#" class="btn btn-primary" type="submit">
+                  <x-button  class="btn-primary" type="submit">
                     Save
-                  </button>
+                  </x-button>
                 </x-button-group>
 
             </form>

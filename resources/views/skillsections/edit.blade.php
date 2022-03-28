@@ -12,7 +12,7 @@
           <span>Skills</span>
         </x-link-button>
       </div>
-      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">{{$section->name}}</h1>
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Edit Section</h1>
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Here you can edit the details of this section or delete the section</p>
     </div>
     <!--Edit-->

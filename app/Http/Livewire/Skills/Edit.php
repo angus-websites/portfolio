@@ -17,7 +17,7 @@ class Edit extends Component
         /**
          * The validation rules
          * for all properties
-         * of a project
+         * of a Skill
          */
         return [
             'skill.name' => ["required", "string", "min:1", "unique:skills,name,". $this->skill->id],
