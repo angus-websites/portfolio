@@ -34,7 +34,8 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
+        $skill = new Skill();
+        return view('skills.create',["skill" => $skill]);
     }
 
     /**
@@ -67,8 +68,7 @@ class SkillController extends Controller
      */
     public function edit(Skill $skill)
     {
-        $sections = SkillSection::all();
-        return view('skills.edit',["skill" => $skill, "sections" => $sections]);
+        return view('skills.edit',["skill" => $skill]);
     }
 
     /**

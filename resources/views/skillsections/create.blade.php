@@ -15,11 +15,9 @@
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Create section</h1>
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Here you can create a new Skill Section</p>
     </div>
+
+    <!--Create-->
+    @livewire("sections.edit", ['section' => $section])
   </div>
-  <!--Edit-->
-  <form method="POST" action="{{{route("section.store")}}}">
-    @method('POST')
-    @csrf
-    <x-forms.create-edit-skill-section section=""/>
-  </form>
+  
 </x-app-layout>

@@ -7,6 +7,7 @@
           </div>
         </div>
     @endif
+
     <div class="grid grid-cols-6">
 
         <div class="col-span-6 md:col-span-3 lg:col-span-2">
@@ -14,7 +15,7 @@
             <form wire:submit.prevent="saveSkill">
                 <!-- Name -->
                 <div class="form-control mb-4">
-                    <x-label for="name" :value="__('Project name')" />
+                    <x-label for="name" :value="__('Skill name')" />
                     <x-input wire:model="skill.name"
                                 id="name"
                                 class="input-bordered"
@@ -23,12 +24,6 @@
                                 error="skill.name"
                                 showgreen="true"
                                 required />
-                </div>
-
-                <!-- Description -->
-                <div class="form-control mb-4">
-                    <x-label for="description" :value="__('Skill description')" />
-                    <x-textarea wire:model="skill.description" showgreen="true" error="skill.description" type="text" name="description" id="description" autocomplete="false" class="h-24 textarea-bordered" ></x-textarea>
                 </div>
 
                 <!--Section-->
@@ -43,6 +38,15 @@
                       @endforeach
                     </x-select>
                 </div>
+                
+
+                <!-- Description -->
+                <div class="form-control mb-4">
+                    <x-label for="description" :value="__('Skill description')" />
+                    <x-textarea wire:model="skill.description" showgreen="true" error="skill.description" type="text" name="description" id="description" autocomplete="false" class="h-24 textarea-bordered" ></x-textarea>
+                </div>
+
+                
 
                 <!--Save button -->
                 <x-button-group class="mt-5 sm:mt-8 sm:justify-center lg:justify-start">

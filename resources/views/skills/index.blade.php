@@ -12,6 +12,15 @@
             </x-link-button>
           </div>
       @endcan
+
+      @can("create", App\Models\Skill::class)
+          <div class="my-5">
+            <x-link-button href="{{route('skills.create') }}"  class="btn btn-primary">
+                Create Skill
+            </x-link-button>
+          </div>
+      @endcan
+
     </div>
   </div>
   <!--Skills-->

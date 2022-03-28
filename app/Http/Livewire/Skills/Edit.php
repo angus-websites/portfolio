@@ -11,11 +11,21 @@ class Edit extends Component
 
     public Skill $skill;
 
-    protected $rules = [
-        'skill.name' => 'required|string|min:1',
-        'skill.description' => 'required|string|max:500|',
-        'skill.skill_section_id' => 'required|exists:skill_sections,id'
-    ];
+
+    protected function rules()
+    {
+        /**
+         * The validation rules
+         * for all properties
+         * of a project
+         */
+        return [
+            'skill.name' => ["required", "string", "min:1", "unique:skills,name,". $this->skill->id],
+            'skill.description' => 'max:500',
+            'skill.skill_section_id' => 'required|exists:skill_sections,id'
+        ];
+    }
+
 
     public function mount(Skill $skill)
     {
