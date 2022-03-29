@@ -17,7 +17,7 @@ class CreateSkillsTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->text('name');
+            $table->string('name');
             $table->bigInteger('skill_section_id')->unsigned();
             $table->text('description')->nullable();
             $table->text('icon')->nullable();
@@ -25,6 +25,8 @@ class CreateSkillsTable extends Migration
             //Foreign keys
             $table->foreign('skill_section_id')
                 ->references('id')->on('skill_sections')->onDelete('cascade');
+            // Unique
+            $table->unique(['name', 'skill_section_id']);
         });
     }
 

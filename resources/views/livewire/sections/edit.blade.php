@@ -17,6 +17,7 @@
                 <div class="form-control mb-4">
                     <x-label for="name" :value="__('Section name')" />
                     <x-input wire:model="section.name"
+                                autofocus
                                 id="name"
                                 class="input-bordered"
                                 type="text"

@@ -21,6 +21,7 @@
               <div class="form-control mb-4">
                   <x-label for="name" :value="__('Skill name')" />
                   <x-input wire:model="skill.name"
+                              autofocus
                               id="name"
                               class="input-bordered"
                               type="text"
