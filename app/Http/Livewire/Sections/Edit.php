@@ -71,6 +71,7 @@ class Edit extends Component
         /**
          * Delete this section
          */
+        $this->authorize('delete', $this->section);
         $this->section->delete();
         return redirect()->route('skills.index')->with("message","Section deleted");
     }

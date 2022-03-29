@@ -9,7 +9,8 @@ use App\Models\Skill;
 class Edit extends Component
 {
 
-    public Skill $skill;
+    public $skill;
+    public $is_create;
 
 
     protected function rules()
@@ -30,6 +31,7 @@ class Edit extends Component
     public function mount(Skill $skill)
     {
         $this->skill = $skill;
+        $this->is_create = !$skill->exists;
 
         // Validate on page load
         $this->validate();
@@ -57,10 +59,25 @@ class Edit extends Component
          * to update our skill
          */
         $validatedData = $this->validate();
-        
-        // Save model
         $this->skill->save();
-        session()->flash('success', 'Skill successfully updated.');
+
+        if ($this->is_create){
+            
+            return redirect()->route('skills.index')->with("success","Skill created!");
+        
+        }else{
+          session()->flash('success', 'Skill successfully updated.');
+        }
+
+    }
+
+    public function deleteSkill()
+    {
+        /**
+         * Delete this given skill
+         */
+        $this->skill->delete();
+        return redirect()->route('skills.index')->with("message","Skill deleted");
     }
 
 }
