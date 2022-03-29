@@ -67,10 +67,17 @@ class Edit extends Component
          * to update our skill
          */
         $validatedData = $this->validate();
+
+        // Save the uploaded logo
+        if ($this->uploaded_icon){
+            $this->skill->replaceIcon($this->uploaded_icon);
+            $this->uploaded_icon = null;
+            $this->is_uploaded_icon_valid = false;
+        }
+
         $this->skill->save();
 
         if ($this->is_create){
-            
             return redirect()->route('skills.index')->with("success","Skill created!");
         
         }else{
@@ -107,7 +114,8 @@ class Edit extends Component
          * Reset the skill icon
          * to default
          */
-        session()->flash('info', 'Icon reset to default (not really)');
+        $this->skill->removeIcon();
+        session()->flash('info', 'Icon reset to default');
     }
 
     public function discardUploadedIcon()

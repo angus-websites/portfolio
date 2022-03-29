@@ -10,7 +10,7 @@ class Skill extends Model
 {
     use HasFactory;
     protected $fillable = ["name","skill_section_id","description","icon"];
-    public static $imagesPath = "skills/";
+    public static $iconsPath = "/images/skills/icons/";
     public static $placeholder = "/assets/images/placeholders/skill_placeholder.svg";
 
 
@@ -20,28 +20,44 @@ class Skill extends Model
     public function getIcon(){
         if($this->icon){
             //Find this image in storage
-            $path = "images/".$this::$imagesPath.$this->icon;
+            $path = $this::$iconsPath.$this->icon;
             if(Storage::disk('public')->exists($path)){
                 return asset($path);
             }
-            else{
-                $public_path = 'assets/images/skill_icons/' . $this->icon;
-                //Check for a public version
-                if (file_exists(public_path($public_path))){
-                    return asset($public_path);
-                }
-                //Return placeholder
-                else{
-                    return $this::$placeholder;
-                }
-
-            }
         }
-        //No image, return a placeholder
-        else{
-            return $this::$placeholder;
+        return $this::$placeholder;
+    }
+
+    public function removeIcon()
+    {
+        /**
+         * Reset the icon
+         * for this skill to the
+         * default placeholder
+         */
+        
+        if($this->icon){
+          // Remove the file from storage
+          $path = $this::$iconsPath.$this->icon;
+          if (Storage::disk('public')->delete($path)){
+            $this->icon = null;
+            $this->save();
+          }
         }
 
+    }
+
+    public function replaceIcon($uploaded_icon)
+    {
+      /**
+       * Update the logo associated
+       * with this project & remove the old one
+       */
+      $this->removeIcon();
+      $iconName = uniqid().'.'.$uploaded_icon->extension();    
+      $uploaded_icon->storePubliclyAs('public'.$this::$iconsPath, $iconName);
+      $this->icon = $iconName;
+      $this->save();
     }
 
 
