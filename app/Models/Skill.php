@@ -27,7 +27,6 @@ class Skill extends Model
         $model->removeIcon();
       });
     }
-    
 
     /**
      * Get the icon for this Skill
