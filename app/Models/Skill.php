@@ -14,6 +14,21 @@ class Skill extends Model
     public static $placeholder = "/assets/images/placeholders/skill_placeholder.svg";
 
 
+    protected static function boot()
+    {
+      /**
+       * Delete the img
+       * associated with
+       * this skill when deleting
+       * the skill itself
+       */
+      parent::boot();
+      Skill::deleting(function($model) {
+        $model->removeIcon();
+      });
+    }
+    
+
     /**
      * Get the icon for this Skill
      */

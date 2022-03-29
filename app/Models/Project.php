@@ -30,6 +30,12 @@ class Project extends Model
       Project::creating(function($model) {
         $model->slug = Str::of($model->name)->slug('-');
       });
+      // Delete the logo & images
+      Skill::deleting(function($model) {
+        $model->removeLogo();
+        $model->removeImage();
+      });
+      
     }
 
     /**
@@ -127,7 +133,14 @@ class Project extends Model
        * associated with this project
        * from storage and set to default
        */
-      P
+      if($this->logo){
+        // Remove the file from storage
+        $path = $this::$logoPath.$this->logo;
+        if (Storage::disk('public')->delete($path)){
+          $this->logo = null;
+          $this->save();
+        }
+      }
       
     }
 
