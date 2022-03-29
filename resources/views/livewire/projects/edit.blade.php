@@ -230,7 +230,7 @@
 
             <!-- Logo previews -->
             <div>
-                <div class="grid grid-cols-2">
+                <div class="flex flex-row items-start justify-around">
                     <!-- Current logo section -->
                     <div class="flex flex-col gap-y-2 justify-center"> 
                         <h3 class="mb-4 font-medium text-center">Current logo</h3>
@@ -244,8 +244,7 @@
                             <div class="text-center mt-2">
                                 <x-button wire:click="resetLogo" type="button" class="btn-sm btn-outline btn-error">Reset</x-button>
                             </div>
-                        @endif
-                        
+                        @endif    
                     </div>
 
                     @if($is_uploaded_logo_valid && $uploaded_logo)
@@ -262,7 +261,6 @@
                             </div>
                         </div>
                     @endif
-
                 </div>
             </div>
 
@@ -289,7 +287,7 @@
 
             <!-- Image previews -->
             <div>
-                <div class="grid grid-cols-2">
+                <div class="flex flex-row items-start justify-around">
                     <!-- Current image section -->
                     <div class="flex flex-col gap-y-2 justify-center"> 
                         <h3 class="mb-4 font-medium text-center">Current Image</h3>
@@ -326,6 +324,19 @@
         <hr>
         <div class="py-4">
             <x-button class="btn-primary">{{$this->is_create ? 'Create' : 'Update'}}</x-button>
+
+            @can("delete", $project)
+                @if(!$is_create)
+                    <!--Delete button -->
+                    <x-button-group class="mt-10 sm:mt-8 sm:justify-center lg:justify-start">
+                        <label for="delete-skill-modal" class="btn btn-error btn-sm modal-button">
+                            Delete
+                        </label>
+
+                    </x-button-group>
+                @endif
+            @endcan
+
         </div>
 
     </form>
@@ -349,4 +360,22 @@
         })
       </script>
     @endpush
+
+    @can("delete", $project)
+      @if(!$is_create)
+          <!-- Delete Modal -->
+          <input type="checkbox" id="delete-skill-modal" class="modal-toggle">
+          <div class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+              <h3 class="font-bold text-lg">Are you sure?</h3>
+              <p class="py-4">Are you sure you want to delete this Project?</p>
+              <div class="modal-action">
+                <label for="delete-skill-modal" class="btn">No</label>
+                <x-button wire:click="deleteProject" class="btn btn-error">Yes</x-button>
+              </div>
+            </div>
+          </div>
+      @endif
+    @endcan
+
 </div>

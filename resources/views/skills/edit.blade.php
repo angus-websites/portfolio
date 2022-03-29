@@ -1,4 +1,4 @@
-@section('title', $skill->name)
+@section('title', "Edit skill")
 
 <x-app-layout>
   <div class="container px-5 pt-24 mx-auto">
@@ -12,7 +12,7 @@
           <span>Skills</span>
         </x-link-button>
       </div>
-      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">{{$skill->name}}</h1>
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Edit</h1>
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Here you can edit the details of this skill or delete the skill</p>
     </div>
 

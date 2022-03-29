@@ -1,4 +1,4 @@
-@section('title', "New Section")
+@section('title', "New skill")
 
 <x-app-layout>
   <div class="container px-5 pt-24 mx-auto">
@@ -12,12 +12,12 @@
           <span>Skills</span>
         </x-link-button>
       </div>
-      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Create section</h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Here you can create a new Skill Section</p>
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Create skill</h1>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Here you can create a new skill bro</p>
     </div>
 
-    <!--Create-->
-    @livewire("sections.edit", ['section' => $section])
+    <!--Edit-->
+    @livewire("skills.edit", ['skill' => $skill])
   </div>
   
 </x-app-layout>

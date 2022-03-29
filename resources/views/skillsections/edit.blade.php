@@ -12,23 +12,11 @@
           <span>Skills</span>
         </x-link-button>
       </div>
-      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">{{$section->name}}</h1>
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Edit Section</h1>
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Here you can edit the details of this section or delete the section</p>
-      @can("delete", App\Models\SkillSection::class)
-          <div class="my-5">
-            <form method="POST" method="POST" action="{{{ route("section.destroy", ["section" => $section] )}}}">
-              @csrf
-              @method("delete")
-              <x-button class="btn-error btn-sm md:btn-md">Delete this section</x-button>
-            </form>
-          </div>
-      @endcan
     </div>
+    <!--Edit-->
+    @livewire("sections.edit", ['section' => $section])
   </div>
-  <!--Edit-->
-  <form method="POST" action="{{{route("section.update", ["section" => $section])}}}">
-    @method('PUT')
-    @csrf
-    <x-forms.create-edit-skill-section :section="$section"/>
-  </form>
+  
 </x-app-layout>

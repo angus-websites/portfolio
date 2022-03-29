@@ -30,7 +30,8 @@ class SkillSectionController extends Controller
      */
     public function create()
     {
-        return view('skillsections.create');
+        $section = new SkillSection();
+        return view('skillsections.create', ["section" => $section]);
     }
 
     /**

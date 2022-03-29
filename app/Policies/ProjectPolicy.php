@@ -62,7 +62,9 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        return $user->is_admin();
+       return $user->is_admin()
+           ? Response::allow()
+           : Response::deny('You cannot update this project');
 
     }
 
@@ -75,7 +77,9 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        //
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny('You cannot delete this project');
     }
 
     /**

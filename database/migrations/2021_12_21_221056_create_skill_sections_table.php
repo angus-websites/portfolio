@@ -16,7 +16,7 @@ class CreateSkillSectionsTable extends Migration
         Schema::create('skill_sections', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->text("name");
+            $table->string("name")->unique();
         });
     }
 

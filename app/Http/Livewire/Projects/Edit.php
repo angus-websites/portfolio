@@ -7,13 +7,13 @@ use App\Models\Category;
 use App\Models\Project;
 use App\Models\Tag;
 use Illuminate\Validation\Validator;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
     use WithFileUploads;
-
+    use AuthorizesRequests;
     public $project;
 
     public $has_git;
@@ -285,6 +285,17 @@ class Edit extends Component
          * searched for exists in the database
          */
         return Tag::where('name', 'Like', '%' . $this->tag_search . '%')->exists();
+    }
+
+    public function deleteProject()
+    {
+        /**
+         * Delete this project
+         */
+        $this->authorize('delete', $this->project);
+        $this->project->delete();
+        return redirect()->route('projects.index')->with("message","Project deleted");
+
     }
 
 }

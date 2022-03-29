@@ -15,8 +15,8 @@ class Project extends Model
     //Statics
     public static $placeholder = "/assets/images/placeholders/project_placeholder.svg";
     public static $logo_placeholder = "/assets/images/placeholders/logo_placeholder.svg";
-    public static $imagesPath = "\/images/projects/";
-    public static $logoPath = "\/images/logos/";
+    public static $imagesPath = "/images/projects/";
+    public static $logoPath = "/images/logos/";
     protected $fillable = ['name', 'category_id', 'short_desc','long_desc','git_link','web_link','date_made'];
 
 
@@ -30,6 +30,12 @@ class Project extends Model
       Project::creating(function($model) {
         $model->slug = Str::of($model->name)->slug('-');
       });
+      // Delete the logo & images
+      Skill::deleting(function($model) {
+        $model->removeLogo();
+        $model->removeImage();
+      });
+      
     }
 
     /**
@@ -80,14 +86,10 @@ class Project extends Model
         $path = $this::$imagesPath.$this->img;
         if(Storage::disk('public')->exists($path)){
           return asset($path);
-        }else{
-          return $this::$placeholder;
         }
       }
       //No image, return a placeholder
-      else{
-        return $this::$placeholder;
-      }
+      return $this::$placeholder;
 
     }
 
@@ -166,13 +168,9 @@ class Project extends Model
         $path = $this::$logoPath.$this->logo;
         if(Storage::disk('public')->exists($path)){
           return asset($path);
-        }else{
-          return $this::$logo_placeholder;
         }
       }
       //No image, return a placeholder
-      else{
-        return $this::$logo_placeholder;
-      }
+      return $this::$logo_placeholder;
     }
 }
