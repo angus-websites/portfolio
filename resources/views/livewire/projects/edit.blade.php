@@ -230,7 +230,7 @@
 
             <!-- Logo previews -->
             <div>
-                <div class="grid grid-cols-2">
+                <div class="flex flex-row items-start justify-around">
                     <!-- Current logo section -->
                     <div class="flex flex-col gap-y-2 justify-center"> 
                         <h3 class="mb-4 font-medium text-center">Current logo</h3>
@@ -244,8 +244,7 @@
                             <div class="text-center mt-2">
                                 <x-button wire:click="resetLogo" type="button" class="btn-sm btn-outline btn-error">Reset</x-button>
                             </div>
-                        @endif
-                        
+                        @endif    
                     </div>
 
                     @if($is_uploaded_logo_valid && $uploaded_logo)
@@ -262,7 +261,6 @@
                             </div>
                         </div>
                     @endif
-
                 </div>
             </div>
 
@@ -289,7 +287,7 @@
 
             <!-- Image previews -->
             <div>
-                <div class="grid grid-cols-2">
+                <div class="flex flex-row items-start justify-around">
                     <!-- Current image section -->
                     <div class="flex flex-col gap-y-2 justify-center"> 
                         <h3 class="mb-4 font-medium text-center">Current Image</h3>

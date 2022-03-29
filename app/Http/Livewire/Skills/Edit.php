@@ -5,12 +5,19 @@ namespace App\Http\Livewire\Skills;
 use Livewire\Component;
 use App\Models\SkillSection;
 use App\Models\Skill;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
 
+    use WithFileUploads;
+
     public $skill;
     public $is_create;
+
+    // Images
+    public $uploaded_icon;
+    public $is_uploaded_icon_valid;
 
 
     protected function rules()
@@ -23,7 +30,8 @@ class Edit extends Component
         return [
             'skill.name' => ["required", "string", "min:1", "unique:skills,name,". $this->skill->id],
             'skill.description' => 'max:500',
-            'skill.skill_section_id' => 'required|exists:skill_sections,id'
+            'skill.skill_section_id' => 'required|exists:skill_sections,id',
+            'uploaded_icon' => 'nullable|image|max:1024',
         ];
     }
 
@@ -79,5 +87,38 @@ class Edit extends Component
         $this->skill->delete();
         return redirect()->route('skills.index')->with("message","Skill deleted");
     }
+
+
+    public function updatedUploadedIcon()
+    {
+        /**
+         * Called when the user
+         * uploads a logo for 
+         * the project
+         */
+        $this->is_uploaded_icon_valid = false;
+        $this->validateOnly("uploaded_icon");
+        $this->is_uploaded_icon_valid = true;
+    }
+
+    public function resetIcon()
+    {
+        /**
+         * Reset the skill icon
+         * to default
+         */
+        session()->flash('info', 'Icon reset to default (not really)');
+    }
+
+    public function discardUploadedIcon()
+    {
+        /**
+         * Discard the icon
+         * the user uploaded
+         */
+        $this->uploaded_icon = null;
+        $this->is_uploaded_icon_valid = false;
+    }
+
 
 }

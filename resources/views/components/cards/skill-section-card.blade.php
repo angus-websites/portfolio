@@ -20,7 +20,7 @@
                   <div class="flex items-center space-x-3">
                     <div class="avatar">
                       <div class="w-12 h-12 mask mask-squircle">
-                        <img src={{$skill->getImage()}}>
+                        <img src={{$skill->getIcon()}}>
                       </div>
                     </div>
                     <div>

@@ -15,9 +15,9 @@ class Skill extends Model
 
 
     /**
-     * Get the image for this project
+     * Get the icon for this Skill
      */
-    public function getImage(){
+    public function getIcon(){
         if($this->icon){
             //Find this image in storage
             $path = "images/".$this::$imagesPath.$this->icon;

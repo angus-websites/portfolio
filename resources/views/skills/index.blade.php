@@ -5,21 +5,27 @@
     <div class="flex flex-col text-center w-full mb-10">
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">My Skills</h1>
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">My skills go here</p>
-      @can("create", App\Models\SkillSection::class)
-          <div class="my-5">
-            <x-link-button href="{{route('section.create') }}"  class="btn btn-primary">
-                Create Section
-            </x-link-button>
-          </div>
-      @endcan
 
-      @can("create", App\Models\Skill::class)
-          <div class="my-5">
-            <x-link-button href="{{route('skills.create') }}"  class="btn btn-primary">
-                Create Skill
-            </x-link-button>
-          </div>
-      @endcan
+      <!--Button flexbox -->
+      <div class="flex flex-col gap-y-4 md:flex-row md:justify-between mt-4">
+
+        @can("create", App\Models\Skill::class)
+            <div>
+              <x-link-button href="{{route('skills.create') }}"  class="btn btn-primary">
+                  Create Skill
+              </x-link-button>
+            </div>
+        @endcan
+
+        @can("create", App\Models\SkillSection::class)
+            <div>
+              <x-link-button href="{{route('section.create') }}"  class="btn btn-primary">
+                  Create Section
+              </x-link-button>
+            </div>
+        @endcan
+
+      </div>
 
     </div>
   </div>
