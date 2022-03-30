@@ -57,7 +57,7 @@
             <div class="modal modal-bottom sm:modal-middle">
               <div class="modal-box">
                 <h3 class="font-bold text-lg">Are you sure?</h3>
-                <p class="py-4">Are you sure you want to delete this Section?</p>
+                <p class="py-4">Are you sure you want to delete this Section? <b>{{$section->skills()->count()}}</b> Skills will also be deleted</p>
                 <div class="modal-action">
                   <label for="delete-section-modal" class="btn">No</label>
                   <x-button wire:click="deleteSection" class="btn btn-error">Yes</x-button>

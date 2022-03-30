@@ -7,7 +7,7 @@
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">My skills go here</p>
 
       <!--Button flexbox -->
-      <div class="flex flex-col gap-y-4 md:flex-row md:justify-between mt-4">
+      <div class="flex flex-col gap-y-4 md:flex-row md:justify-around mt-4">
 
         @can("create", App\Models\Skill::class)
             <div>
@@ -19,7 +19,7 @@
 
         @can("create", App\Models\SkillSection::class)
             <div>
-              <x-link-button href="{{route('section.create') }}"  class="btn btn-primary">
+              <x-link-button href="{{route('section.create') }}"  class="btn btn-secondary">
                   Create Section
               </x-link-button>
             </div>
