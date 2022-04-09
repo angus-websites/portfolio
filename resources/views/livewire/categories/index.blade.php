@@ -17,7 +17,7 @@
           </div>
         </div>
     @endif
-    
+
 
     @can("create", \App\Models\Category::class)
         <!--Add button-->
@@ -91,7 +91,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            @if($this->editing_category->projects()->count() < 1)
+            @if($this->editing_category->projects()->count() < 1 && $this->editing_category->exists)
                 <x-button wire:click="delete" class="mr-auto btn-error">Delete</x-button>
             @endif
             <label for="editModal" class="btn">Cancel</label>
