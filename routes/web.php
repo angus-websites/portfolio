@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SkillSectionController;
+use App\Http\Controllers\CategoryController;
 
 use Illuminate\Http\Request;
 
@@ -30,10 +31,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-//My Projects
+// Resource Controllers 
 Route::resource('projects', ProjectController::class);
 Route::resource('skills', SkillController::class);
 Route::resource('section', SkillSectionController::class);
+Route::resource('categories', CategoryController::class);
 
 
 //Contact

@@ -58,7 +58,7 @@
                   <option selected>Choose a category</option>
                   @foreach($categories as $category)
                     <option value="{{$category->id}}">
-                      {{$category->short_name}}
+                      {{$category->name}}
                     </option>
                   @endforeach
                 </x-select>
@@ -93,7 +93,7 @@
         <div class="p-4">
 
             <!--Github checkbox-->
-            <div x-data="{show: {{$this->hasGitLink()}}}" class="mb-6" >
+            <div x-data="{show: {{$this->hasGitLink()}} }" class="mb-6" >
                 <div class="form-control">
                     <div class="col-span-6 sm:col-span-4 flex items-start">
                       <div class="flex items-center h-5">
