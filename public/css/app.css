@@ -3235,6 +3235,9 @@ body[dir="rtl"] .checkbox:checked,
 .top-0 {
   top: 0px;
 }
+.left-0 {
+  left: 0px;
+}
 .z-0 {
   z-index: 0;
 }
@@ -3364,6 +3367,9 @@ body[dir="rtl"] .checkbox:checked,
 }
 .mb-8 {
   margin-bottom: 2rem;
+}
+.mr-auto {
+  margin-right: auto;
 }
 .block {
   display: block;

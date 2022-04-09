@@ -10,7 +10,9 @@ class Index extends Component
 {
 
     use AuthorizesRequests;
+    public $is_create = false;
     public $modal_open = false;
+    public $category_to_delete;
     public Category $editing_category;
 
     protected function rules()
@@ -29,6 +31,7 @@ class Index extends Component
     public function mount()
     {
         $this->modal_open = false;
+        $this->editing_category = new Category();
     }
 
     public function render()
@@ -56,9 +59,10 @@ class Index extends Component
          * Edit a single category
          * in the list
          */
-        $this->modal_open=true;
+        $this->is_create = false;
         $this->editing_category = $category;
-        
+        $this->modal_open=true;
+
     }
 
     public function add()
@@ -67,8 +71,22 @@ class Index extends Component
          * Create a new
          * category
          */
+        $this->is_create = true;
         $this->modal_open=true;
         $this->editing_category = new Category();
+    }
+
+    public function delete()
+    {
+        /**
+         * Delete a given category
+         */
+        
+        $this->authorize('delete', $this->editing_category);
+        $this->editing_category->delete();
+        $this->modal_open = false;
+        session()->flash('info', 'Category deleted');
+
     }
 
     public function saveCategory()
@@ -77,8 +95,14 @@ class Index extends Component
          * Save the changes the user
          * makes to their current category
          */
-        $this->authorize('update', $this->editing_category);
-        $this->validateOnly("editing_category");
+        
+        if ($this->is_create){
+            $this->authorize('create', Category::class);
+        }else{
+            $this->authorize('update', $this->editing_category);
+        }
+
+        $this->validate();
         $this->editing_category->save();
         $this->modal_open = false;
     }
