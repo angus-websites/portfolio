@@ -58,7 +58,7 @@
                   <option selected>Choose a category</option>
                   @foreach($categories as $category)
                     <option value="{{$category->id}}">
-                      {{$category->short_name}}
+                      {{$category->name}}
                     </option>
                   @endforeach
                 </x-select>

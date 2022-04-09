@@ -1,4 +1,8 @@
-<div x-data="{ toggle: @entangle('modal_open') }">
+<div>
+    <!--Add button-->
+    <div class="my-5 text-center">
+        <x-button wire:click="add" class="btn-primary">Add</x-button>
+    </div>
     <div class="overflow-x-auto">
       <table class="table w-full">
         <thead>
@@ -19,7 +23,7 @@
                     <td>{{$category->projects()->count()}}</td>
                     <td>
                         <div class="flex flex-row justify-center items-center gap-x-4">
-                            <x-button type="button" x-on:click="toggle = ! toggle;$wire.edit({{$category->id}})" class="btn btn-sm btn-warning">Edit</x-button>
+                            <x-button type="button" wire:click="edit({{$category->id}})" class="btn btn-sm btn-warning">Edit</x-button>
                             <x-button class="btn btn-sm btn-error">Delete</x-button>
                         </div>
                     </td>
@@ -28,13 +32,14 @@
         </tbody>
       </table>
     </div>
-    <label for="category-modal" class="btn modal-button">open modal</label>
 
-    <!-- Edit Modal -->
-    <input type="checkbox" x-model="toggle" id="category-modal" class="modal-toggle">
-    <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-            <h3 class="font-bold text-lg">Edit Category</h3>
+    <!-- Edit category modal -->
+    <x-modal-daisy id="editModal" wire:model.defer="modal_open">
+        <x-slot name="title">
+            Edit Category
+        </x-slot>
+
+        <x-slot name="content">
             <div class="grid md:grid-cols-2 gap-4 p-4">
                 <!-- Category name -->
                 <div class="form-control">
@@ -43,7 +48,7 @@
                                 class="input-bordered"
                                 type="text"
                                 showgreen="true"
-                                error="category.name"
+                                error="editing_category.name"
                                 required />
                 </div>
 
@@ -54,15 +59,16 @@
                                 class="input-bordered"
                                 type="text"
                                 showgreen="true"
-                                error="category.short_name"
+                                error="editing_category.short_name"
                                 required />
                 </div>
             </div>
-            <div class="modal-action">
-              <label for="category-modal" class="btn">Cancel</label>
-              <x-button type="button" class="btn btn-primary">Save</x-button>
-            </div>
-        </div>
-    </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <label for="editModal" class="btn">Cancel</label>
+            <x-button wire:click="saveCategory" type="button" class="btn btn-primary">Save</x-button>
+        </x-slot>
+    </x-modal-daisy>
 
 </div>

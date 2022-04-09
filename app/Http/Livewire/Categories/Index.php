@@ -4,14 +4,13 @@ namespace App\Http\Livewire\Categories;
 
 use Livewire\Component;
 use App\Models\Category;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Index extends Component
 {
 
-    public $categories;
-    public $selected_category;
-    public $modal_open;
-
+    use AuthorizesRequests;
+    public $modal_open = false;
     public Category $editing_category;
 
     protected function rules()
@@ -27,16 +26,16 @@ class Index extends Component
         ];
     }
 
-    public function mount($categories)
+    public function mount()
     {
-        $this->categories = $categories;
-        $this->editing_category = $this->categories->first();
         $this->modal_open = false;
     }
 
     public function render()
     {
-        return view('livewire.categories.index');
+        return view('livewire.categories.index', [
+            "categories" => Category::all(),
+        ]);
     }
 
     public function updated($propertyName)
@@ -49,7 +48,7 @@ class Index extends Component
         
         $this->validateOnly($propertyName);
     }
-    
+
 
     public function edit(Category $category)
     {
@@ -57,8 +56,31 @@ class Index extends Component
          * Edit a single category
          * in the list
          */
+        $this->modal_open=true;
         $this->editing_category = $category;
         
+    }
+
+    public function add()
+    {
+        /**
+         * Create a new
+         * category
+         */
+        $this->modal_open=true;
+        $this->editing_category = new Category();
+    }
+
+    public function saveCategory()
+    {
+        /**
+         * Save the changes the user
+         * makes to their current category
+         */
+        $this->authorize('update', $this->editing_category);
+        $this->validateOnly("editing_category");
+        $this->editing_category->save();
+        $this->modal_open = false;
     }
 
 }
