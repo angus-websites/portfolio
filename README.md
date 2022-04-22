@@ -16,6 +16,13 @@ CD into the portfolio directory
 
 if you are developing on another dev machine and plan to use SAIL you can execute the following commands to use docker to install dependencies...
 
+**Note, if you are using Apple CPU, you will need to specify the platform in the Dockerfile**
+
+```
+mysql:
+    platform: linux/amd64
+```
+
 ```bash
 docker run --rm \
     -u "$(id -u):$(id -g)" \

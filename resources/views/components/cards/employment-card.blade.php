@@ -1,7 +1,7 @@
 
 @if($isCollapse() == true)
   <!--Employment collapse-->
-  <div class="collapse rounded-lg bg-white collapse-arrow border border-base-300">
+  <div class="collapse rounded-lg bg-base-200 collapse-arrow border">
     <input type="checkbox" style="height: 100%">
     <div class="collapse-title">
       <div class="flex items-start space-x-5">
@@ -37,7 +37,7 @@
   </div>
 @else
   <!--Employment card-->
-  <div class="rounded-lg bg-white border border-base-300 p-5">
+  <div class="rounded-lg bg-base-200 border p-5">
     <div class="flex items-start space-x-5">
       <!--Image-->
       <div class="flex-none">

@@ -30,7 +30,7 @@
     <div class="text-center mt-40">
 
       <!--Skills section-->
-      <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">My Skills</h1>
+      <h2 class="text-2xl font-bold sm:text-3xl">My Skills</h1>
       @can('delete', App\Models\Skill::class)
         <div class="my-5">
           <a href="{{{ route("skills.index") }}}" class="btn btn-secondary btn-sm">Manage</a>
@@ -47,7 +47,7 @@
 
         <!--Employment section-->
         <div>
-          <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">Employment</h1>
+          <h2 class="text-2xl font-bold sm:text-3xl">Employment</h1>
           <div class="grid grid-cols-1 gap-x-6 gap-y-10 mt-8 md:grid-cols-2 lg:grid-cols-1">
             @foreach($employment as $work)
               <x-cards.employment-card :employment="$work"/>
@@ -58,7 +58,7 @@
         </div>
         <!--Education section-->
         <div>
-          <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">Education</h1>
+          <h2 class="text-2xl font-bold sm:text-3xl">Education</h1>
           <div class="grid grid-cols-1 gap-x-6 gap-y-10 mt-8 md:grid-cols-2 lg:grid-cols-1">
             @foreach($education as $edu)
               <x-cards.education-card :education="$edu"/>

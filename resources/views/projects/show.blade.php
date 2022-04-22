@@ -1,11 +1,12 @@
 @section('title', $project->name)
 
 <x-app-layout>
+
   <section class="container mx-auto">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="lg:w-4/5 mx-auto ">
+    <div class="my-16 mx-auto bg-base-200 border rounded-md shadow-lg">
+      <div class="lg:w-4/5 p-10">
 
-
+        <!--Top buttons -->
         <div class="flex flex-row space-x-2 mb-4 items-center">
           <!--Back-->
           <x-link-button href="{{route('projects.index') }}"  class="btn-ghost font-normal">
@@ -77,8 +78,10 @@
             {!! $project->long_desc !!}
           </article>
         </div>
-
       </div>
     </div>
   </section>
+
+
+
 </x-app-layout>

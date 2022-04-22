@@ -1,4 +1,4 @@
-<div class="bg-white rounded-lg p-5 flex flex-col">
+<div class="border rounded-lg p-5 flex flex-col">
     <!--Section name-->
     <div class="flex-0">
         <p class="uppercase text-lg font-bold mb-2 text-center">{{$name}}</p>
