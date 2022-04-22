@@ -22,7 +22,50 @@ module.exports = {
                 white:{
                     DEFAULT: "#FFFFFF",
                     50: "#FBFBFB"
-                }
+                },
+
+                primarylight:{
+                    100: "#CCECDD",
+                    200: "#C1E0D2",
+                    300: "#087441",
+
+                },
+
+                secondarylight:{
+                    100: "#D3D7EC",
+                    200: "#C7CBE0",
+                    300: "#373E69",
+
+                },
+
+                accentlight:{
+                    100: "#961277",
+                    200: "#E9CCE2",
+                    300: "#740853",
+
+                },
+
+                successbright:{
+                    DEFAULT: "#03C400",
+                },
+
+                infobright:{
+                    DEFAULT: "#1B7AC8",
+                },
+
+                warningbright:{
+                    DEFAULT: "#9D6B0F",
+                },
+
+                errorbright:{
+                    DEFAULT: "#DF2F24",
+                },
+
+
+
+
+
+
             },
             boxShadow: {
                 ps: 'rgba(50, 50, 93, 0.25) 0px 0px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
@@ -77,13 +120,13 @@ module.exports = {
                'base-300' : '#F0F0F0',          /* Base color, even more darker */
                'base-content' : '#4D4D4D',      /* Foreground content color to use on base color */
 
-               'info' : '#1B7AC8',              /* Info */
+               'info' : '#DAEAF6',              /* Info */
                'info-content' : '#004278', 
-               'success' : '#03C400',           /* Success */
+               'success' : '#DEF2DD',           /* Success */
                'success-content' : '#026300', 
-               'warning' : '#9D6B0F',           /* Warning */
+               'warning' : '#FFE898',           /* Warning */
                'warning-content' : '#6E4700',
-               'error' : '#DF2F24',             /* Error */
+               'error' : '#F7D4D2',             /* Error */
                'error-content' : '#7E342F',
             },
 

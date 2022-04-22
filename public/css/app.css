@@ -587,13 +587,13 @@ html {
   --b2: 0 0% 98%;
   --b3: 0 0% 94%;
   --bc: 0 0% 30%;
-  --in: 207 76% 45%;
+  --in: 206 61% 91%;
   --inc: 207 100% 24%;
-  --su: 119 100% 38%;
+  --su: 117 45% 91%;
   --suc: 119 100% 19%;
-  --wa: 39 83% 34%;
+  --wa: 47 100% 80%;
   --wac: 39 100% 22%;
-  --er: 4 75% 51%;
+  --er: 3 70% 90%;
   --erc: 4 46% 34%;
 }
 
@@ -624,13 +624,13 @@ html {
   --b2: 0 0% 98%;
   --b3: 0 0% 94%;
   --bc: 0 0% 30%;
-  --in: 207 76% 45%;
+  --in: 206 61% 91%;
   --inc: 207 100% 24%;
-  --su: 119 100% 38%;
+  --su: 117 45% 91%;
   --suc: 119 100% 19%;
-  --wa: 39 83% 34%;
+  --wa: 47 100% 80%;
   --wac: 39 100% 22%;
-  --er: 4 75% 51%;
+  --er: 3 70% 90%;
   --erc: 4 46% 34%;
 }
 
@@ -3759,6 +3759,10 @@ body[dir="rtl"] .checkbox:checked,
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
+.bg-base-200 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
+}
 .fill-current {
   fill: currentColor;
 }
@@ -4157,6 +4161,10 @@ body[dir="rtl"] .checkbox:checked,
   --tw-bg-opacity: 1;
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
+.hover\:bg-secondarylight-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(211 215 236 / var(--tw-bg-opacity));
+}
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -4167,7 +4175,7 @@ body[dir="rtl"] .checkbox:checked,
 }
 .hover\:text-violet-600:hover {
   --tw-text-opacity: 1;
-  color: rgb(85 72 106 / var(--tw-text-opacity));
+  color: rgb(124 58 237 / var(--tw-text-opacity));
 }
 .hover\:text-gray-900:hover {
   --tw-text-opacity: 1;
@@ -4176,6 +4184,10 @@ body[dir="rtl"] .checkbox:checked,
 .hover\:text-indigo-500:hover {
   --tw-text-opacity: 1;
   color: rgb(99 102 241 / var(--tw-text-opacity));
+}
+.hover\:text-secondarylight-300:hover {
+  --tw-text-opacity: 1;
+  color: rgb(55 62 105 / var(--tw-text-opacity));
 }
 .focus\:z-10:focus {
   z-index: 10;
