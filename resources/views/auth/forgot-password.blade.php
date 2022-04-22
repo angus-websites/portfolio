@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-auth-card>
+    <x-cards.auth-card>
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
@@ -31,10 +31,10 @@
 
 
             <div class="flex items-center justify-end mt-4">
-                <x-button>
+                <x-button class="btn-sm">
                     {{ __('Email Password Reset Link') }}
                 </x-button>
             </div>
         </form>
-    </x-auth-card>
+    </x-cards.auth-card>
 </x-app-layout>

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-auth-card>
+    <x-cards.auth-card>
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
@@ -35,5 +35,5 @@
                 </button>
             </form>
         </div>
-    </x-auth-card>
+    </x-cards.auth-card>
 </x-app-layout>
