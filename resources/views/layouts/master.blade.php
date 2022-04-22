@@ -1,3 +1,5 @@
+@props(['bg' => 'bg-base-100'])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="portfolio">
   <!--Angus was here 2k21-->
@@ -12,7 +14,7 @@
 
     @include('includes.head-tags')
   </head>
-  <body class="font-sans antialiased bg-base-100">
+  <body {!! $attributes->merge(['class' => "font-sans antialiased $bg"]) !!}>
     {{ $slot }}
 
     <footer>

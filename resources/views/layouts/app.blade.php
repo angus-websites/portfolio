@@ -1,4 +1,6 @@
-<x-master-layout>
+@props(['bg' => 'bg-base-100'])
+
+<x-master-layout bg="{{$bg}}">
   @push("styleheets")
     <livewire:styles />
   @endpush
