@@ -12,7 +12,7 @@
 
     @include('includes.head-tags')
   </head>
-  <body class="font-sans antialiased bg-base-200">
+  <body class="font-sans antialiased bg-base-100">
     {{ $slot }}
 
     <footer>

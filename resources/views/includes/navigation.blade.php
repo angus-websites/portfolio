@@ -1,5 +1,5 @@
 <!--Navbar-->
-<nav x-data="{ open: false }" class="shadow-md bg-white">
+<nav x-data="{ open: false }" class="shadow-md bg-base-100">
   <!--Desktop menu-->
   <nav class="navbar">
     <div class="container mx-auto px-6 md:px-3">

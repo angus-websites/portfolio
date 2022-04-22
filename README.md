@@ -19,7 +19,8 @@ if you are developing on another dev machine and plan to use SAIL you can execut
 **Note, if you are using Apple CPU, you will need to specify the platform in the Dockerfile**
 
 ```
-platform: linux/amd64
+mysql:
+    platform: linux/amd64
 ```
 
 ```bash

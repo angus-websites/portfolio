@@ -19,12 +19,16 @@
         <form method="POST" action="{{ route('password.email') }}">
             @csrf
 
-            <!-- Email Address -->
-            <div>
+            <!-- Email address -->
+            <div class="form-control mb-4">
                 <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="input-bordered"
+                                :value="old('email')"
+                                type="email"
+                                name="email"
+                                required autofocus />
             </div>
+
 
             <div class="flex items-center justify-end mt-4">
                 <x-button>
