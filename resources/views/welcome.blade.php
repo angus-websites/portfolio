@@ -1,6 +1,6 @@
 @section('title', 'Welcome')
 <x-app-layout>
-  <div class="my-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+  <div class="my-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:my-20 lg:px-8 xl:mt-28">
 
     <!--Text align div-->
     <div class="sm:text-center lg:text-left">
@@ -31,11 +31,6 @@
 
       <!--Skills section-->
       <h2 class="text-2xl font-bold sm:text-3xl">My Skills</h1>
-      @can('delete', App\Models\Skill::class)
-        <div class="my-5">
-          <a href="{{{ route("skills.index") }}}" class="btn btn-secondary btn-sm">Manage</a>
-        </div>
-      @endcan
       <div class="grid grid-cols-1 gap-x-6 gap-y-10 xs:grid-cols-2 md:grid-cols-3 my-16">
         @foreach($skillSections as $section)
           <!--Section container-->
