@@ -2,8 +2,93 @@
 
 <x-app-layout>
     <div class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-      Dashboard
-      <br>
-      Roles: {{ print_r(Auth::user()->roles()->pluck('name')->toArray()) }}
+      <!--Title-->
+      <div class="flex flex-col text-center w-full mb-12">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Dashboard</h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Welcome to the Dashboard, from here you can manage the site</p>
+      </div>
+
+      <!-- Main grid -->
+      <div class="flex flex-col space-y-8 mt-10">
+        <!--Top Grid -->
+        <div class="grid grid-cols-3 bg-base-200 border rounded-lg p-5">
+          <!--Menu-->
+          <div class="col-span-1">
+            <ul class="menu menu-compact lg:menu-normal w-60 p-2 border-r h-full">
+              <li class="menu-title"><span>Manage</span></li>
+              <li>
+                <a class="flex flex-row items-center" href="{{route('categories.index')}}">
+                  <span class="flex-1">Categories</span>
+                  <span class="badge">{{\App\Models\Category::count()}}</span>
+                </a>
+              </li>
+              <li>
+                <a class="flex flex-row items-center" href="{{route('skills.index')}}">
+                  <span class="flex-1">Skills</span>
+                  <span class="badge">{{\App\Models\Skill::count()}}</span>
+                </a>
+              </li>
+              <li>
+                <a class="flex flex-row items-center" href="{{route('skills.index')}}">
+                  <span class="flex-1">Tags</span>
+                  <span class="badge">{{\App\Models\Tag::count()}}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- Info -->
+          <div class="col-span-2">
+            <div class="mx-auto">
+              <!-- User info -->
+              <div class="mb-8">
+                <p>Name: <b>{{Auth::user()->name}}</b></p>
+                <p class="flex flex-row space-x-2 items-center">
+                  <span>Roles</span>
+                  @foreach(Auth::user()->roles()->pluck('name')->toArray() as $role)
+                    <span class="badge">{{$role}}</span>
+                  @endforeach
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects Collapse-->
+        <div class="collapse rounded-lg bg-base-200 collapse-plus border">
+          <input type="checkbox">
+          <div class="collapse-title">
+            <div class="px-5">Manage Projects</div>
+          </div>
+          <div class="collapse-content">
+            <div class="px-5">
+              <table class="table w-full">
+                <!-- head -->
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th colspan="2">Category</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach(\App\Models\Project::all() as $project)
+                    <tr>
+                      <th>{{ $loop->iteration }}</th>
+                      <td>{{$project->name}}</td>
+                      <td>{{$project->category()->name}}</td>
+                      <td>
+                        <x-link-button class="btn-sm btn-warning" href="{{route('projects.edit', ['project'=>$project])}}">Edit</x-link-button>
+                        <x-link-button class="btn-sm btn-info" href="{{route('projects.show', ['project'=>$project])}}">View</x-link-button>
+
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 </x-app-layout>
