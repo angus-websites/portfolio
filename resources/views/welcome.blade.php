@@ -31,11 +31,6 @@
 
       <!--Skills section-->
       <h2 class="text-2xl font-bold sm:text-3xl">My Skills</h1>
-      @can('delete', App\Models\Skill::class)
-        <div class="my-5">
-          <a href="{{{ route("skills.index") }}}" class="btn btn-secondary btn-sm">Manage</a>
-        </div>
-      @endcan
       <div class="grid grid-cols-1 gap-x-6 gap-y-10 xs:grid-cols-2 md:grid-cols-3 my-16">
         @foreach($skillSections as $section)
           <!--Section container-->
