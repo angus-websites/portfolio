@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SkillSectionController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
 use Illuminate\Http\Request;
 
@@ -36,6 +37,7 @@ Route::resource('projects', ProjectController::class);
 Route::resource('skills', SkillController::class);
 Route::resource('section', SkillSectionController::class);
 Route::resource('categories', CategoryController::class);
+Route::resource('tags', TagController::class);
 
 
 //Contact

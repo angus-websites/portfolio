@@ -10,6 +10,6 @@
   </div>
   <!--Categories-->
   <div class="container px-5 my-10 mx-auto">
-    @livewire("categories.index", ['categories' => $categories])
+    @livewire("categories.index")
   </div>
 </x-app-layout>
