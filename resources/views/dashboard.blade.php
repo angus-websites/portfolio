@@ -32,12 +32,14 @@
                   </a>
                 </li>
               @endcan
-              <li>
-                <a class="flex flex-row items-center" href="{{route('skills.index')}}">
-                  <span class="flex-1">Tags</span>
-                  <span class="badge">{{\App\Models\Tag::count()}}</span>
-                </a>
-              </li>
+              @can('viewAny', App\Models\Tag::class)
+                <li>
+                  <a class="flex flex-row items-center" href="{{route('tags.index')}}">
+                    <span class="flex-1">Tags</span>
+                    <span class="badge">{{\App\Models\Tag::count()}}</span>
+                  </a>
+                </li>
+              @endcan
             </ul>
           </div>
           <!-- Info -->

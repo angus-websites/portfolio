@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\Tag;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
 
     public function __construct()
     {
-      $this->authorizeResource(Category::class);
+      $this->authorizeResource(Tag::class);
     }
 
     /**
@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories.index');
+        return view('tags.index');
     }
 
     /**
