@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Employment;
 
 class EmploymentController extends Controller
 {
@@ -33,8 +34,8 @@ class EmploymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employment $employment)
     {
-        //
+        return view('employment.edit' , ["employment" => $employment]);
     }
 }

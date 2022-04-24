@@ -35,7 +35,7 @@
                     <td>
                         <div class="flex flex-row justify-start items-center gap-x-4">
                             @can("update", $employment)
-                                <x-button type="button" class="btn btn-sm btn-warning">Edit</x-button>
+                                <x-link-button href="{{route('employment.edit', ['employment' => $employment]) }}" class="btn btn-sm btn-warning">Edit</x-link-button>
                             @endcan
                         </div>
                     </td>

@@ -28,9 +28,4 @@ class Employment extends Model
 
     }
 
-    public function name()
-    {
-        return "$this->employer $this->role";
-    }
-
 }
