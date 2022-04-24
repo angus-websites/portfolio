@@ -109,6 +109,8 @@ class Index extends Component
          * skill section to the database
          */
         
+        $this->validate();
+        
         if ($this->is_create){
             $this->authorize('create', Skill::class);
             $this->active_section = $this->editing_section;
@@ -116,7 +118,7 @@ class Index extends Component
             $this->authorize('update', $this->editing_section);
         }
 
-        $this->validate();
+        
         $this->editing_section->save();
         $this->edit_modal_open = false;
         session()->flash('info', 'Section updated');

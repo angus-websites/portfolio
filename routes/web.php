@@ -5,7 +5,6 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SkillController;
-use App\Http\Controllers\SkillSectionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 
@@ -35,7 +34,6 @@ Route::get('/dashboard', function () {
 // Resource Controllers 
 Route::resource('projects', ProjectController::class);
 Route::resource('skills', SkillController::class);
-Route::resource('section', SkillSectionController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('tags', TagController::class);
 
