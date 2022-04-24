@@ -40,6 +40,14 @@
                   </a>
                 </li>
               @endcan
+              @can('viewAny', App\Models\Employment::class)
+                <li>
+                  <a class="flex flex-row items-center" href="{{route('employment.index')}}">
+                    <span class="flex-1">Employment</span>
+                    <span class="badge">{{\App\Models\Employment::count()}}</span>
+                  </a>
+                </li>
+              @endcan
             </ul>
           </div>
           <!-- Info -->
