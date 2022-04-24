@@ -6,12 +6,13 @@ use Livewire\Component;
 use App\Models\SkillSection;
 use App\Models\Skill;
 use Livewire\WithFileUploads;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Edit extends Component
 {
 
     use WithFileUploads;
-
+    use AuthorizesRequests;
     public $skill;
     public $is_create;
 
@@ -68,6 +69,12 @@ class Edit extends Component
          */
         $validatedData = $this->validate();
 
+        if($this->is_create){
+            $this->authorize('create', Skill::class);
+        }else{
+            $this->authorize('update', $this->skill);
+        }
+
         // Save the uploaded logo
         if ($this->uploaded_icon){
             $this->skill->replaceIcon($this->uploaded_icon);
@@ -91,6 +98,7 @@ class Edit extends Component
         /**
          * Delete this given skill
          */
+        $this->authorize('delete', $this->skill);
         $this->skill->delete();
         return redirect()->route('skills.index')->with("message","Skill deleted");
     }
@@ -114,6 +122,7 @@ class Edit extends Component
          * Reset the skill icon
          * to default
          */
+        $this->authorize('update', $this->skill);
         $this->skill->removeIcon();
         session()->flash('info', 'Icon reset to default');
     }
