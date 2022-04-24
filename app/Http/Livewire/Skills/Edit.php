@@ -42,6 +42,9 @@ class Edit extends Component
         $this->skill = $skill;
         $this->is_create = !$skill->exists;
 
+        if (!$this->skill->exists){
+            $this->skill->skill_section_id = SkillSection::firstOrNew()->id;
+        }
         // Validate on page load
         $this->validate();
     }

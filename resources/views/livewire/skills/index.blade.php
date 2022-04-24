@@ -35,8 +35,7 @@
         <!-- head -->
         <thead>
           <tr>
-            <th></th>
-            <th colspan="2">Skill</th>
+            <th colspan="3">Skill</th>
           </tr>
         </thead>
         <tbody>
