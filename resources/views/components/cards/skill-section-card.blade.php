@@ -1,4 +1,4 @@
-<div {{$attributes->merge(['class' => "border rounded-lg p-5 flex flex-col"])}}>
+<div {{$attributes->merge(['class' => "border rounded-lg p-5 pb-0 flex flex-col"])}}>
     <!--Section name-->
     <div class="flex-0">
         <p class="uppercase text-lg font-bold mb-2 text-center">{{$name}}</p>

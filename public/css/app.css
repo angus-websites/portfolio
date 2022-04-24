@@ -3231,6 +3231,14 @@ body[dir="rtl"] .checkbox:checked,
   right: 7%;
   box-shadow: 0 0 0 2px hsl(var(--b1));
 }
+.badge-accent {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--a) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--a) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--ac) / var(--tw-text-opacity));
+}
 .badge-outline {
   border-color: currentColor;
   --tw-border-opacity: 0.5;
@@ -3336,6 +3344,12 @@ body[dir="rtl"] .checkbox:checked,
 }
 .col-span-1 {
   grid-column: span 1 / span 1;
+}
+.col-span-full {
+  grid-column: 1 / -1;
+}
+.col-end-auto {
+  grid-column-end: auto;
 }
 .-m-2 {
   margin: -0.5rem;
@@ -4020,6 +4034,9 @@ body[dir="rtl"] .checkbox:checked,
 }
 .pb-6 {
   padding-bottom: 1.5rem;
+}
+.pb-0 {
+  padding-bottom: 0px;
 }
 .text-left {
   text-align: left;
