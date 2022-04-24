@@ -1,7 +1,7 @@
 @section('title', "Edit skill")
 
 <x-app-layout>
-  <div class="container px-5 pt-24 mx-auto">
+  <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-10">
       <!--Back-->
       <div class="text-left">

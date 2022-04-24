@@ -26,17 +26,20 @@
         </a>
       </x-button-group>
     </div>
-    <!--My skills-->
+
+    <!--My skills / Education / Work-->
     <div class="text-center mt-40">
 
-      <!--Skills section-->
-      <h2 class="text-2xl font-bold sm:text-3xl">My Skills</h1>
-      <div class="grid grid-cols-1 gap-x-6 gap-y-10 xs:grid-cols-2 md:grid-cols-3 my-16">
-        @foreach($skillSections as $section)
-          <!--Section container-->
-          <x-cards.skill-section-card :section="$section"/>
-        @endforeach
-      </div>
+      @if(count($skillSections) > 0)
+        <!--Skills section-->
+        <h2 class="text-2xl font-bold sm:text-3xl">My Skills</h1>
+        <div class="flex flex-wrap justify-around gap-x-6 gap-y-10 my-16">
+          @foreach($skillSections as $section)
+            <!--Section container-->
+            <x-cards.skill-section-card :section="$section" class="basis-full xs:basis-1/3 lg:basis-1/4 flex-1"/>
+          @endforeach
+        </div>
+      @endif
 
       <div class="grid grid-cols-1 gap-y-16 gap-x-10 lg:grid-cols-2">
 

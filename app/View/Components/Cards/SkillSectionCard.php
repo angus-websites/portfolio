@@ -10,17 +10,15 @@ class SkillSectionCard extends Component
     public $section;
     public $name;
     public $skills;
-    public $editmode;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($section, $editmode=false)
+    public function __construct($section)
     {
         $this->section=$section;
-        $this->editmode = $editmode;
         $this->name=$section->name;
         $this->skills=$section->skills()->get();
 

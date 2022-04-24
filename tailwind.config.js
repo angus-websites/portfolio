@@ -39,7 +39,7 @@ module.exports = {
                 },
 
                 accentlight:{
-                    100: "#961277",
+                    100: "#F3D2EB",
                     200: "#E9CCE2",
                     300: "#740853",
 
