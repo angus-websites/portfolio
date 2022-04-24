@@ -10,7 +10,7 @@
         <div class="flex flex-wrap gap-x-5 gap-y-8 justify-around my-5" >
           @forelse($skills as $skill)
             <div class="basis-full sm:basis-1/3">
-              <div class="flex flex-row items-center space-x-3">
+              <div class="flex flex-row justify-center items-center space-x-3">
                 @if($skill->icon)
                   <div class="avatar">
                     <div class="w-8 rounded-full">
@@ -24,7 +24,7 @@
                     </div>
                   </div>
                 @endif
-                <div class="flex-1 font-medium text-left">
+                <div class="flex-1 sm:flex-none font-medium text-left">
                   {{$skill->name}}
                 </div>
               </div>

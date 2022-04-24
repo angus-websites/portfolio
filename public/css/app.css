@@ -4551,6 +4551,10 @@ body[dir="rtl"] .checkbox:checked,
     flex: 1 1 0%;
   }
 
+  .sm\:flex-none {
+    flex: none;
+  }
+
   .sm\:basis-1\/4 {
     flex-basis: 25%;
   }
