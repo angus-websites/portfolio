@@ -24,18 +24,12 @@
               </x-link-button>
             </div>
         @endcan
-
       </div>
-
     </div>
   </div>
   <!--Skills-->
   <div class="container px-5 my-10 mx-auto">
-    <div class="grid grid-cols-1 gap-x-6 gap-y-10 xs:grid-cols-2 md:grid-cols-3 my-16">
-        @foreach($sections as $section)
-          <!--Section container-->
-          <x-cards.skill-section-card :section="$section" editmode="true"/>
-        @endforeach
-      </div>
+    <!--Skills-->
+    @livewire("skills.index")
   </div>
 </x-app-layout>

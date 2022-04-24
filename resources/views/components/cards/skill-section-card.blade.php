@@ -49,7 +49,7 @@
               <div class="flex flex-row items-center gap-x-3">
                 @if($skill->icon)
                   <div class="avatar">
-                    <div class="w-8">
+                    <div class="w-8 rounded-full">
                       <img src={{$skill->getIcon()}}>
                     </div>
                   </div>
