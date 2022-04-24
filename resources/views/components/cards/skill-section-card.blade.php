@@ -1,4 +1,4 @@
-<div class="border rounded-lg p-5 flex flex-col">
+<div {{$attributes->merge(['class' => "border rounded-lg p-5 flex flex-col"])}}>
     <!--Section name-->
     <div class="flex-0">
         <p class="uppercase text-lg font-bold mb-2 text-center">{{$name}}</p>
@@ -7,10 +7,10 @@
     <!-- Content for skills-->
     <div class="flex-1">
         <!--Grid -->
-        <div class="flex flex-wrap my-5 gap-x-5 gap-y-8 justify-around" >
+        <div class="flex flex-wrap gap-x-5 gap-y-8 justify-around my-5" >
           @forelse($skills as $skill)
-            <div>
-              <div class="flex flex-row items-center gap-x-3">
+            <div class="basis-full sm:basis-1/3">
+              <div class="flex flex-row items-center space-x-3">
                 @if($skill->icon)
                   <div class="avatar">
                     <div class="w-8 rounded-full">

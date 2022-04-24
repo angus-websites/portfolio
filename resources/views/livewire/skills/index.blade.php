@@ -22,9 +22,11 @@
 
     <!-- Tabs View -->
     <div class="tabs justify-center my-4">
-        @foreach($sections as $section)
+        @forelse($sections as $section)
             <button wire:click="changeSection({{ $section->id }})" class="tab tab-lg tab-bordered {{ $active_section->id ==  $section->id ? 'tab-active' : ''  }}">{{$section->name}}</button>
-        @endforeach
+        @empty
+            <p>No Sections</p>
+        @endforelse
     </div>
 
     <!-- Content -->
@@ -59,10 +61,10 @@
                 <td colspan="3">
                     <div class="flex flex-row gap-x-4 justify-end">
                         @can("update", $active_section)
-                            <x-button wire:click="editSection" class="btn-sm">Edit Section</x-button>
+                            <x-button wire:click="showEdit" class="btn-sm">Edit Section</x-button>
                         @endcan
                         @can("delete", $active_section)
-                            <x-button class="btn-sm btn-error">Delete Section</x-button>
+                            <x-button wire:click="showDelete" class="btn-sm btn-error">Delete Section</x-button>
                         @endcan
                     </div>
                 </td>
@@ -95,6 +97,23 @@
         <x-slot name="footer">
             <label for="editModal" class="btn">Cancel</label>
             <x-button wire:click="saveSection" type="button" class="btn btn-primary">Save</x-button>
+        </x-slot>
+    </x-modal-daisy>
+
+    <!-- Delete Section modal -->
+    <x-modal-daisy id="deleteModal" wire:model.defer="delete_modal_open">
+        <x-slot name="title">
+            Delete Skill Section
+        </x-slot>
+
+        <x-slot name="content">
+            <p>Are you sure you want to delete this section?</p>
+            <p><b>{{$active_section->skills()->count()}}</b> skills will be deleted</p>
+        </x-slot>
+
+        <x-slot name="footer">
+            <label for="deleteModal" class="btn">Cancel</label>
+            <x-button wire:click="deleteSection" type="button" class="btn btn-error">Delete</x-button>
         </x-slot>
     </x-modal-daisy>
 

@@ -13,6 +13,7 @@ class Index extends Component
     public SkillSection $active_section;
     public SkillSection $editing_section;
     public $edit_modal_open = false;
+    public $delete_modal_open = false;
     public $is_create = false;
 
     protected function rules()
@@ -29,7 +30,7 @@ class Index extends Component
 
     public function mount()
     {
-        $this->active_section = SkillSection::first();
+        $this->resetSection();
         $this->editing_section = $this->active_section;
     }
 
@@ -51,13 +52,20 @@ class Index extends Component
         $this->active_section = $section;
     }
 
-    public function editSection()
+    public function showEdit()
     {
         /**
          * Show the modal for editing
          * this section
          */
         $this->edit_modal_open=true;
+        $this->editing_section = $this->active_section;
+    }
+
+    public function showDelete()
+    {
+        $this->delete_modal_open = true;
+        $this->editing_section = $this->active_section;
     }
 
     public function add()
@@ -68,7 +76,29 @@ class Index extends Component
          */
         $this->is_create = true;
         $this->edit_modal_open=true;
-        $this->editing_section = new SkillSection();
+        $this->editing_section = new SkillSection();   
+    }
+
+    public function resetSection()
+    {
+        /**
+         * Set the active section
+         * to the first skill section available
+         */
+        $this->active_section = SkillSection::firstOrNew();
+    }
+
+    public function deleteSection()
+    {
+        /**
+         * Delete the active skill
+         * section
+         */
+        $this->authorize('delete', $this->active_section);
+        $this->editing_section->delete();
+        $this->delete_modal_open = false;
+        $this->resetSection();
+        session()->flash('info', 'Section deleted');
         
     }
 
@@ -81,6 +111,7 @@ class Index extends Component
         
         if ($this->is_create){
             $this->authorize('create', Skill::class);
+            $this->active_section = $this->editing_section;
         }else{
             $this->authorize('update', $this->editing_section);
         }
