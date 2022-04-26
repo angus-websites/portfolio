@@ -7,6 +7,12 @@ use App\Models\Employment;
 
 class EmploymentController extends Controller
 {
+
+    public function __construct()
+    {
+      $this->authorizeResource(Employment::class);
+    }
+    
     /**
      * Display a listing of the resource.
      *

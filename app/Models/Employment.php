@@ -9,23 +9,24 @@ class Employment extends Model
 {
     use HasFactory;
 
-    /**
-     * Get the start date
-     */
-    public function getStartDateAttribute($value)
+    public function startYearHuman()
     {
-        return date('Y',strtotime($value));
+        /**
+         * Get the year this employment
+         * was started in a human readable
+         * format
+         */
+        return date('Y',strtotime($this->start_date));
     }
 
-    /**
-     * Get the end date
-     */
-    public function getEndDateAttribute($value)
+    public function endYearHuman()
     {
-        if ($value){
-            return date('Y',strtotime($value));
-        }
-
+        /**
+         * Get the year this employment
+         * was started in a human readable
+         * format
+         */
+        return $this->end_date ? date('Y',strtotime($this->end_date)) : "";
     }
 
 }

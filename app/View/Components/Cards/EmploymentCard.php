@@ -14,6 +14,7 @@ class EmploymentCard extends Component
     public $icon;
     public $description;
 
+
     /**
      * Create a new component instance.
      *
@@ -23,8 +24,8 @@ class EmploymentCard extends Component
     {
         $this->employment = $employment;
         $this->employer = $employment->employer;
-        $this->start_date = $employment->start_date;
-        $this->end_date = $employment->end_date;
+        $this->start_date = $employment->startYearHuman();
+        $this->end_date = $employment->endYearHuman();
         $this->role = $employment->role;
         $this->icon = $employment->icon;
         $this->description = $employment->description;
