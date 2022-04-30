@@ -48,6 +48,14 @@
                   </a>
                 </li>
               @endcan
+              @can('viewAny', App\Models\Education::class)
+                <li>
+                  <a class="flex flex-row items-center" href="{{route('education.index')}}">
+                    <span class="flex-1">Education</span>
+                    <span class="badge">{{\App\Models\Education::count()}}</span>
+                  </a>
+                </li>
+              @endcan
             </ul>
           </div>
           <!-- Info -->

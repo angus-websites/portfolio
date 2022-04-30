@@ -8,6 +8,7 @@ use App\Http\Controllers\SkillController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\EmploymentController;
+use App\Http\Controllers\EducationController;
 
 use Illuminate\Http\Request;
 
@@ -38,6 +39,7 @@ Route::resource('skills', SkillController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('tags', TagController::class);
 Route::resource('employment', EmploymentController::class);
+Route::resource('education', EducationController::class);
 
 
 //Contact

@@ -1,4 +1,4 @@
-@section('title', 'Tags')
+@section('title', 'Employments')
 
 <x-app-layout>
   <div class="container px-5 pt-24 mx-auto">
@@ -7,7 +7,7 @@
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Here you can add, remove and modify employment history</p>
     </div>
   </div>
-  <!--Tags-->
+  <!--Index-->
   <div class="container px-5 my-10 mx-auto">
     @livewire("employment.index")
   </div>
