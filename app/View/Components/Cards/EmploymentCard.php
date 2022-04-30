@@ -27,7 +27,7 @@ class EmploymentCard extends Component
         $this->start_date = $employment->startYearHuman();
         $this->end_date = $employment->endYearHuman();
         $this->role = $employment->role;
-        $this->icon = $employment->icon;
+        $this->icon = $employment->getIcon();
         $this->description = $employment->description;
     }
 

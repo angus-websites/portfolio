@@ -131,6 +131,7 @@ class Edit extends Component
          */
         
 
+        $this->authorize('create', Project::class);
         $this->validate();
         // We need to save first so we have a ID
         $this->project->save();
@@ -145,6 +146,7 @@ class Edit extends Component
          * Update the existing project
          */
         
+        $this->authorize('update', $this->project);
         $this->validate();
         $this->updateProjectDetails();
         session()->flash('success', 'Project successfully updated.');

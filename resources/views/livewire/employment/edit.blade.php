@@ -1,7 +1,29 @@
 <div>
-    <form wire:submit.prevent="{{$this->is_create ? 'createProject' : 'updateProject'}}">
+
+    @if (session()->has('success'))
+        <div class="alert alert-success shadow-lg mb-5">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>{{ session('success') }}</span>
+          </div>
+        </div>
+    @endif
+
+    @if (session()->has('info'))
+        <div class="alert alert-info shadow-lg mb-5">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span>{{ session('info') }}</span>
+          </div>
+        </div>
+    @endif
+
+
+    <form wire:submit.prevent="saveEmployment">
 
         <div class="grid grid-cols-1 gap-y-16">
+
+            <!-- Basic details -->
             <div>
                 <h2 class="text-lg font-medium">Details</h2>
                 <div class="grid md:grid-cols-2 gap-4 p-4">
@@ -68,6 +90,7 @@
                 </div>
             </div>
 
+            <!-- Images -->
             <div>
                 <h2 class="text-lg font-medium">Images</h2>
                 <div class="grid md:grid-cols-2 gap-4 p-4">
@@ -103,17 +126,17 @@
                                 @if(!empty($this->employment->icon))
 
                                     <div class="avatar mx-auto">
-                                        <div class="rounded-full w-24 h-24 shadow-md">
+                                        <div class="rounded-full w-14 shadow-md">
                                             <img src="{{$this->employment->getIcon()}}">
                                         </div>
                                     </div> 
 
                                     <div class="text-center mt-2">
-                                        <x-button wire:click="resetLogo" type="button" class="btn-sm btn-outline btn-error">Reset</x-button>
+                                        <x-button wire:click="resetIcon" type="button" class="btn-sm btn-error">Reset</x-button>
                                     </div>
                                 @else
-                                    <div class="avatar placeholder">
-                                        <div class="bg-neutral-focus text-neutral-content rounded-full w-10 h-10">
+                                    <div class="avatar placeholder mx-auto">
+                                        <div class="bg-neutral-focus text-neutral-content rounded-full w-14">
                                             <span class="text-xl">{{$this->employment->employer[0]}}</span>
                                         </div>
                                     </div>
@@ -125,7 +148,7 @@
                                 <div class="flex flex-col gap-y-2 justify-center"> 
                                     <h3 class="mb-4 font-medium text-center">Uploaded Icon</h3>
                                     <div class="avatar mx-auto">
-                                        <div class="rounded-full w-24 h-24 shadow-md">
+                                        <div class="rounded-full w-14 shadow-md">
                                             <img src="{{$uploaded_icon->temporaryUrl()}}">
                                         </div>
                                     </div>
@@ -136,6 +159,13 @@
                             @endif
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Save -->
+            <div>
+                <div class="p-4">
+                    <x-button class="btn-primary">Save</x-button>
                 </div>
             </div>
         </div>

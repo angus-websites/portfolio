@@ -5,10 +5,12 @@ namespace App\Http\Livewire\Employment;
 use Livewire\Component;
 use App\Models\Employment;
 use Livewire\WithFileUploads;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Edit extends Component
 {
     use WithFileUploads;
+    use AuthorizesRequests;
     public Employment $employment;
     public $is_create = false;
 
@@ -45,6 +47,47 @@ class Edit extends Component
         $this->is_uploaded_icon_valid = false;
         $this->validateOnly("uploaded_logo");
         $this->is_uploaded_icon_valid = true;
+    }
+
+    public function saveEmployment()
+    {
+        /**
+         * Called when the user
+         * clicks the "Save" button
+         */
+        
+        $validatedData = $this->validate();
+
+        if($this->is_create){
+            $this->authorize('create', Employment::class);
+        }else{
+            $this->authorize('update', $this->employment);
+        }
+
+        // Save the uploaded Icon
+        if ($this->uploaded_icon){
+            $this->employment->replaceIcon($this->uploaded_icon);
+            $this->uploaded_icon = null;
+            $this->is_uploaded_icon_valid = false;
+        }
+
+        // Save the skill
+        $this->employment->save();
+
+        session()->flash('success', 'Employment successfully updated.');
+
+        
+    }
+
+    public function resetIcon()
+    {
+        /**
+         * Reset the icon
+         * for this employment
+         */
+        $this->authorize('update', $this->employment);
+        $this->employment->removeIcon();
+        session()->flash('info', 'Icon reset to default');
     }
 
 

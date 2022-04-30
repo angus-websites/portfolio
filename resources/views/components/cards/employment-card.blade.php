@@ -7,11 +7,20 @@
       <div class="flex items-start space-x-5">
         <!--Image-->
         <div class="flex-none">
-          <div class="avatar placeholder">
-            <div class="bg-neutral-focus text-neutral-content rounded-full w-10 h-10">
-              <span class="text-xl">{{$employer[0]}}</span>
+
+          @if($icon)
+            <div class="avatar">
+              <div class="rounded-full w-10 h-10">
+                <img src="{{$icon}}" />
+              </div>
+            </div>  
+          @else
+            <div class="avatar placeholder">
+              <div class="bg-neutral-focus text-neutral-content rounded-full w-10">
+                <span class="text-xl">{{$employer[0]}}</span>
+              </div>
             </div>
-          </div>
+          @endif
         </div>
         <!--Small details-->
         <div class="flex-1">
@@ -41,11 +50,19 @@
     <div class="flex items-start space-x-5">
       <!--Image-->
       <div class="flex-none">
-        <div class="avatar placeholder">
-          <div class="bg-neutral-focus text-neutral-content rounded-full w-10 h-10">
-            <span class="text-xl">{{$employer[0]}}</span>
+        @if($icon)
+          <div class="avatar">
+            <div class="rounded-full w-10 h-10">
+              <img src="{{$icon}}" />
+            </div>
+          </div>  
+        @else
+          <div class="avatar placeholder">
+            <div class="bg-neutral-focus text-neutral-content rounded-full w-10">
+              <span class="text-xl">{{$employer[0]}}</span>
+            </div>
           </div>
-        </div>
+        @endif
       </div>
       <!--Content-->
       <div class="flex-1">
