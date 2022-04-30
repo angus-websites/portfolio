@@ -4,12 +4,17 @@ namespace App\Http\Livewire\Employment;
 
 use Livewire\Component;
 use App\Models\Employment;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
-
+    use WithFileUploads;
     public Employment $employment;
     public $is_create = false;
+
+    public $uploaded_icon;
+    public $is_uploaded_icon_valid;
+
 
     protected function rules()
     {
@@ -24,9 +29,24 @@ class Edit extends Component
             'employment.start_date' => 'required|date',
             'employment.end_date' => 'nullable|date',
             'employment.description' => 'nullable|string',
+            'uploaded_icon' => 'nullable|image|max:2048',
+
 
         ];
     }
+
+    public function updatedUploadedIcon()
+    {
+        /**
+         * Called when the user
+         * uploads a logo for 
+         * the project
+         */
+        $this->is_uploaded_icon_valid = false;
+        $this->validateOnly("uploaded_logo");
+        $this->is_uploaded_icon_valid = true;
+    }
+
 
 
     public function render()
@@ -38,4 +58,5 @@ class Edit extends Component
     {
         $this->employment = $employment;
     }
+
 }

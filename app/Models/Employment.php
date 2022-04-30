@@ -29,4 +29,13 @@ class Employment extends Model
         return $this->end_date ? date('Y',strtotime($this->end_date)) : "";
     }
 
+    public function getIcon()
+    {
+        /**
+         * Fetch the icon for this 
+         * employment
+         */
+        return "lol";
+    }
+
 }
