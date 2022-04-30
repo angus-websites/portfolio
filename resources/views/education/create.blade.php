@@ -19,7 +19,7 @@
 
     <div class="mt-10">
       <!--Create-->
-      @livewire("employment.edit", ["employment" => $employment])
+      @livewire("education.edit", ["education" => $education])
     </div>
   </section>
 </x-app-layout>
