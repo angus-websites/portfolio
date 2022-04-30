@@ -74,7 +74,12 @@ class Edit extends Component
         // Save the skill
         $this->employment->save();
 
-        session()->flash('success', 'Employment successfully updated.');
+        if ($this->is_create){
+            return redirect()->route('employment.index')->with("success","Employment created!");
+        
+        }else{
+          session()->flash('success', 'Employment successfully updated.');
+        }
 
         
     }
@@ -100,6 +105,7 @@ class Edit extends Component
     public function mount(Employment $employment)
     {
         $this->employment = $employment;
+        $this->is_create = !$employment->exists;
     }
 
 }

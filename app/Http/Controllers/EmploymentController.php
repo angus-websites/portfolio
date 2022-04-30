@@ -30,7 +30,7 @@ class EmploymentController extends Controller
      */
     public function create()
     {
-        //
+        return view('employment.create' , ["employment" => new Employment()]);
     }
 
 

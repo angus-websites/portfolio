@@ -137,7 +137,7 @@
                                 @else
                                     <div class="avatar placeholder mx-auto">
                                         <div class="bg-neutral-focus text-neutral-content rounded-full w-14">
-                                            <span class="text-xl">{{$this->employment->employer[0]}}</span>
+                                            <span class="text-xl">{{$this->employment->employer[0] ?? "?"}}</span>
                                         </div>
                                     </div>
                                 @endif 
