@@ -17,6 +17,19 @@
         </div>
     @endif
 
+    <!--Button flexbox -->
+    <div class="flex flex-col gap-y-4 md:flex-row md:justify-around my-8">
+
+      @can("create", App\Models\Employment::class)
+          <div>
+            <x-link-button href="{{route('employment.create') }}"  class="btn btn-primary">
+                Create Employment
+            </x-link-button>
+          </div>
+      @endcan
+    </div>
+
+
     <div class="overflow-x-auto">
       <table class="table w-full">
         <thead>
