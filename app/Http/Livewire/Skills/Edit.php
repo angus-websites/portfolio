@@ -78,7 +78,7 @@ class Edit extends Component
             $this->authorize('update', $this->skill);
         }
 
-        // Save the uploaded logo
+        // Save the uploaded icon
         if ($this->uploaded_icon){
             $this->skill->replaceIcon($this->uploaded_icon);
             $this->uploaded_icon = null;
@@ -111,7 +111,7 @@ class Edit extends Component
     {
         /**
          * Called when the user
-         * uploads a logo for 
+         * uploads a icon for 
          * the project
          */
         $this->is_uploaded_icon_valid = false;

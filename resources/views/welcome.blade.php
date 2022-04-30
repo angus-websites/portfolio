@@ -47,9 +47,15 @@
         <div>
           <h2 class="text-2xl font-bold sm:text-3xl">Employment</h1>
           <div class="grid grid-cols-1 gap-x-6 gap-y-10 mt-8 md:grid-cols-2 lg:grid-cols-1">
-            @foreach($employment as $work)
+            @forelse($employment as $work)
               <x-cards.employment-card :employment="$work"/>
-            @endforeach
+            @empty
+              <div class="col-span-full">
+                <div class="p-5 text-center">
+                  <div class="badge">No Employment found</div>
+                </div>
+              </div>
+            @endforelse
 
           </div>
 
@@ -58,9 +64,15 @@
         <div>
           <h2 class="text-2xl font-bold sm:text-3xl">Education</h1>
           <div class="grid grid-cols-1 gap-x-6 gap-y-10 mt-8 md:grid-cols-2 lg:grid-cols-1">
-            @foreach($education as $edu)
+            @forelse($education as $edu)
               <x-cards.education-card :education="$edu"/>
-            @endforeach
+            @empty
+              <div class="col-span-full">
+                <div class="p-5 text-center">
+                  <div class="badge">No Education found</div>
+                </div>
+              </div>
+            @endforelse
           </div>
         </div>
       </div>
