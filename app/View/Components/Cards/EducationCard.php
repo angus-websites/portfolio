@@ -25,9 +25,9 @@ class EducationCard extends Component
         $this->education = $education;
         $this->institute = $education->institute;
         $this->level = $education->level;
-        $this->start_date = $education->start_date;
-        $this->end_date = $education->end_date;
-        $this->icon = $education->icon;
+        $this->start_date = $education->startYearHuman();
+        $this->end_date = $education->endYearHuman();
+        $this->icon = $education->getIcon();
         $this->description = $education->description;
     }
 

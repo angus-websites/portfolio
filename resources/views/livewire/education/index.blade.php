@@ -20,10 +20,10 @@
     <!--Button flexbox -->
     <div class="flex flex-col gap-y-4 md:flex-row md:justify-around my-8">
 
-      @can("create", App\Models\Employment::class)
+      @can("create", App\Models\Education::class)
           <div>
-            <x-link-button href="{{route('employment.create') }}"  class="btn btn-primary">
-                Create Employment
+            <x-link-button href="{{route('education.create') }}"  class="btn btn-primary">
+                Create Education
             </x-link-button>
           </div>
       @endcan
@@ -35,24 +35,23 @@
         <thead>
             <tr>
                 <th></th>
-                <th colspan="2">Employment</th>
+                <th colspan="2">Education</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($employments as $employment)
+            @foreach($educations as $education)
                 <tr>
                     <th>{{$loop->iteration}}</th>
                     <td>
-                        <b>{{$employment->employer}}</b> - {{$employment->role}}
+                        <b>{{$education->institute}}</b> - {{$education->level}}
                     </td>
                     <td>
                         <div class="flex flex-row justify-start items-center gap-x-4">
-                            @can("delete", $employment)
-                                <x-button wire:click="showDelete({{$employment}})" class="btn btn-sm btn-error">Delete</x-button>
+                            @can("delete", $education)
+                                <x-button wire:click="showDelete({{$education}})" class="btn btn-sm btn-error">Delete</x-button>
                             @endcan
-
-                            @can("update", $employment)
-                                <x-link-button href="{{route('employment.edit', ['employment' => $employment]) }}" class="btn btn-sm btn-warning">Edit</x-link-button>
+                            @can("update", $education)
+                                <x-link-button href="{{route('education.edit', ['education' => $education]) }}" class="btn btn-sm btn-warning">Edit</x-link-button>
                             @endcan
                         </div>
                     </td>
@@ -62,20 +61,20 @@
       </table>
     </div>
 
-    <!-- Delete Employment modal -->
+    <!-- Delete Education modal -->
     <x-modal-daisy id="deleteModal" wire:model.defer="delete_modal_open">
         <x-slot name="title">
-            Delete Employment
+            Delete Education
         </x-slot>
 
         <x-slot name="content">
-            <p>Are you sure you want to delete this employment?</p>
-            <b>{{$employment_to_delete->employer}}</b>
+            <p>Are you sure you want to delete this education?</p>
+            <b>{{$education_to_delete->institute}}</b>
         </x-slot>
 
         <x-slot name="footer">
             <label for="deleteModal" class="btn">Cancel</label>
-            <x-button wire:click="deleteEmployment" type="button" class="btn btn-error">Delete</x-button>
+            <x-button wire:click="deleteEducation" type="button" class="btn btn-error">Delete</x-button>
         </x-slot>
     </x-modal-daisy>
 

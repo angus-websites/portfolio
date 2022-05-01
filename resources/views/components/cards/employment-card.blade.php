@@ -17,7 +17,7 @@
           @else
             <div class="avatar placeholder">
               <div class="bg-neutral-focus text-neutral-content rounded-full w-10">
-                <span class="text-xl">{{$employer[0]}}</span>
+                <span class="text-xl">{{$employer[0] ?? "?"}}</span>
               </div>
             </div>
           @endif
