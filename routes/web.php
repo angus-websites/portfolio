@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\EmploymentController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\UserController;
 
 use Illuminate\Http\Request;
 
@@ -32,6 +33,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+// Account
+Route::get('user/account', [UserController::class, 'viewAccount'])->name("user.account");
+
 
 // Resource Controllers 
 Route::resource('projects', ProjectController::class);
@@ -40,7 +44,7 @@ Route::resource('categories', CategoryController::class);
 Route::resource('tags', TagController::class);
 Route::resource('employment', EmploymentController::class);
 Route::resource('education', EducationController::class);
-
+Route::resource('user', UserController::class);
 
 //Contact
 Route::get('/contact', function () {

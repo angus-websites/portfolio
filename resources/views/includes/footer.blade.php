@@ -5,7 +5,7 @@
         <img class="block h-8 w-auto" src="/assets/images/core/logo.svg" alt="Workflow">
 
       </a>
-      <p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2021 Angus Goody
+      <p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© {{ now()->year }} Angus Goody
       </p>
       <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
 

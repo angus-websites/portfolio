@@ -38,7 +38,7 @@
                 <a href="/dashboard">Dashboard</a>
               </li>
               <li>
-                <a href="/account">Account</a>
+                <a href="{{route("user.account")}}">Account</a>
               </li> 
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
