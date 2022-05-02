@@ -75,66 +75,103 @@
           </div>
         </div>
 
-        <!-- Projects Collapse-->
-        <div class="collapse rounded-lg bg-base-200 collapse-plus border">
-          <input type="checkbox">
-          <div class="collapse-title">
-            <div class="px-5">Manage Projects</div>
-          </div>
-          <div class="collapse-content">
-            <div class="px-5">
-              <!-- Create project -->
-              @can('create', App\Models\Project::class)
-                <!--Create project-->
-                <div class="mt-3 mb-6 flex">
-                  <x-link-button class="btn-primary" href="{{ route('projects.create') }}">
-                    New Project
-                  </x-link-button>
-                </div>
-              @endcan
-              <!-- Project table -->
-              <table class="table w-full">
-                <!-- head -->
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th colspan="2">Category</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach(\App\Models\Project::all() as $project)
+        @can("manage", App\Models\Project::class)
+          <!-- Projects Collapse-->
+          <div class="collapse rounded-lg bg-base-200 collapse-plus border">
+            <input type="checkbox">
+            <div class="collapse-title">
+              <div class="px-5">Manage Projects</div>
+            </div>
+            <div class="collapse-content">
+              <div class="px-5">
+                <!-- Create project -->
+                @can('create', App\Models\Project::class)
+                  <!--Create project-->
+                  <div class="mt-3 mb-6 flex">
+                    <x-link-button class="btn-primary" href="{{ route('projects.create') }}">
+                      New Project
+                    </x-link-button>
+                  </div>
+                @endcan
+                <!-- Project table -->
+                <table class="table w-full">
+                  <!-- head -->
+                  <thead>
                     <tr>
-                      <th>{{ $loop->iteration }}</th>
-                      <td>{{$project->name}}</td>
-                      <td>{{$project->category()->name}}</td>
-                      <td>
-                        @can('update', $project)
-                          <x-link-button class="btn-sm btn-warning" href="{{route('projects.edit', ['project'=>$project])}}">Edit</x-link-button>
-                        @endcan
-                        <x-link-button class="btn-sm btn-info" href="{{route('projects.show', ['project'=>$project])}}">View</x-link-button>
-
-                      </td>
+                      <th></th>
+                      <th>Name</th>
+                      <th colspan="2">Category</th>
                     </tr>
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+                  </thead>
+                  <tbody>
+                    @foreach(\App\Models\Project::all() as $project)
+                      <tr>
+                        <th>{{ $loop->iteration }}</th>
+                        <td>{{$project->name}}</td>
+                        <td>{{$project->category()->name}}</td>
+                        <td>
+                          @can('update', $project)
+                            <x-link-button class="btn-sm btn-warning" href="{{route('projects.edit', ['project'=>$project])}}">Edit</x-link-button>
+                          @endcan
+                          <x-link-button class="btn-sm btn-info" href="{{route('projects.show', ['project'=>$project])}}">View</x-link-button>
 
-        <!-- Users Collapse-->
-        <div class="collapse rounded-lg bg-base-200 collapse-plus border">
-          <input type="checkbox">
-          <div class="collapse-title">
-            <div class="px-5">Manage Users</div>
-          </div>
-          <div class="collapse-content">
-            <div class="px-5">
-              Users will go here
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
+        @endcan
+
+        @can("manage", App\Models\User::class)
+          <!-- Users Collapse-->
+          <div class="collapse rounded-lg bg-base-200 collapse-plus border">
+            <input type="checkbox">
+            <div class="collapse-title">
+              <div class="px-5">Manage Users</div>
+            </div>
+            <div class="collapse-content">
+              <div class="px-5">
+                <!-- Create project -->
+                @can('create', App\Models\User::class)
+                  <!--Create project-->
+                  <div class="mt-3 mb-6 flex">
+                    <x-link-button class="btn-primary" href="{{ route('user.create') }}">
+                      New User
+                    </x-link-button>
+                  </div>
+                @endcan
+                <!-- User table -->
+                <table class="table w-full">
+                  <!-- head -->
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th colspan="2">Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach(\App\Models\User::all() as $user)
+                      <tr>
+                        <th>{{ $user->id }}</th>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>
+                          @can('update', $user)
+                            <x-link-button class="btn-sm btn-warning" href="{{route('user.edit', ['user'=>$user])}}">Edit</x-link-button>
+                          @endcan
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        @endcan
       </div>
 
     </div>

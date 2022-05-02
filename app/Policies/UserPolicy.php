@@ -4,11 +4,41 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
     use HandlesAuthorization;
 
+
+
+    /**
+     * Perform pre-authorization checks.
+     * TODO UNCOMMENT WHEN READY
+     *
+     * @param  \App\Models\User  $user
+     * @param  string  $ability
+     * @return void|bool
+     */
+    public function before(User $user, $ability)
+    {
+        if ($user->is_admin()) {
+            return true;
+        }
+    }
+
+    
+    public function manage(User $user)
+    {
+        /**
+         * Can a user manage users?
+         */
+        
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny('You cannot manage users');
+
+    }
 
     public function viewAccount(User $user)
     {

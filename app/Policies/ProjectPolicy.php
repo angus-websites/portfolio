@@ -12,6 +12,17 @@ class ProjectPolicy
 {
     use HandlesAuthorization;
 
+    public function manage(User $user)
+    {
+        /**
+         * Can a user manage projects?
+         */
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny('You cannot manage projects');
+
+    }
+
     /**
      * Determine whether the user can view any models.
      *
