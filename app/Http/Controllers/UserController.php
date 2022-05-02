@@ -20,8 +20,7 @@ class UserController extends Controller
          * account details
          */
         $this->authorize('viewAccount', User::class);
-        echo "Ready";
-    }
+        return view('user.account');    }
 
     /**
      * Display a listing of the resource.
