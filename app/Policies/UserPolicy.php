@@ -26,7 +26,6 @@ class UserPolicy
             return true;
         }
     }
-
     
     public function manage(User $user)
     {
