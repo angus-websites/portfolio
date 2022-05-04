@@ -15,7 +15,7 @@
     @endif
     <div class="flex flex-col text-center w-full mb-12">
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Contact Me</h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Feel free to use the form below to send me a message</p>
     </div>
     <form method="POST" action="/contact">
       @csrf

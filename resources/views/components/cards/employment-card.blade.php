@@ -1,8 +1,8 @@
 
 @if($isCollapse() == true)
   <!--Employment collapse-->
-  <div class="collapse rounded-lg bg-base-200 collapse-arrow border">
-    <input type="checkbox" style="height: 100%">
+  <div tabindex="0" class="collapse rounded-lg bg-base-200 collapse-arrow border">
+    <input aria-hidden="true" tabindex="-1" type="checkbox" class="h-full"> 
     <div class="collapse-title">
       <div class="flex items-start space-x-5">
         <!--Image-->

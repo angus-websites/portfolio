@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
       DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
 
-      $adminRole=Role::where('name', '=', 'Admin')->firstOrFail();
+      $superAdminRole=Role::where('name', '=', 'Super Admin')->firstOrFail();
 
       if(config('admin.admin_name')) {
         $admin=User::create([
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
 
         DB::table('user_roles')->insert([
           'user_id' => $admin->id,
-          'role_id' => $adminRole->id,
+          'role_id' => $superAdminRole->id,
         ]);
       }
       

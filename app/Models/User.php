@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @return boolean
      */
     public function is_admin(){
-        return $this->roles()->where('name', 'Admin')->exists();
+        return $this->roles()->whereIn('name', ['Admin', 'Super Admin'])->exists();
     }
 
     /**

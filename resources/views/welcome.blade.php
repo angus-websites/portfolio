@@ -1,4 +1,5 @@
 @section('title', 'Welcome')
+@section('description', "View Angus Goody's Portfolio and find out about his projects")
 <x-app-layout>
   <div class="my-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:my-20 lg:px-8 xl:mt-28">
 
@@ -12,7 +13,7 @@
         </h1>
         <!--Subtitle-->
         <p class="text-golden-dark mt-3 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-          Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+          I am a computer science student at The University Of Sheffield
         </p>
         <!--Buttons-->
         <x-button-group class="mt-5 sm:mt-8 sm:justify-center lg:justify-start">
@@ -23,7 +24,7 @@
             Contact
           </a>
           <a href="#" class="btn btn btn-accent sm:btn-lg">
-            Other
+            About
           </a>
         </x-button-group>
       </div>

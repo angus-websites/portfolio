@@ -11,7 +11,7 @@
             Angus
         @endif
     </title>
-
+    <meta name="description" content="@yield('description', 'Welcome to my portfolio')">
     @include('includes.head-tags')
   </head>
   <body {!! $attributes->merge(['class' => "font-sans antialiased $bg"]) !!}>
