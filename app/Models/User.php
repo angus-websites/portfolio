@@ -23,8 +23,8 @@ class User extends Authenticatable
      * Check if this user is an admin
      * @return boolean
      */
-    public function is_admin(){
-        return $this->roles()->whereIn('name', ['Admin', 'Super Admin'])->exists();
+    public function is_admin($super=false){
+        return $super ? $this->roles()->where('name', "Super Admin")->exists() : $this->roles()->whereIn('name', ['Admin', 'Super Admin'])->exists();
     }
 
     /**

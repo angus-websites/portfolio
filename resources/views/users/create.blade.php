@@ -17,7 +17,7 @@
     </div>
 
     <!--Edit-->
-    @livewire("user.edit", ['user' => $user])
+    @livewire("users.edit", ['user' => $user])
   </div>
   
 </x-app-layout>

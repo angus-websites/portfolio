@@ -20,7 +20,7 @@ class UserController extends Controller
          * account details
          */
         $this->authorize('viewAccount', User::class);
-        return view('user.account');    
+        return view('users.account');    
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        return view('users.index');
     }
 
     /**
@@ -40,7 +40,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create', ["user" => new User()]);
+        return view('users.create', ["user" => new User()]);
     }
 
     /**
@@ -51,7 +51,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.edit', ["user" => $user]);
+        return view('users.edit', ["user" => $user]);
     }
     
 }

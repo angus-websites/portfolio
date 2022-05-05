@@ -10,6 +10,6 @@
   <!--Skills-->
   <div class="container px-5 my-10 mx-auto">
     <!--Skills-->
-    @livewire("user.index")
+    @livewire("users.index")
   </div>
 </x-app-layout>
