@@ -5,11 +5,11 @@ namespace App\Policies;
 use App\Models\Employment;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class EmploymentPolicy
 {
     use HandlesAuthorization;
-
 
     public function before(User $user, $ability)
     {
@@ -26,7 +26,7 @@ class EmploymentPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return Response::deny('You cannot view all Employment');
     }
 
     /**
@@ -38,7 +38,7 @@ class EmploymentPolicy
      */
     public function view(User $user, Employment $employment)
     {
-        //
+        return Response::deny('You cannot view this Employment');
     }
 
     /**
@@ -49,7 +49,7 @@ class EmploymentPolicy
      */
     public function create(User $user)
     {
-        //
+        return Response::deny('You cannot create new Employment');
     }
 
     /**
@@ -61,7 +61,7 @@ class EmploymentPolicy
      */
     public function update(User $user, Employment $employment)
     {
-        //
+        return Response::deny('You cannot update this Employment');
     }
 
     /**
@@ -73,7 +73,7 @@ class EmploymentPolicy
      */
     public function delete(User $user, Employment $employment)
     {
-        //
+        return Response::deny('You cannot delete this Employment');
     }
 
     /**
@@ -85,7 +85,7 @@ class EmploymentPolicy
      */
     public function restore(User $user, Employment $employment)
     {
-        //
+        return Response::deny('You cannot restore this Employment');
     }
 
     /**
@@ -97,6 +97,6 @@ class EmploymentPolicy
      */
     public function forceDelete(User $user, Employment $employment)
     {
-        //
+        return Response::deny('You cannot force delete this Employment');
     }
 }

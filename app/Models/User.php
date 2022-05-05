@@ -19,6 +19,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'user_roles');
     }
 
+    public function roles_pretty()
+    {
+        /**
+         * Convert roles to a comma 
+         * seperated string
+         */
+        return $this->roles()->pluck('name')->join(',');
+    }
+
     /**
      * Check if this user is an admin
      * @return boolean

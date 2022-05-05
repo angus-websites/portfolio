@@ -150,6 +150,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Name</th>
+                      <th>Roles</th>
                       <th colspan="2">Email</th>
                     </tr>
                   </thead>
@@ -158,6 +159,7 @@
                       <tr>
                         <th>{{ $user->id }}</th>
                         <td>{{$user->name}}</td>
+                        <td>{{$user->roles_pretty()}}</td>
                         <td>{{$user->email}}</td>
                         <td>
                           @can('update', $user)

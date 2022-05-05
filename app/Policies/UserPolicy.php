@@ -33,9 +33,7 @@ class UserPolicy
          * Can a user manage users?
          */
         
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot manage users');
+        return Response::deny('You cannot manage users');
 
     }
 
@@ -45,7 +43,7 @@ class UserPolicy
          * Can this user view their account
          * details
          */
-        return true;
+        return Response::allow();
     }
 
     public function updateAccount(User $user)
@@ -54,7 +52,7 @@ class UserPolicy
          * Can this user update their account
          * details
          */
-        return true;
+        return Response::allow();
     }
 
 
@@ -67,7 +65,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return Response::deny('You cannot view all users');
     }
 
     /**
@@ -79,7 +77,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        return Response::deny('You cannot view this users');
     }
 
     /**
@@ -90,7 +88,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //
+        return Response::deny('You cannot create new users');
     }
 
     /**
@@ -102,7 +100,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        //
+        return Response::deny('You cannot update this user');
     }
 
     /**
@@ -114,7 +112,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //
+        return Response::deny('You cannot delete this user');
     }
 
     /**
@@ -126,7 +124,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model)
     {
-        //
+        return Response::deny('You cannot restore this users');
     }
 
     /**
@@ -138,6 +136,6 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        //
+        return Response::deny('You cannot force delete this users');
     }
 }

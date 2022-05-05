@@ -12,6 +12,19 @@ class CategoryPolicy
     use HandlesAuthorization;
 
     /**
+     * Perform pre-authorization checks.     *
+     * @param  \App\Models\User  $user
+     * @param  string  $ability
+     * @return void|bool
+     */
+    public function before(User $user, $ability)
+    {
+        if ($user->is_admin()) {
+            return true;
+        }
+    }
+    
+    /**
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
@@ -19,9 +32,7 @@ class CategoryPolicy
      */
     public function viewAny(User $user)
     {
-        return true
-            ? Response::allow()
-            : Response::deny('You cannot view Categories');
+        return Response::deny('You cannot view Categories');
     }
 
     /**
@@ -33,9 +44,7 @@ class CategoryPolicy
      */
     public function view(User $user, Category $category)
     {
-        return true
-            ? Response::allow()
-            : Response::deny('You cannot view this Category');
+        return Response::deny('You cannot view this Category');
     }
 
     /**
@@ -46,9 +55,7 @@ class CategoryPolicy
      */
     public function create(User $user)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot create a new Category');
+        return Response::deny('You cannot create a new Category');
     }
 
     /**
@@ -60,9 +67,7 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot update categories');
+        return Response::deny('You cannot update categories');
     }
 
     /**
@@ -74,9 +79,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot delete categories');
+        return Response::deny('You cannot delete categories');
     }
 
     /**
@@ -88,7 +91,7 @@ class CategoryPolicy
      */
     public function restore(User $user, Category $category)
     {
-        //
+        return Response::deny('You cannot restore this Category');
     }
 
     /**
@@ -100,6 +103,6 @@ class CategoryPolicy
      */
     public function forceDelete(User $user, Category $category)
     {
-        //
+        return Response::deny('You cannot force delete this Category');
     }
 }

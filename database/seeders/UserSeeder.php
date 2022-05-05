@@ -28,6 +28,8 @@ class UserSeeder extends Seeder
 
 
       $superAdminRole=Role::where('name', '=', 'Super Admin')->firstOrFail();
+      $adminRole = Role::where('name', '=', 'Admin')->firstOrFail();
+      $userRole = Role::where('name', '=', 'User')->firstOrFail();
 
       if(config('admin.admin_name')) {
         $admin=User::create([
@@ -41,6 +43,44 @@ class UserSeeder extends Seeder
           'role_id' => $superAdminRole->id,
         ]);
       }
+
+      // Create Bob the Admin
+      $bob = User::create([
+        'name' => 'Bob',
+        'email' => 'bob@gmail.com',
+        'password' => 'password123'
+      ]);
+
+      DB::table('user_roles')->insert([
+        'user_id' => $bob->id,
+        'role_id' => $adminRole->id,
+      ]);
+
+      // Create Terry the Admin
+      $terry = User::create([
+        'name' => 'Terry',
+        'email' => 'terry@gmail.com',
+        'password' => 'password123'
+      ]);
+
+      DB::table('user_roles')->insert([
+        'user_id' => $terry->id,
+        'role_id' => $adminRole->id,
+      ]);
+
+      // Create Charlie the User
+      $charlie = User::create([
+        'name' => 'Charlie',
+        'email' => 'charlie@gmail.com',
+        'password' => 'password123'
+      ]);
+
+      DB::table('user_roles')->insert([
+        'user_id' => $charlie->id,
+        'role_id' => $userRole->id,
+      ]);
+
+
       
     }
 }

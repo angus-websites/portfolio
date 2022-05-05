@@ -17,9 +17,7 @@ class ProjectPolicy
         /**
          * Can a user manage projects?
          */
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot manage projects');
+        return Response::deny('You cannot manage projects');
 
     }
 
@@ -31,9 +29,7 @@ class ProjectPolicy
      */
     public function viewAny(?User $user)
     {
-        return true
-            ? Response::allow()
-            : Response::deny('You cannot view projects');
+        return Response::allow();
     }
 
     /**
@@ -45,9 +41,7 @@ class ProjectPolicy
      */
     public function view(?User $user, Project $project)
     {
-        return true
-            ? Response::allow()
-            : Response::deny('You cannot view this project');
+        return Response::allow();
     }
 
     /**
@@ -59,9 +53,7 @@ class ProjectPolicy
     public function create(User $user)
     {
 
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot create a new project');
+        return Response::deny('You cannot create a new project');
     }
 
     /**
@@ -73,10 +65,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-       return $user->is_admin()
-           ? Response::allow()
-           : Response::deny('You cannot update this project');
-
+        return Response::deny('You cannot update this project');
     }
 
     /**
@@ -88,9 +77,7 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot delete this project');
+        return Response::deny('You cannot delete this project');
     }
 
     /**
@@ -102,7 +89,7 @@ class ProjectPolicy
      */
     public function restore(User $user, Project $project)
     {
-        //
+        return Response::deny('You cannot restore this project');
     }
 
     /**
@@ -114,6 +101,6 @@ class ProjectPolicy
      */
     public function forceDelete(User $user, Project $project)
     {
-        //
+        return Response::deny('You cannot force delete this project');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Education;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class EducationPolicy
 {
@@ -25,7 +26,7 @@ class EducationPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return Response::deny('You cannot all Education');
     }
 
     /**
@@ -37,7 +38,7 @@ class EducationPolicy
      */
     public function view(User $user, Education $education)
     {
-        //
+        return Response::deny('You cannot this Education');
     }
 
     /**
@@ -48,7 +49,7 @@ class EducationPolicy
      */
     public function create(User $user)
     {
-        //
+        return Response::deny('You cannot create new Education');
     }
 
     /**
@@ -60,7 +61,7 @@ class EducationPolicy
      */
     public function update(User $user, Education $education)
     {
-        //
+        return Response::deny('You cannot update this Education');
     }
 
     /**
@@ -72,7 +73,7 @@ class EducationPolicy
      */
     public function delete(User $user, Education $education)
     {
-        //
+        return Response::deny('You cannot delete this Education');
     }
 
     /**
@@ -84,7 +85,7 @@ class EducationPolicy
      */
     public function restore(User $user, Education $education)
     {
-        //
+        return Response::deny('You cannot restore this Education');
     }
 
     /**
@@ -96,6 +97,6 @@ class EducationPolicy
      */
     public function forceDelete(User $user, Education $education)
     {
-        //
+        return Response::deny('You cannot force delete Education');
     }
 }

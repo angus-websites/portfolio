@@ -27,9 +27,7 @@ class TagPolicy
      */
     public function viewAny(User $user)
     {
-        return true
-            ? Response::allow()
-            : Response::deny("You cannot view tags");
+        return Response::deny('You cannot view all tags');
     }
 
     /**
@@ -41,7 +39,7 @@ class TagPolicy
      */
     public function view(User $user, Tag $tag)
     {
-        //
+        return Response::deny('You cannot view this tag');
     }
 
     /**
@@ -52,7 +50,7 @@ class TagPolicy
      */
     public function create(User $user)
     {
-        //
+        return Response::deny('You cannot create Tags');
     }
 
     /**
@@ -64,7 +62,7 @@ class TagPolicy
      */
     public function update(User $user, Tag $tag)
     {
-        //
+        return Response::deny('You cannot update this tag');
     }
 
     /**
@@ -76,7 +74,7 @@ class TagPolicy
      */
     public function delete(User $user, Tag $tag)
     {
-        //
+        return Response::deny('You cannot delete this tag');
     }
 
     /**
@@ -88,7 +86,7 @@ class TagPolicy
      */
     public function restore(User $user, Tag $tag)
     {
-        //
+        return Response::deny('You cannot restore this tags');
     }
 
     /**
@@ -100,6 +98,6 @@ class TagPolicy
      */
     public function forceDelete(User $user, Tag $tag)
     {
-        //
+        return Response::deny('You cannot force delete this tag');
     }
 }
