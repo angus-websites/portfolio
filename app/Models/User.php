@@ -11,21 +11,13 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * Fetch a list of roles this 
-     * User belongs to
-     */
-    public function roles() {
-        return $this->belongsToMany(Role::class, 'user_roles');
-    }
 
-    public function roles_pretty()
-    {
+    public function role() {
         /**
-         * Convert roles to a comma 
-         * seperated string
+         * Get the role for this
+         * user
          */
-        return $this->roles()->pluck('name')->join(',');
+        return $this->belongsTo(Role::class)->first();
     }
 
     /**
@@ -33,7 +25,7 @@ class User extends Authenticatable
      * @return boolean
      */
     public function is_admin($super=false){
-        return $super ? $this->roles()->where('name', "Super Admin")->exists() : $this->roles()->whereIn('name', ['Admin', 'Super Admin'])->exists();
+        return $super ? $this->role()->name == "Super Admin" :  in_array($this->role()->name, ["Admin", "Super Admin"]);
     }
 
     /**

@@ -22,7 +22,7 @@ class UserPolicy
      */
     public function before(User $user, $ability)
     {
-        if ($user->is_admin()) {
+        if ($user->is_admin(true)) {
             return true;
         }
     }
@@ -33,7 +33,9 @@ class UserPolicy
          * Can a user manage users?
          */
         
-        return Response::deny('You cannot manage users');
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny('You cannot manage users');
 
     }
 
@@ -65,7 +67,9 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return Response::deny('You cannot view all users');
+        return $user->is_admin()
+            ? Response::allow()
+            : Response::deny('You cannot view all users');
     }
 
     /**
@@ -77,7 +81,11 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        return Response::deny('You cannot view this users');
+        if($user->is_admin() && !$model->is_admin(true)){
+           return Response::allow();
+        }
+        return Response::deny('You cannot view this user');
+        
     }
 
     /**
@@ -100,6 +108,12 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
+        if($user->is_admin()){
+            if(! ($model->is_admin() && $model->id != $user->id)){
+                return Response::allow();
+            }
+            return Response::deny('Admins cannot update other admins');
+        }
         return Response::deny('You cannot update this user');
     }
 

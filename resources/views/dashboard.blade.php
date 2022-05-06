@@ -65,10 +65,8 @@
               <div class="mb-8">
                 <p>Name: <b>{{Auth::user()->name}}</b></p>
                 <p class="flex flex-row space-x-2 items-center">
-                  <span>Roles</span>
-                  @foreach(Auth::user()->roles()->pluck('name')->toArray() as $role)
-                    <span class="badge">{{$role}}</span>
-                  @endforeach
+                  <span>Role</span>
+                  <span class="badge">{{Auth::user()->role()->name}}</span>
                 </p>
               </div>
             </div>
@@ -159,7 +157,7 @@
                       <tr>
                         <th>{{ $user->id }}</th>
                         <td>{{$user->name}}</td>
-                        <td>{{$user->roles_pretty()}}</td>
+                        <td>{{$user->role()->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>
                           @can('update', $user)
