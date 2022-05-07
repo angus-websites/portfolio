@@ -42,47 +42,18 @@
               </div>
 
               <!--Role-->
-              {{-- <div class="form-control mb-4">
+              <div class="form-control mb-4">
                   <x-label for="section" :value="__('Role')" />
-                  <x-select wire:model="user.skill_section_id" error="skill.skill_section_id" showgreen="true" id="section" name="skill_section_id" class="select-bordered w-full" required>
-                    <option disabled="disabled">Choose a skill section</option>
-                    @foreach($sections as $section)
-                      <option value="{{$section->id}}">
-                        {{$section->name}}
+                  <x-select wire:model="user.role_id" error="user.role_id" id="role" name="role_id" class="select-bordered w-full" required>
+                    <option disabled="disabled">Choose a role</option>
+                    @foreach($roles as $role)
+                      <option value="{{$role->id}}">
+                        {{$role->name}}
                       </option>
                     @endforeach
                   </x-select>
-              </div> --}}
-            </div>
-          </div>
-
-          <!-- Roles Section -->
-          <div class="col-span-6 md:col-span-4 lg:col-span-3 2xl:col-span-4">
-              <h3 class="text-lg font-medium mt-7" >Roles</h3>
-
-              <div class="overflow-x-auto mt-8 shadow-md">
-                <table class="table w-full">
-                    <!-- head -->
-                    <thead>
-                        <tr>
-                            <th colspan="2">Role name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($user->roles()->get() as $role)
-                            <tr>
-                                <th>{{$role->name}}</th>
-                                @can("delete", $role)
-                                    <td>
-                                        <x-button class="btn-sm btn-error">Remove</x-button>
-                                    </td>
-                                @endcan
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
               </div>
-
+            </div>
           </div>
 
           <!-- Save section -->

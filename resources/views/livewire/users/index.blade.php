@@ -15,7 +15,7 @@
           <tr>
             <th>{{ $user->id }}</th>
             <td>{{$user->name}}</td>
-            <td>{{$user->roles_pretty()}}</td>
+            <td>{{$user->role()->name}}</td>
             <td>{{$user->email}}</td>
             <td>
               @can('update', $user)

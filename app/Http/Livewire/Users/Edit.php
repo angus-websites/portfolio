@@ -20,6 +20,7 @@ class Edit extends Component
         return [
             'user.email' => ["required", "email", "unique:users,email,". $this->user->id],
             'user.name' => 'required|string|min:1',
+            'user.role_id' => 'required|exists:roles,id'
         ];
     }
 

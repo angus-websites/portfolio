@@ -22,7 +22,7 @@ class UserPolicy
      */
     public function before(User $user, $ability)
     {
-        if ($user->is_admin(true)) {
+        if ($user->is_admin(true) && !in_array($ability, ["update", "delete"])) {
             return true;
         }
     }
@@ -108,8 +108,11 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        if($user->is_admin()){
-            if(! ($model->is_admin() && $model->id != $user->id)){
+        if($model->is_admin(true) && $user->is_admin()){
+            return Response::deny('Super Admins cannot be changed');
+        }
+        elseif($user->is_admin()){
+            if(! ($model->is_admin() && $model->id != $user->id) || $user->is_admin(true)){
                 return Response::allow();
             }
             return Response::deny('Admins cannot update other admins');
