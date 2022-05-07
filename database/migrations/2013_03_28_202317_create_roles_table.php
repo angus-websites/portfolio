@@ -18,6 +18,7 @@ class CreateRolesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->text("name");
+            $table->boolean("changeable")->default(1);
         });
     }
 

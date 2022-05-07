@@ -136,7 +136,7 @@
                 @can('create', App\Models\User::class)
                   <!--Create project-->
                   <div class="mt-3 mb-6 flex">
-                    <x-link-button class="btn-primary" href="{{ route('user.create') }}">
+                    <x-link-button class="btn-primary" href="{{ route('users.create') }}">
                       New User
                     </x-link-button>
                   </div>
@@ -161,7 +161,7 @@
                         <td>{{$user->email}}</td>
                         <td>
                           @can('update', $user)
-                            <x-link-button class="btn-sm btn-warning" href="{{route('user.edit', ['user'=>$user])}}">Edit</x-link-button>
+                            <x-link-button class="btn-sm btn-warning" href="{{route('users.edit', ['user'=>$user])}}">Edit</x-link-button>
                           @endcan
                         </td>
                       </tr>

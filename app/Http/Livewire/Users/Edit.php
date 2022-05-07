@@ -8,7 +8,13 @@ use App\Models\Role;
 
 class Edit extends Component
 {
-    public User $user;
+    protected User $user;
+    public $user_email;
+    public $user_name;
+    public $user_roleid;
+
+    public $user_new_password;
+    public $user_new_password_confirmed;
 
     protected function rules()
     {
@@ -18,9 +24,9 @@ class Edit extends Component
          * of a project
          */
         return [
-            'user.email' => ["required", "email", "unique:users,email,". $this->user->id],
-            'user.name' => 'required|string|min:1',
-            'user.role_id' => 'required|exists:roles,id'
+            'user_email' => ["required", "email", "unique:users,email,". $this->user->id],
+            'user_name' => 'required|string|min:1',
+            'user_roleid' => 'required|exists:roles,id'
         ];
     }
 
@@ -39,13 +45,16 @@ class Edit extends Component
     public function mount(User $user)
     {
         $this->user = $user;
+        $this->user_email = $user->email;
+        $this->user_name = $user->name;
+        $this->user_roleid = $user->role_id;
     }
 
     public function render()
     {
         return view('livewire.users.edit',
         [
-            "roles" => Role::all()
+            "roles" => Role::where("changeable" ,"1")->get()
         ]
         );
     }

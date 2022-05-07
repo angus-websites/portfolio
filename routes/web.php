@@ -44,7 +44,7 @@ Route::resource('categories', CategoryController::class);
 Route::resource('tags', TagController::class);
 Route::resource('employment', EmploymentController::class);
 Route::resource('education', EducationController::class);
-Route::resource('user', UserController::class);
+Route::resource('users', UserController::class);
 
 //Contact
 Route::get('/contact', function () {

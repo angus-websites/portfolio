@@ -28,6 +28,7 @@ class RoleSeeder extends Seeder
       //Roles
       Role::create([
         'name' => "Super Admin",
+        'changeable' => 0,
       ]);
       
       Role::create([

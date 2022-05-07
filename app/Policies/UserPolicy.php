@@ -26,6 +26,28 @@ class UserPolicy
             return true;
         }
     }
+
+    private function protect_super_admins(User $user, User $model, $message)
+    {
+        /**
+         * Super admins should be protected from being
+         * deleted and updated but should be able to edit and
+         * delete everyone else
+         */
+        
+        if($model->is_admin(true) && $user->is_admin()){
+            return Response::deny("Super Admins cannot be $message ");
+        }
+        elseif($user->is_admin()){
+            if(! ($model->is_admin() && $model->id != $user->id) || $user->is_admin(true)){
+                return Response::allow();
+            }
+            return Response::deny("Admins cannot $message other admins");
+        }
+        return Response::deny("You cannot $message this user");
+        
+
+    }
     
     public function manage(User $user)
     {
@@ -108,16 +130,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        if($model->is_admin(true) && $user->is_admin()){
-            return Response::deny('Super Admins cannot be changed');
-        }
-        elseif($user->is_admin()){
-            if(! ($model->is_admin() && $model->id != $user->id) || $user->is_admin(true)){
-                return Response::allow();
-            }
-            return Response::deny('Admins cannot update other admins');
-        }
-        return Response::deny('You cannot update this user');
+        return $this->protect_super_admins($user, $model, "update");
     }
 
     /**
@@ -129,7 +142,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        return Response::deny('You cannot delete this user');
+        return $this->protect_super_admins($user, $model, "delete");
     }
 
     /**

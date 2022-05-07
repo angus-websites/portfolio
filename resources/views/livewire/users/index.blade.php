@@ -19,7 +19,7 @@
             <td>{{$user->email}}</td>
             <td>
               @can('update', $user)
-                <x-link-button class="btn-sm btn-warning" href="{{route('user.edit', ['user'=>$user])}}">Edit</x-link-button>
+                <x-link-button class="btn-sm btn-warning" href="{{route('users.edit', ['user'=>$user])}}">Edit</x-link-button>
               @endcan
             </td>
           </tr>
