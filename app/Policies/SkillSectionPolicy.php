@@ -12,6 +12,19 @@ class SkillSectionPolicy
     use HandlesAuthorization;
 
     /**
+     * Perform pre-authorization checks.     *
+     * @param  \App\Models\User  $user
+     * @param  string  $ability
+     * @return void|bool
+     */
+    public function before(User $user, $ability)
+    {
+        if ($user->is_admin()) {
+            return true;
+        }
+    }
+
+    /**
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
@@ -19,9 +32,7 @@ class SkillSectionPolicy
      */
     public function viewAny(User $user)
     {
-        return true
-            ? Response::allow()
-            : Response::deny("You cannot view word suggestions");
+        return Response::deny("You cannot view Skill Sections");
     }
 
     /**
@@ -33,9 +44,7 @@ class SkillSectionPolicy
      */
     public function view(User $user)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny("You cannot view this skill section");
+        return Response::deny("You cannot view this skill section");
     }
 
     /**
@@ -46,9 +55,7 @@ class SkillSectionPolicy
      */
     public function create(User $user)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot create a skill section');
+        return Response::deny('You cannot create a skill section');
     }
 
     /**
@@ -60,9 +67,7 @@ class SkillSectionPolicy
      */
     public function update(User $user)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot edit a skill section');
+        return Response::deny('You cannot update a skill section');
     }
 
     /**
@@ -74,9 +79,7 @@ class SkillSectionPolicy
      */
     public function delete(User $user)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot delete a skill section');
+        return Response::deny('You cannot delete a skill section');
     }
 
     /**
@@ -88,7 +91,7 @@ class SkillSectionPolicy
      */
     public function restore(User $user, SkillSection $skillSection)
     {
-        //
+        return Response::deny('You cannot restore a skill section');
     }
 
     /**
@@ -100,6 +103,6 @@ class SkillSectionPolicy
      */
     public function forceDelete(User $user, SkillSection $skillSection)
     {
-        //
+        return Response::deny('You cannot force delete a skill section');
     }
 }

@@ -2,7 +2,7 @@
 @if($isCollapse() == true)
   <!--Education collapse-->
   <div class="collapse rounded-lg bg-base-200 collapse-arrow border">
-    <input type="checkbox" class="h-full">
+    <input aria-hidden="true" tabindex="-1" type="checkbox" class="h-full">
     <div class="collapse-title">
       <div class="flex items-start space-x-5">
         <!--Image-->

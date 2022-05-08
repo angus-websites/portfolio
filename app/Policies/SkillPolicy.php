@@ -12,9 +12,7 @@ class SkillPolicy
     use HandlesAuthorization;
 
     /**
-     * Perform pre-authorization checks.
-     * TODO UNCOMMENT WHEN READY
-     *
+     * Perform pre-authorization checks.     *
      * @param  \App\Models\User  $user
      * @param  string  $ability
      * @return void|bool
@@ -34,9 +32,7 @@ class SkillPolicy
      */
     public function viewAny(User $user)
     {
-        return true
-            ? Response::allow()
-            : Response::deny('You cannot view Skills');
+        return Response::deny('You cannot view Skills');
     }
 
     /**
@@ -48,7 +44,7 @@ class SkillPolicy
      */
     public function view(User $user, Skill $skill)
     {
-        //
+        return Response::deny('You cannot view this Skill');
     }
 
     /**
@@ -59,9 +55,7 @@ class SkillPolicy
      */
     public function create(User $user)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot create a new skill');
+        return Response::deny('You cannot view this Skill');
     }
 
     /**
@@ -73,9 +67,7 @@ class SkillPolicy
      */
     public function update(User $user)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot edit a skill');
+        return Response::deny('You cannot update Skills');
     }
 
     /**
@@ -87,9 +79,7 @@ class SkillPolicy
      */
     public function delete(User $user)
     {
-        return $user->is_admin()
-            ? Response::allow()
-            : Response::deny('You cannot delete a skill');
+        return Response::deny('You cannot delete Skills');
     }
 
     /**
@@ -101,7 +91,7 @@ class SkillPolicy
      */
     public function restore(User $user, Skill $skill)
     {
-        //
+        return Response::deny('You cannot restore Skills');
     }
 
     /**
@@ -113,6 +103,6 @@ class SkillPolicy
      */
     public function forceDelete(User $user, Skill $skill)
     {
-        //
+        return Response::deny('You cannot force delete Skills');
     }
 }

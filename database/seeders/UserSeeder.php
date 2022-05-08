@@ -23,24 +23,46 @@ class UserSeeder extends Seeder
       //Clear data
       DB::statement('SET FOREIGN_KEY_CHECKS=0');
       User::truncate();
-      DB::table('user_roles')->truncate();
       DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
 
-      $adminRole=Role::where('name', '=', 'Admin')->firstOrFail();
+      $superAdminRole=Role::where('name', '=', 'Super Admin')->firstOrFail();
+      $adminRole = Role::where('name', '=', 'Admin')->firstOrFail();
+      $userRole = Role::where('name', '=', 'User')->firstOrFail();
 
       if(config('admin.admin_name')) {
         $admin=User::create([
           'name' => config('admin.admin_name'),
           'email' => config('admin.admin_email'),
+          'role_id' => $superAdminRole->id,
           'password' => (config('admin.admin_password')),
         ]);
-
-        DB::table('user_roles')->insert([
-          'user_id' => $admin->id,
-          'role_id' => $adminRole->id,
-        ]);
       }
+
+      // Create Bob the Admin
+      $bob = User::create([
+        'name' => 'Bob',
+        'email' => 'bob@gmail.com',
+        'role_id' => $adminRole->id,
+        'password' => 'password123'
+      ]);
+
+      // Create Terry the Admin
+      $terry = User::create([
+        'name' => 'Terry',
+        'email' => 'terry@gmail.com',
+        'role_id' => $adminRole->id,
+        'password' => 'password123'
+      ]);
+
+
+      // Create Charlie the User
+      $charlie = User::create([
+        'name' => 'Charlie',
+        'email' => 'charlie@gmail.com',
+        'role_id' => $userRole->id,
+        'password' => 'password123'
+      ]);
       
     }
 }
