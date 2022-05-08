@@ -14,7 +14,6 @@ class UserPolicy
 
     /**
      * Perform pre-authorization checks.
-     * TODO UNCOMMENT WHEN READY
      *
      * @param  \App\Models\User  $user
      * @param  string  $ability
@@ -142,7 +141,13 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
+        if ($user->id == $model->id && $user->is_admin()){
+            return Response::deny("Users cannot delete themselves");
+        }
         return $this->protect_super_admins($user, $model, "delete");
+
+
+        
     }
 
     /**
