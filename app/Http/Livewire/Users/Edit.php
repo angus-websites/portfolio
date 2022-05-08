@@ -13,9 +13,9 @@ class Edit extends Component
     use AuthorizesRequests;
 
     public User $user;
-
     public $user_new_password;
     public $user_new_password_confirmed;
+    public $is_create;
 
     protected function rules()
     {
@@ -24,13 +24,22 @@ class Edit extends Component
          * for all properties
          * of a project
          */
-        return [
+        $rules = [
             'user.email' => ["required", "email", "unique:users,email,". $this->user->id],
             'user.name' => 'required|string|min:1',
-            'user.role_id' => 'required|exists:roles,id',
-            'user_new_password' => 'nullable|min:5',
-            'user_new_password_confirmed' => 'same:user_new_password'
+            'user.role_id' => 'required|exists:roles,id'
         ];
+
+        // Conditional Validation
+        if($this->is_create){
+            $rules['user_new_password'] = 'required|min:5';
+        }else{
+            $rules['user_new_password'] = 'nullable|min:5';
+        }
+        $rules['user_new_password_confirmed'] = 'same:user_new_password';
+
+
+        return $rules;
     }
 
     protected $messages = [
@@ -62,6 +71,10 @@ class Edit extends Component
         }
 
         $this->user->save();
+
+        if ($this->is_create){
+            return redirect()->route('users.index')->with("success","User created!");
+        }
         session()->flash('success', 'User successfully updated.');
 
 
@@ -70,8 +83,18 @@ class Edit extends Component
 
     public function mount(User $user)
     {
-        $this->authorize('update', $user);
+        $this->is_create = !$user->exists;
+
+        // Validate
+        $this->is_create ? $this->authorize("create", User::class) : $this->authorize('update', $user)
+        ;
         $this->user = $user;
+
+        // Assign defaults on load
+        if($this->is_create){
+            $this->user->role_id = Role::where("changeable" ,"1")->firstOrFail()->id;
+        }
+
         
     }
 

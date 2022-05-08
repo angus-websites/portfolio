@@ -132,9 +132,8 @@
             </div>
             <div class="collapse-content">
               <div class="px-5">
-                <!-- Create project -->
                 @can('create', App\Models\User::class)
-                  <!--Create project-->
+                  <!--Create User-->
                   <div class="mt-3 mb-6 flex">
                     <x-link-button class="btn-primary" href="{{ route('users.create') }}">
                       New User

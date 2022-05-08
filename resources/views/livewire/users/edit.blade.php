@@ -58,9 +58,9 @@
 
           <!-- New Password Section -->
           <div class="col-span-6 md:col-span-4 lg:col-span-3 2xl:col-span-2">
-            <h3 class="text-lg font-medium mt-7" >Update Password</h3>
+            <h3 class="text-lg font-medium mt-7" >{{$is_create ? "Create" : "Update"}} Password</h3>
             <div class="space-y-4 mt-4">
-              <!-- New Password -->
+              <!-- Password -->
               <div class="form-control">
                   <x-label for="newPassword" :value="__('New Password')" />
                   <x-input wire:model="user_new_password"
@@ -72,7 +72,7 @@
                               />
               </div>
 
-              <!-- New Password Confirmed -->
+              <!-- Password Confirmed -->
               <div class="form-control">
                   <x-label for="newPasswordConfirmed" :value="__('Confirm Password')" />
                   <x-input wire:model="user_new_password_confirmed"
