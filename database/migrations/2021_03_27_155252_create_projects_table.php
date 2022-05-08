@@ -20,6 +20,7 @@ class CreateProjectsTable extends Migration
             //Fields
             $table->text('name');
             $table->string('slug')->unique();
+            $table->boolean('active')->default(0);
             $table->foreignId('category_id')->constrained("categories")
                 ->onUpdate('cascade')
                 ->onDelete('cascade');

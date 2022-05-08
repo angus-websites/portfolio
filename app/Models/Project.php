@@ -20,6 +20,10 @@ class Project extends Model
     protected $fillable = ['name', 'category_id', 'short_desc','long_desc','git_link','web_link','date_made'];
 
 
+    protected $casts = [
+      'active' => 'boolean',
+    ];
+
     protected static function boot()
     {
       /**

@@ -35,7 +35,7 @@ class TagSeeder extends Seeder
       Tag::create([
         'name' => "PHP",
         'colour' => "#A5B4FB",
-        'text_colour' => "#6364af"
+        'text_colour' => "#26274b"
       ]);
 
       //Bootstrap
@@ -50,14 +50,14 @@ class TagSeeder extends Seeder
       Tag::create([
         'name' => "Bulma",
         'colour' => "#00C7A9",
-        'text_colour' => "#116652"
+        'text_colour' => "#072720"
       ]);
 
       //Python
       Tag::create([
          'name' => "Python",
          'colour' => "#FECE3A",
-         'text_colour' => "#8E7935"
+         'text_colour' => "#493e1b"
       ]);
 
       //Javascript
