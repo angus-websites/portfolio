@@ -5,13 +5,14 @@ namespace App\Http\Livewire\Users;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class Edit extends Component
 {
-    protected User $user;
-    public $user_email;
-    public $user_name;
-    public $user_roleid;
+    use AuthorizesRequests;
+
+    public User $user;
 
     public $user_new_password;
     public $user_new_password_confirmed;
@@ -24,11 +25,17 @@ class Edit extends Component
          * of a project
          */
         return [
-            'user_email' => ["required", "email", "unique:users,email,". $this->user->id],
-            'user_name' => 'required|string|min:1',
-            'user_roleid' => 'required|exists:roles,id'
+            'user.email' => ["required", "email", "unique:users,email,". $this->user->id],
+            'user.name' => 'required|string|min:1',
+            'user.role_id' => 'required|exists:roles,id',
+            'user_new_password' => 'nullable|min:5',
+            'user_new_password_confirmed' => 'same:user_new_password'
         ];
     }
+
+    protected $messages = [
+        'user_new_password_confirmed.same' => 'Passwords do not match'
+    ];
 
     public function updated($propertyName)
     {
@@ -40,14 +47,32 @@ class Edit extends Component
         
         $this->validateOnly($propertyName);
     }
+
+    public function saveUser()
+    {
+        /**
+         * Save the details for
+         * this user to the database
+         */
+        $this->validate();
+
+        // If the password has been changed then validate & update
+        if ($this->user_new_password){
+            $this->user->password = $this->user_new_password;
+        }
+
+        $this->user->save();
+        session()->flash('success', 'User successfully updated.');
+
+
+    }
     
 
     public function mount(User $user)
     {
+        $this->authorize('update', $user);
         $this->user = $user;
-        $this->user_email = $user->email;
-        $this->user_name = $user->name;
-        $this->user_roleid = $user->role_id;
+        
     }
 
     public function render()

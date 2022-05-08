@@ -19,32 +19,32 @@
               <!-- Name -->
               <div class="form-control">
                   <x-label for="name" :value="__('Name')" />
-                  <x-input wire:model="user_name"
+                  <x-input wire:model="user.name"
                               autofocus
                               id="name"
                               class="input-bordered"
                               type="text"
                               name="name"
-                              error="user_name"
+                              error="user.name"
                               required />
               </div>
 
               <!-- Email -->
               <div class="form-control">
                   <x-label for="email" :value="__('Email')" />
-                  <x-input wire:model="user_email"
+                  <x-input wire:model="user.email"
                               id="email"
                               class="input-bordered"
                               type="email"
                               name="email"
-                              error="user_email"
+                              error="user.email"
                               required />
               </div>
 
               <!--Role-->
               <div class="form-control mb-4">
                   <x-label for="section" :value="__('Role')" />
-                  <x-select wire:model="user_roleid" error="user_roleid" id="role" name="role_id" class="select-bordered w-full" required>
+                  <x-select wire:model="user.role_id" error="user.role_id" id="role" name="role_id" class="select-bordered w-full" required>
                     <option disabled="disabled">Choose a role</option>
                     @foreach($roles as $role)
                       <option value="{{$role->id}}">

@@ -36,7 +36,7 @@ class UserPolicy
          */
         
         if($model->is_admin(true) && $user->is_admin()){
-            return Response::deny("Super Admins cannot be $message ");
+            return Response::deny("Super Admins cannot be ${message}d ");
         }
         elseif($user->is_admin()){
             if(! ($model->is_admin() && $model->id != $user->id) || $user->is_admin(true)){
