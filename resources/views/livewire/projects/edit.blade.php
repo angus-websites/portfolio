@@ -22,8 +22,22 @@
 
         <h2 class="text-lg font-medium">Basic details</h2>
         <div class="grid md:grid-cols-2 gap-4 p-4">
-            <!-- Project name -->
+
+            <!-- Active or not -->
             <div class="form-control">
+                <div class="col-span-6 sm:col-span-4 flex items-start">
+                  <div class="flex items-center h-5">
+                    <input wire:model="project.active" id="active" name="active" type="checkbox" class="checkbox checkbox-sm toggle_block"">
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="has_git" class="font-medium text-gray-700">Active</label>
+                    <p class="text-gray-500">Is this project active?</p>
+                  </div>
+                </div>
+            </div>
+
+            <!-- Project name -->
+            <div class="form-control col-start-1">
                 <x-label for="name" :value="__('Project name')" />
                 <x-input wire:model="project.name"
                             id="name"

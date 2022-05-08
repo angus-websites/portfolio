@@ -56,10 +56,10 @@ class ProjectPolicy
      */
     public function view(?User $user, Project $project)
     {
-        
+
         return $project->active
         ? Response::allow()
-        : Response::deny("This project is not active");
+        : abort(404);
     }
 
     /**

@@ -3317,6 +3317,9 @@ body[dir="rtl"] .checkbox:checked,
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
+.col-start-1 {
+  grid-column-start: 1;
+}
 .-m-2 {
   margin: -0.5rem;
 }
