@@ -9,28 +9,56 @@ use App\Models\Category;
 class Index extends Component
 {
     public Category $current_category;
+    public $sort_by;
     public $show_all;
 
     protected $rules = [
-        'current_category' => 'exists:categories,id'
+        'current_category' => 'exists:categories,id',
+        'sort_by' => 'in:name,oldest,newest'
     ];
 
     public function render()
     {
+        // Fetch projects
         $projects=Project::where("active", "1");
         if (!$this->show_all && $this->current_category){
             $projects = $projects->where("category_id", $this->current_category->id);
         }
 
+        // Retrieve
+        $projects = $projects->get();
+
+        // Sort accordingly
+        if ($this->sort_by == "name"){
+            $projects = $projects->sortByDesc("name");
+        }elseif ($this->sort_by == "oldest") {
+            $projects = $projects->sortBy("date_made");
+        }elseif ($this->sort_by == "newest") {
+            $projects = $projects->sortByDesc("date_made");
+        }
+
         $categories = Category::all();
         return view('livewire.projects.index', [
-            "projects" => $projects->get(),
+            "projects" => $projects,
             "categories" => $categories]);
     }
+
+    public function updated($propertyName)
+    {
+        /**
+         * Called when the user
+         * changes a single
+         * input / property on the page
+         */
+        
+        $this->validateOnly($propertyName);
+    }
+
 
     public function mount()
     {
         $this->show_all = 1;
+        $this->sort_by = "name";
     }
 
     public function changeCategory(Category $category)

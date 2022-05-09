@@ -1,32 +1,28 @@
 <div>
     <!-- Filter bar -->
-    <div id="filterBar" class="grid grid-cols-3  mb-10">
+    <div id="filterBar" class="grid grid-cols-1 lg:grid-cols-3 gap-4  mb-10">
 
-        <p>Current cargeory: {{$current_category->id ?? "null"}}</p>
         <!-- Tabs -->
-        <div class="tabs justify-center col-start-2">
-            <button wire:click="showAll" class="tab tab-bordered {{$show_all ? 'tab-active' : ''}}">All</button> 
+        <div class="tabs justify-center lg:col-start-2">
+            <button wire:click="showAll" class="tab tab-bordered {{$show_all ? 'tab-active' : ''}}" aria-label="Show all projects">All</button> 
             @foreach($categories as $category)
-                <button wire:click="changeCategory({{$category->id}})" class="tab tab-bordered {{ $this->isCategoryActive($category) ? 'tab-active' : ''}}">{{$category->short_name}}</button> 
+                <button wire:click="changeCategory({{$category->id}})" class="tab tab-bordered {{ $this->isCategoryActive($category) ? 'tab-active' : ''}}" aria-label="Show all {{$category->short_name}} projects">{{$category->short_name}}</button> 
 
             @endforeach
         </div>
 
-        <!-- Sort select -->
-        <div class="text-right">
-            <select class="select max-w-xs">
-              <option disabled selected>Sort by</option>
-              <option>Homer</option>
-              <option>Marge</option>
-              <option>Bart</option>
-              <option>Lisa</option>
-              <option>Maggie</option>
-            </select>
+        <div class="lg:text-right text-center">
+          <x-select wire:model="sort_by" id="sortBy" aria-label="Sort the projects">
+            <option disabled>Sort by</option>
+            <option value="name">Project Name</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+          </x-select>
         </div>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
       @forelse ($projects as $project)
-        <x-cards.project-card :project="$project"/>
+        <x-cards.project-card  :project="$project"/>
       @empty
         <div class="col-span-full">
           <div class="p-5 text-center">

@@ -34,6 +34,7 @@ class ProjectSeeder extends Seeder
       $redwood=Project::create([
           'name' => "Redwood",
           'slug'=> Str::slug('redwood', '-'),
+          'active' => 1,
           'category_id' => Category::where('name', '=', 'Websites')->firstOrFail()->id,
           'short_desc' => "A website for a small marketing company",
           'long_desc' => "A long description describing the Redwood website would go here",
@@ -55,6 +56,7 @@ class ProjectSeeder extends Seeder
       $passworld=Project::create([
           'name' => "Passworld",
           'slug'=> Str::slug('passworld', '-'),
+          'active' => 1,
           'category_id' => Category::where('name', '=', 'Websites')->firstOrFail()->id,
           'short_desc' => "A website for a generating and learning about passwords",
           'long_desc' => "A long description describing the Passworld website would go here",
@@ -72,5 +74,31 @@ class ProjectSeeder extends Seeder
 
       ];
       DB::table('project_tags')->insert($data);
+
+
+      // Kool App
+      $Kool=Project::create([
+          'name' => "Kool App",
+          'slug'=> Str::slug('kool app', '-'),
+          'active' => 1,
+          'category_id' => Category::where('name', '=', 'Mobile Apps')->firstOrFail()->id,
+          'short_desc' => "A simple, kool mobile app",
+          'long_desc' => "A long description describing the Kool App would go here",
+          'date_made' => Carbon::parse('2015-08-01'),
+      ]);
+
+      // PyPassword
+      $pypassword=Project::create([
+          'name' => "PyPassword",
+          'slug'=> Str::slug('pypassword', '-'),
+          'active' => 1,
+          'category_id' => Category::where('name', '=', 'Desktop Applications')->firstOrFail()->id,
+          'short_desc' => "A tool for storing passwords on desktop",
+          'long_desc' => "A long description describing PyPassword here",
+          'date_made' => Carbon::parse('2018-01-01'),
+      ]);
+      
     }
+
+    
 }
