@@ -59,6 +59,11 @@ class Project extends Model
       return date("d/m/Y", strtotime($this->date_made));
     }
 
+    public function yearMade()
+    {
+      return date("Y", strtotime($this->date_made));
+    }
+
 
     /**
      * Fetch all the tags for a project
