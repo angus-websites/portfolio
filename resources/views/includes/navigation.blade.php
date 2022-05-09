@@ -4,8 +4,8 @@
   <nav class="navbar">
     <div class="container mx-auto px-6 md:px-3">
       <div class="flex-none">
-        <img class="block lg:hidden h-8 w-auto" src="/assets/images/core/logo.svg" alt="Workflow">
-        <img class="hidden lg:block h-8 w-auto" src="/assets/images/core/logo.svg" alt="Workflow">
+        <img class="block lg:hidden h-8 w-auto" width="196" height="60" src="/assets/images/core/logo.svg" alt="Workflow">
+        <img class="hidden lg:block h-8 w-auto" width="196" height="60" src="/assets/images/core/logo.svg" alt="Workflow">
       </div> 
       <div class="flex-1 px-2 mx-2">
         <div class="items-stretch hidden lg:flex">
@@ -47,11 +47,7 @@
                   </li> 
               </form>
             </ul>
-          </div>
-        @else
-          <x-nav-link href="/login" :active="Request::is('login')" class="hidden lg:flex">
-            {{ __('Login') }}
-          </x-nav-link>
+          </div>          
         @endif
 
         <!--Hamburger-->
@@ -106,12 +102,6 @@
             {{ __('Log out') }}
           </x-responsive-nav-link>
         </form>
-      </ul>
-    @else
-      <ul class="menu p-4 overflow-y-auto border-t border-gray-200">
-        <x-responsive-nav-link href="/login" :active="Request::is('login')">
-          {{ __('Login') }}
-        </x-responsive-nav-link>
       </ul>
     @endif
   </div>

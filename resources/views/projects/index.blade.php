@@ -1,4 +1,5 @@
 @section('title', 'Projects')
+@section('description', 'View my projects on my portfolio site')
 
 <x-app-layout>
   <div class="container px-5 pt-24 mx-auto">

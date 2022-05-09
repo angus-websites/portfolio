@@ -1,4 +1,6 @@
 @section('title', 'Login')
+@section('description', "Login to Angus' portfolio")
+
 <x-app-layout>
     <x-cards.auth-card>
         <x-slot name="logo">
