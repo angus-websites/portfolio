@@ -2997,6 +2997,12 @@ body[dir="rtl"] .checkbox:checked,
 .tab-lifted.tab-active + .tab-lifted.tab-active:before {
   background: none;
 }
+.tabs-boxed {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
+  padding: 0.25rem;
+  border-radius: var(--rounded-btn, 0.5rem);
+}
 .tabs-boxed .tab-active {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--p) / var(--tw-bg-opacity));
@@ -3335,6 +3341,9 @@ body[dir="rtl"] .checkbox:checked,
 .col-start-1 {
   grid-column-start: 1;
 }
+.col-start-2 {
+  grid-column-start: 2;
+}
 .-m-2 {
   margin: -0.5rem;
 }
@@ -3463,6 +3472,9 @@ body[dir="rtl"] .checkbox:checked,
 }
 .mt-1 {
   margin-top: 0.25rem;
+}
+.ml-auto {
+  margin-left: auto;
 }
 .block {
   display: block;

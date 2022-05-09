@@ -1,7 +1,7 @@
 @section('title', $project->name)
 @section('description', $project->short_desc)
 
-<x-app-layout>
+<x-app-layout bg="bg-base-300">
 
   <section class="container mx-auto">
     @if(!$project->active)
@@ -12,7 +12,7 @@
         </div>
       </div>
     @endif
-    <div class="my-16 mx-auto bg-base-200 border rounded-md shadow-lg">
+    <div class="my-16 mx-auto bg-white rounded-md">
       <div class="lg:w-4/5 p-10">
 
         <!--Top buttons -->
@@ -33,7 +33,7 @@
         <!--Project details-->
         <div class="flex flex-wrap">
           <!--Image-->
-          <img alt="{{$project->name}}" class="lg:w-1/2 w-full lg:h-full h-64 object-cover object-center rounded" src="{{$project->getImage()}}">
+          <img alt="{{$project->name}}" class="lg:w-1/2 w-full lg:h-full h-64 object-cover object-center rounded border" src="{{$project->getImage()}}">
           <!--Details-->
           <div class="lg:w-1/2 w-full lg:pl-10 lg:pb-6 mt-6 lg:mt-0">
   
