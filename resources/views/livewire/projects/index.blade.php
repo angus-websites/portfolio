@@ -1,25 +1,29 @@
 <div>
-    <!-- Filter bar -->
-    <div id="filterBar" class="grid grid-cols-1 lg:grid-cols-3 gap-4  mb-10">
+    @if(count($projects) > 0)
+        <!-- Filter bar -->
+        <div id="filterBar" class="grid grid-cols-1 lg:grid-cols-3 gap-4  mb-10">
 
-        <!-- Tabs -->
-        <div class="tabs justify-center lg:col-start-2">
-            <button wire:click="showAll" class="tab tab-bordered {{$show_all ? 'tab-active' : ''}}" aria-label="Show all projects">All</button> 
-            @foreach($categories as $category)
-                <button wire:click="changeCategory({{$category->id}})" class="tab tab-bordered {{ $this->isCategoryActive($category) ? 'tab-active' : ''}}" aria-label="Show all {{$category->short_name}} projects">{{$category->short_name}}</button> 
+            @if(count($categories) > 0)
+                <!-- Tabs -->
+                <div class="tabs justify-center lg:col-start-2">
+                    <button wire:click="showAll" class="tab tab-bordered {{$show_all ? 'tab-active' : ''}}" aria-label="Show all projects">All</button> 
+                    @foreach($categories as $category)
+                        <button wire:click="changeCategory({{$category->id}})" class="tab tab-bordered {{ $this->isCategoryActive($category) ? 'tab-active' : ''}}" aria-label="Show all {{$category->short_name}} projects">{{$category->short_name}}</button> 
 
-            @endforeach
+                    @endforeach
+                </div>
+            @endif
+
+            <div class="lg:text-right lg:col-start-3 text-center">
+              <x-select wire:model="sort_by" id="sortBy" aria-label="Sort the projects">
+                <option disabled>Sort by</option>
+                <option value="name">Project Name</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+              </x-select>
+            </div>
         </div>
-
-        <div class="lg:text-right text-center">
-          <x-select wire:model="sort_by" id="sortBy" aria-label="Sort the projects">
-            <option disabled>Sort by</option>
-            <option value="name">Project Name</option>
-            <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option>
-          </x-select>
-        </div>
-    </div>
+    @endif
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
       @forelse ($projects as $project)
         <x-cards.project-card  :project="$project"/>
