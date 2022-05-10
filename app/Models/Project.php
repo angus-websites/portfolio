@@ -134,7 +134,7 @@ class Project extends Model
        * with this project & remove the old one
        */
       $this->removeImage();
-      $image_name = $this->uploadResource($uploaded_image, $this::$images_path);
+      $image_name = ResourceManager::uploadResource($uploaded_image, $this::$images_path);
       $this->img = $image_name;
       $this->save();
     }
@@ -147,7 +147,7 @@ class Project extends Model
        * with this project & remove the old one
        */
       $this->removeLogo();
-      $image_name = $this->uploadResource($uploaded_logo, $this::$logo_path);
+      $image_name = ResourceManager::uploadResource($uploaded_logo, $this::$logo_path);
       $this->logo = $image_name;
       $this->save();
     }
