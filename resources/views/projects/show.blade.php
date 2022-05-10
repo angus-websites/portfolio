@@ -39,7 +39,7 @@
   
             @if (!is_null($project->logo))
               <!--Project image-->
-              <div class="avatar">
+              <div class="avatar mb-2">
                 <div class="rounded-full w-16 h-16 shadow-md">
                   <img src="{{$project->getLogo()}}" alt="">
                 </div>

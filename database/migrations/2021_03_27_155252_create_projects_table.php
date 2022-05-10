@@ -31,6 +31,7 @@ class CreateProjectsTable extends Migration
             $table->date('date_made');
             $table->text('img')->nullable();
             $table->text('logo')->nullable();
+            $table->text('cover')->nullable();
 
         });
     }

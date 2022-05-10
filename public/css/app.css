@@ -3971,6 +3971,10 @@ body[dir="rtl"] .checkbox:checked,
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
+.bg-neutral {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--n) / var(--tw-bg-opacity));
+}
 .fill-current {
   fill: currentColor;
 }
@@ -4260,6 +4264,10 @@ body[dir="rtl"] .checkbox:checked,
 .text-secondary {
   --tw-text-opacity: 1;
   color: hsl(var(--s) / var(--tw-text-opacity));
+}
+.text-error-content {
+  --tw-text-opacity: 1;
+  color: hsl(var(--erc, var(--nc)) / var(--tw-text-opacity));
 }
 .text-opacity-60 {
   --tw-text-opacity: 0.6;

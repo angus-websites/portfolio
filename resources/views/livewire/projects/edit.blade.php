@@ -190,7 +190,7 @@
                                 
                                 @error('tag_search')
                                     <label class="label">
-                                        <span class="label-text text-error">{{ $message }}</span>
+                                        <span class="label-text text-error-content">{{ $message }}</span>
                                     </label>
                                 @enderror
                             </div>
@@ -237,7 +237,7 @@
 
                 @error('uploaded_logo')
                     <label class="label mt-2">
-                        <span class="label-text text-error">{{ $message }}</span>
+                        <span class="label-text text-error-content">{{ $message }}</span>
                     </label>
                 @enderror
             </div>
@@ -256,7 +256,7 @@
 
                         @if(!empty($this->project->logo))
                             <div class="text-center mt-2">
-                                <x-button wire:click="resetLogo" type="button" class="btn-sm btn-outline btn-error">Reset</x-button>
+                                <x-button wire:click="resetLogo" type="button" class="btn-sm btn-error">Reset</x-button>
                             </div>
                         @endif    
                     </div>
@@ -271,7 +271,7 @@
                                 </div>
                             </div>
                             <div class="text-center mt-2">
-                                <x-button wire:click="discardUploadedLogo" type="button" class="btn-sm btn-outline btn-error">Discard</x-button>
+                                <x-button wire:click="discardUploadedLogo" type="button" class="btn-sm btn-error">Discard</x-button>
                             </div>
                         </div>
                     @endif
@@ -294,7 +294,7 @@
 
                 @error('uploaded_image')
                     <label class="label mt-2">
-                        <span class="label-text text-error">{{ $message }}</span>
+                        <span class="label-text text-error-content">{{ $message }}</span>
                     </label>
                 @enderror
             </div>
@@ -310,7 +310,7 @@
                         </div> 
                         @if(!empty($this->project->img))
                             <div class="text-center mt-2">
-                                <x-button wire:click="resetImage" type="button" class="btn-sm btn-outline btn-error">Reset</x-button>
+                                <x-button wire:click="resetImage" type="button" class="btn-sm btn-error">Reset</x-button>
                             </div>
                         @endif
                         
