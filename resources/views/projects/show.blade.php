@@ -54,14 +54,16 @@
               </span>
             </div>
             <p class="leading-relaxed">{{$project->short_desc}}</p>
-            <div class="flex mt-6 items-center pb-5 border-b-2 border-golden-light mb-5 space-x-2">
-              <!--Tags-->
-              @foreach($project->tags()->get() as $tag)
-                <x-tag :colour="$tag->colour" :textcolour="$tag->text_colour">
-                  {{$tag->name}}
-                </x-tag>
-              @endforeach
-            </div>
+            @if($project->tags()->count() > 0)
+              <div class="flex mt-6 items-center pb-5 border-b-2 mb-5 space-x-2">
+                <!--Tags-->
+                @foreach($project->tags()->get() as $tag)
+                  <x-tag :colour="$tag->colour" :textcolour="$tag->text_colour">
+                    {{$tag->name}}
+                  </x-tag>
+                @endforeach
+              </div>
+            @endif
             <div class="flex-1 flex items-end space-x-2">
               @if(isset($project->git_link))
                 <a target="_blank" href="{{$project->git_link}}" class="btn btn-secondary">
@@ -95,6 +97,9 @@
     </div>
   </section>
 
-
+  <!--Blocks-->
+  @foreach($project->blocks()->get() as $block)
+    @include($block->getPath()) 
+  @endforeach
 
 </x-app-layout>

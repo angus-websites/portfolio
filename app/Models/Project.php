@@ -52,6 +52,14 @@ class Project extends Model
     }
 
     /**
+     * Relationship to blocks
+     */
+    public function blocks(){
+      return $this->belongsToMany(Block::class);
+    }
+    
+
+    /**
      * Return the date created
      * in a standard format
      */
@@ -96,7 +104,6 @@ class Project extends Model
        * Get the logo for this project
        */
       return ResourceManager::getResource($this::$logo_path, $this->logo) ?? $this::$logo_placeholder;
-
     }
 
     public function removeImage()
