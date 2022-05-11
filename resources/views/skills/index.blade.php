@@ -1,15 +1,13 @@
 @section('title', 'Skills')
 
 <x-app-layout>
-  <div class="container px-5 pt-24 mx-auto">
-    <div class="flex flex-col text-center w-full mb-10">
-      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">My Skills</h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">You can manage your skills here</p>
-    </div>
-  </div>
-  <!--Skills-->
-  <div class="container px-5 my-10 mx-auto">
+  <x-page-container>
+    <x-page-title title="My Skills" subtitle="You can manage your skills here" />
     <!--Skills-->
-    @livewire("skills.index")
-  </div>
+    <div class="my-10">
+      <!--Skills-->
+      @livewire("skills.index")
+    </div>
+  </x-page-container>
+  
 </x-app-layout>
