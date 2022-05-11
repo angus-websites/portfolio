@@ -49,9 +49,13 @@ Route::resource('users', UserController::class);
 //Contact
 Route::get('/contact', function () {
     return (new ContactController())->show();
-});
+})->name("contact");
 Route::post('/contact', function (Request $request) {
     return (new ContactController())->send($request);
 });
+
+Route::get("/about", function(){
+   return view("about");
+})->name("about");
 
 require __DIR__.'/auth.php';
