@@ -5,7 +5,7 @@
   <!-- Top hero-->
   <div class="hero min-h-screen">
     <div class="hero-content text-center">
-      <div class="max-w-md">
+      <div class="lg:max-w-xl max-w-md">
         <h1 class="text-5xl font-bold">Welcome to my website</h1>
         <p class="py-6">I am a computer science student at The University Of Sheffield</p>
         <x-button-group class="mt-5 sm:mt-8 justify-center">

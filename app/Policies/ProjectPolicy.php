@@ -21,7 +21,7 @@ class ProjectPolicy
      */
     public function before(User $user, $ability)
     {
-        if ($user->is_admin(true)) {
+        if ($user->is_admin()) {
             return Response::allow();
         }
     }

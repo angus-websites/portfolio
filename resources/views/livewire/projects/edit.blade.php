@@ -184,7 +184,7 @@
                             </div>
                         @else
                             <div class="flex flex-col gap-y-2 mx-auto">
-                                <x-button wire:click="createTag()" class="btn btn-sm btn-outline btn-info mx-auto" type="button">
+                                <x-button wire:click="createTag()" class=" btn-sm btn-outline btn-info mx-auto" type="button">
                                     Create "{{$tag_search}}"
                                 </x-button>
                                 
@@ -325,7 +325,62 @@
                                 <img class="object-cover h-48 w-96" src="{{$uploaded_image->temporaryUrl()}}">
                             </div> 
                             <div class="text-center mt-2">
-                                <x-button wire:click="discardUploadedImage" type="button" class="btn-sm btn-outline btn-error">Discard</x-button>
+                                <x-button wire:click="discardUploadedImage" type="button" class="btn-sm btn-error">Discard</x-button>
+                            </div>
+                        </div>
+                    @endif
+
+                </div>
+            </div>
+
+            <!-- Cover upload -->
+            <div class="form-control"
+                 x-data="{ isUploading: false, progress: 0 }"
+                 x-on:livewire-upload-start="isUploading = true"
+                 x-on:livewire-upload-finish="isUploading = false"
+                 x-on:livewire-upload-progress="progress = $event.detail.progress"
+                 >
+                <x-label for="coverUpload" :value="__('Cover image')" />
+                <input id="coverUpload" type="file" wire:model="uploaded_cover">
+                <!-- Progress bar -->
+                <div x-show="isUploading">
+                    <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>    
+                </div>
+
+                @error('uploaded_cover')
+                    <label class="label mt-2">
+                        <span class="label-text text-error-content">{{ $message }}</span>
+                    </label>
+                @enderror
+            </div>
+
+            <!-- Cover previews -->
+            <div>
+                <div class="flex flex-row items-start justify-around">
+                    <!-- Current image section -->
+                    <div class="flex flex-col gap-y-2 justify-center"> 
+                        <h3 class="mb-4 font-medium text-center">Current Cover</h3>
+                        <div class="mx-auto">
+                            <img class="object-cover h-48 w-96" src="{{$this->project->getCover()}}">
+                        </div> 
+                        @if(!empty($this->project->cover))
+                            <div class="text-center mt-2">
+                                <x-button wire:click="resetCover" type="button" class="btn-sm btn-error">Reset</x-button>
+                            </div>
+                        @endif
+                        
+                    </div>
+
+                    @if($is_uploaded_cover_valid && $uploaded_cover)
+
+                        <!-- Uploaded image section-->
+                        <div class="flex flex-col gap-y-2 justify-center"> 
+                            <h3 class="mb-4 font-medium text-center">Uploaded cover</h3>
+                            <div class="mx-auto">
+                                <img class="object-cover h-48 w-96" src="{{$uploaded_cover->temporaryUrl()}}">
+                            </div> 
+                            <div class="text-center mt-2">
+                                <x-button wire:click="discardUploadedCover" type="button" class="btn-sm btn-error">Discard</x-button>
                             </div>
                         </div>
                     @endif

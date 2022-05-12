@@ -4031,6 +4031,9 @@ body[dir="rtl"] .checkbox:checked,
 .text-center {
   text-align: center;
 }
+.text-right {
+  text-align: right;
+}
 .align-middle {
   vertical-align: middle;
 }
@@ -4744,6 +4747,10 @@ body[dir="rtl"] .checkbox:checked,
 
   .lg\:w-4\/5 {
     width: 80%;
+  }
+
+  .lg\:max-w-xl {
+    max-width: 36rem;
   }
 
   .lg\:basis-1\/4 {

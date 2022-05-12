@@ -15,8 +15,10 @@ class Project extends Model
     //Statics
     public static $placeholder = "/assets/images/placeholders/project_placeholder.svg";
     public static $logo_placeholder = "/assets/images/placeholders/logo_placeholder.svg";
+    public static $cover_placeholder = "/assets/images/placeholders/cover_placeholder.svg";
     public static $images_path = "/images/projects/";
     public static $logo_path = "/images/logos/";
+    public static $cover_path = "/images/covers/";
     protected $fillable = ['name', 'category_id', 'short_desc','long_desc','git_link','web_link','date_made'];
 
 
@@ -117,6 +119,14 @@ class Project extends Model
       return ResourceManager::getResource($this::$logo_path, $this->logo) ?? $this::$logo_placeholder;
     }
 
+    public function getCover()
+    {
+      /**
+       * Get the cover for this project
+       */
+      return ResourceManager::getResource($this::$cover_path, $this->cover) ?? $this::$cover_placeholder;
+    }
+
     public function removeImage()
     {
 
@@ -145,10 +155,24 @@ class Project extends Model
       
     }
 
+    public function removeCover()
+    {
+
+      /**
+       * Remove the cover image
+       * associated with this project
+       * from storage and set to default
+       */
+      ResourceManager::removeResource($this::$cover_path, $this->cover);
+      $this->cover = null;
+      $this->save();
+      
+    }
+
     public function replaceImage($uploaded_image)
     {
       /**
-       * Update the iamge associated
+       * Update the image associated
        * with this project & remove the old one
        */
       $this->removeImage();
@@ -167,6 +191,18 @@ class Project extends Model
       $this->removeLogo();
       $image_name = ResourceManager::uploadResource($uploaded_logo, $this::$logo_path);
       $this->logo = $image_name;
+      $this->save();
+    }
+
+    public function replaceCover($uploaded_cover)
+    {
+      /**
+       * Update the cover associated
+       * with this project & remove the old one
+       */
+      $this->removeCover();
+      $image_name = ResourceManager::uploadResource($uploaded_cover, $this::$cover_path);
+      $this->cover = $image_name;
       $this->save();
     }
     
