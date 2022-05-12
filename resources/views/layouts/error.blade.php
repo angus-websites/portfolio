@@ -4,6 +4,6 @@
     {{ $slot }}
   </main>
   @section("footer")
-    @include('includes.footer')
+    @include('includes.footer', ["links" => false])
   @endsection
 </x-master-layout>
