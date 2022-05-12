@@ -35,4 +35,21 @@
         </div>
       @endforelse
     </div>
+    @can("manage", App\Models\Project::class)
+      <div class="my-20">
+        <p class="text-center text-lg font-semibold"> Inactive projects </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+        @forelse ($hidden as $hidden_project)
+          <x-cards.project-card  :project="$hidden_project"/>
+        @empty
+          <div class="col-span-full">
+            <div class="p-5 text-center">
+              <div class="badge">No hidden projects found</div>
+            </div>
+          </div>
+        @endforelse
+      </div>
+    @endcan
+
 </div>

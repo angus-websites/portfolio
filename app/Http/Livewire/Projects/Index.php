@@ -21,6 +21,7 @@ class Index extends Component
     {
         // Fetch projects
         $projects=Project::where("active", "1");
+        $hidden=Project::where("active", "0")->get();
         if (!$this->show_all && $this->current_category){
             $projects = $projects->where("category_id", $this->current_category->id);
         }
@@ -40,7 +41,8 @@ class Index extends Component
         $categories = Category::all();
         return view('livewire.projects.index', [
             "projects" => $projects,
-            "categories" => $categories]);
+            "categories" => $categories,
+            "hidden" => $hidden]);
     }
 
     public function updated($propertyName)

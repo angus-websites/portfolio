@@ -3398,6 +3398,10 @@ body[dir="rtl"] .checkbox:checked,
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
+.my-20 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
