@@ -39,7 +39,7 @@ class Edit extends Component
          */
         return [
             'project.name' => ["required", "string", "min:1", "unique:projects,name,". $this->project->id],
-            'project.date_made' => 'required|date',
+            'project.date_made' => 'nullable|date',
             'project.active' => 'required|boolean',
             'project.category_id' => 'required|exists:categories,id',
             'project.short_desc' => 'nullable|string',

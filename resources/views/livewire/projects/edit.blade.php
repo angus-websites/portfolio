@@ -57,7 +57,7 @@
                             type="date"
                             name="date_made"
                             error="project.date_made"
-                            required />
+                            />
             </div>
 
             <!--Category-->

@@ -28,7 +28,7 @@ class CreateProjectsTable extends Migration
             $table->text('long_desc')->nullable();
             $table->text('git_link')->nullable();
             $table->text('web_link')->nullable();
-            $table->date('date_made');
+            $table->date('date_made')->nullable();
             $table->text('img')->nullable();
             $table->text('logo')->nullable();
             $table->text('cover')->nullable();

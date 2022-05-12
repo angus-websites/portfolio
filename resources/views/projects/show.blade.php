@@ -49,8 +49,12 @@
             <h1 class="text-3xl title-font font-medium mb-1">{{$project->name}}</h1>
             <!--Date-->
             <div class="flex mb-4">
-              <span class="flex items-center">
-                <span class="">{{$project->dateMadeHuman()}}</span>
+              <span class="flex items-center text-gray-500">
+                @if($project->inProgress())
+                  <span class="italic">In Progess</span>
+                @else
+                  <span class="">{{$project->dateMadeHuman()}}</span>
+                @endif
               </span>
             </div>
             <p class="leading-relaxed">{{$project->short_desc}}</p>

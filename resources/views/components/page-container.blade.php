@@ -1,3 +1,3 @@
-<div class="container px-5 pt-24 mx-auto">
+<div class="container px-5 py-20 mx-auto">
   {{$slot}}
 </div>

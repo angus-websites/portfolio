@@ -58,18 +58,29 @@ class Project extends Model
       return $this->belongsToMany(Block::class);
     }
     
-
-    /**
-     * Return the date created
-     * in a standard format
-     */
-    public function dateMadeHuman(){
-      return date("d/m/Y", strtotime($this->date_made));
+    public function inProgress()
+    {
+      /**
+       * Is the project currently in progess?
+       */
+      return is_null($this->date_made);
+    }
+   
+    public function dateMadeHuman()
+    {
+      /**
+       * Return the date created
+       * in a standard format
+       */
+      return $this->inProgress() ? "In Progress" : date("M Y", strtotime($this->date_made)) ;
     }
 
     public function yearMade()
     {
-      return date("Y", strtotime($this->date_made));
+      /**
+       * Get the year this project was made
+       */
+      return $this->inProgress() ? "In Progress" : date("Y", strtotime($this->date_made));
     }
 
 
