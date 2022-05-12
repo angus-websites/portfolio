@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use App\Custom\ResourceManager;
 
 class Education extends Model
 {
@@ -47,13 +48,7 @@ class Education extends Model
          * Fetch the icon for this 
          * education
          */        
-        if($this->icon){
-          //Find this image in storage
-          $path = $this::$iconPath.$this->icon;
-          if(Storage::disk('public')->exists($path)){
-            return asset($path);
-          }
-        }
+        return ResourceManager::getResource($this::$iconPath, $this->icon);
     }
 
 
@@ -65,14 +60,10 @@ class Education extends Model
        * associated with this education
        * from storage
        */
-      if($this->icon){
-        // Remove the file from storage
-        $path = $this::$iconPath.$this->icon;
-        if (Storage::disk('public')->delete($path)){
-          $this->icon = null;
-          $this->save();
-        }
-      }
+
+      ResourceManager::removeResource($this::$iconPath, $this->icon);
+      $this->icon = null;
+      $this->save();
       
     }
 
@@ -83,9 +74,8 @@ class Education extends Model
        * with this education & remove the old one
        */
       $this->removeIcon();
-      $imageName = uniqid().'.'.$uploaded_image->extension();    
-      $uploaded_image->storePubliclyAs('public'.$this::$iconPath, $imageName);
-      $this->icon = $imageName;
+      $image_name = ResourceManager::uploadResource($uploaded_image, $this::$iconPath);
+      $this->icon = $image_name;
       $this->save();
     }
 

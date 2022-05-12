@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use App\Custom\ResourceManager;
 
 class Employment extends Model
 {
@@ -45,15 +46,9 @@ class Employment extends Model
     {
         /**
          * Fetch the icon for this 
-         * employment
+         * education
          */        
-        if($this->icon){
-          //Find this image in storage
-          $path = $this::$iconPath.$this->icon;
-          if(Storage::disk('public')->exists($path)){
-            return asset($path);
-          }
-        }
+        return ResourceManager::getResource($this::$iconPath, $this->icon);
     }
 
 
@@ -62,17 +57,13 @@ class Employment extends Model
 
       /**
        * Remove the image
-       * associated with this project
+       * associated with this education
        * from storage
        */
-      if($this->icon){
-        // Remove the file from storage
-        $path = $this::$iconPath.$this->icon;
-        if (Storage::disk('public')->delete($path)){
-          $this->icon = null;
-          $this->save();
-        }
-      }
+
+      ResourceManager::removeResource($this::$iconPath, $this->icon);
+      $this->icon = null;
+      $this->save();
       
     }
 
@@ -80,12 +71,11 @@ class Employment extends Model
     {
       /**
        * Update the icon associated
-       * with this project & remove the old one
+       * with this education & remove the old one
        */
       $this->removeIcon();
-      $imageName = uniqid().'.'.$uploaded_image->extension();    
-      $uploaded_image->storePubliclyAs('public'.$this::$iconPath, $imageName);
-      $this->icon = $imageName;
+      $image_name = ResourceManager::uploadResource($uploaded_image, $this::$iconPath);
+      $this->icon = $image_name;
       $this->save();
     }
 

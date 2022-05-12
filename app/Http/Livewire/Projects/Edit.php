@@ -30,6 +30,9 @@ class Edit extends Component
     public $uploaded_image;
     public $is_uploaded_image_valid;
 
+    public $uploaded_cover;
+    public $is_uploaded_cover_valid;
+
     protected function rules()
     {
         /**
@@ -39,14 +42,16 @@ class Edit extends Component
          */
         return [
             'project.name' => ["required", "string", "min:1", "unique:projects,name,". $this->project->id],
-            'project.date_made' => 'required|date',
+            'project.date_made' => 'nullable|date',
+            'project.active' => 'required|boolean',
             'project.category_id' => 'required|exists:categories,id',
             'project.short_desc' => 'nullable|string',
             'project.long_desc' => 'nullable|string',
             'project.git_link' => 'nullable|url',
             'project.web_link' => 'nullable|url',
             'uploaded_logo' => 'nullable|image|max:1024',
-            'uploaded_image' => 'nullable|image|max:2048'
+            'uploaded_image' => 'nullable|image|max:2048',
+            'uploaded_cover' => 'nullable|image|max:2048'
             
         ];
     }
@@ -119,6 +124,13 @@ class Edit extends Component
             $this->is_uploaded_image_valid = false;
         }
 
+        // Save the uploaded cover
+        if ($this->uploaded_cover){
+            $this->project->replaceCover($this->uploaded_cover);
+            $this->uploaded_cover = null;
+            $this->is_uploaded_cover_valid = false;
+        }
+
 
         // Save to DB
         $this->project->save(); 
@@ -163,8 +175,6 @@ class Edit extends Component
         $this->validateOnly("uploaded_logo");
         $this->is_uploaded_logo_valid = true;
     }
-
-
 
     public function discardUploadedLogo()
     {
@@ -220,6 +230,41 @@ class Edit extends Component
          */
         $this->project->removeImage();
         session()->flash('info', 'Image reset to default');
+    }
+
+
+    public function updatedUploadedCover()
+    {
+        /**
+         * Called when the user
+         * uploads a cover for 
+         * the project
+         */
+        $this->is_uploaded_cover_valid = false;
+        $this->validateOnly("uploaded_cover");
+        $this->is_uploaded_cover_valid = true;
+    }
+
+    public function discardUploadedCover()
+    {
+        /**
+         * Remove reference to the image
+         * the user uploaded so it is
+         * not saved
+         */
+        $this->uploaded_cover = null;
+        $this->is_uploaded_cover_valid = false;
+    }
+
+    public function resetCover()
+    {
+        /**
+         * Remove the currently
+         * uploaded image for this project
+         * and reset to the placeholder
+         */
+        $this->project->removeCover();
+        session()->flash('info', 'Cover reset to default');
     }
 
 

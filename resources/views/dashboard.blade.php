@@ -16,6 +16,14 @@
           <div class="col-span-1">
             <ul class="menu menu-compact lg:menu-normal w-60 p-2 border-r h-full">
               <li class="menu-title"><span>Manage</span></li>
+              @can("manage", App\Models\Project::class)
+                <li>
+                  <a class="flex flex-row items-center" href="{{route('projects.index')}}">
+                    <span class="flex-1">Projects</span>
+                    <span class="badge">{{\App\Models\Project::count()}}</span>
+                  </a>
+                </li>
+              @endcan
               @can("viewAny", App\Models\Category::class)
                 <li>
                   <a class="flex flex-row items-center" href="{{route('categories.index')}}">
@@ -68,6 +76,10 @@
                   <span>Role</span>
                   <span class="badge">{{Auth::user()->role()->name}}</span>
                 </p>
+                <p class="flex flex-row space-x-2 items-center">
+                  <span>Description:</span>
+                  <span>{{Auth::user()->role()->description}}</span>
+                </p>
               </div>
             </div>
           </div>
@@ -98,6 +110,7 @@
                     <tr>
                       <th></th>
                       <th>Name</th>
+                      <th>Active?</th>
                       <th colspan="2">Category</th>
                     </tr>
                   </thead>
@@ -106,6 +119,17 @@
                       <tr>
                         <th>{{ $loop->iteration }}</th>
                         <td>{{$project->name}}</td>
+                        <td>
+                          @if($project->active)
+                            <span class="badge badge-success">
+                              Active
+                            </span>
+                          @else
+                            <span class="badge badge-warning">
+                              Inactive
+                            </span>
+                          @endif
+                        </td>
                         <td>{{$project->category()->name}}</td>
                         <td>
                           @can('update', $project)

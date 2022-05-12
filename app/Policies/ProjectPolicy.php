@@ -12,6 +12,9 @@ class ProjectPolicy
 {
     use HandlesAuthorization;
 
+    // List of role codes allowed to review
+    private static $proofing = ["Pr"];
+
     /**
      * Perform pre-authorization checks.
      *
@@ -21,7 +24,7 @@ class ProjectPolicy
      */
     public function before(User $user, $ability)
     {
-        if ($user->is_admin(true)) {
+        if ($user->is_admin()) {
             return Response::allow();
         }
     }
@@ -32,7 +35,10 @@ class ProjectPolicy
         /**
          * Can a user manage projects?
          */
-        return Response::deny('You cannot manage projects');
+        return in_array($user->role()->code, $this::$proofing)
+            ? Response::allow()
+            : Response::deny('You cannot manage projects');
+
 
     }
 
@@ -56,7 +62,9 @@ class ProjectPolicy
      */
     public function view(?User $user, Project $project)
     {
-        return Response::allow();
+        return in_array($user->role()->code, $this::$proofing)
+            ? Response::allow()
+            : ($project->active ? Response::allow() : abort(404) );
     }
 
     /**
@@ -80,7 +88,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        return Response::deny('You cannot update this project');
+        Response::deny('You cannot update this project');
     }
 
     /**

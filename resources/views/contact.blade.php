@@ -1,8 +1,9 @@
 
 @section('title', 'Contact')
+@section('description', 'Feel free to contact me using the form below')
 
 <x-app-layout>
-  <div class="container px-5 py-24 mx-auto">
+  <x-page-container>
     @if ($errors->any())
     <div class="bg-yellow-200 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-5" role="alert">
       <p class="font-bold">Errors...</p>
@@ -13,10 +14,7 @@
       </ul>
     </div>
     @endif
-    <div class="flex flex-col text-center w-full mb-12">
-      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Contact Me</h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Feel free to use the form below to send me a message</p>
-    </div>
+    <x-page-title title="Contact me" subtitle="Do you have a question? Get in touch. Use the form below to send me a message" />
     <form method="POST" action="/contact">
       @csrf
       <div class="lg:w-1/2 md:w-2/3 mx-auto">
@@ -45,5 +43,5 @@
         </div>
       </div>
     </form>
-  </div>
+  </x-page-container>
 </x-app-layout>

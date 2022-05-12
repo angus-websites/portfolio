@@ -1,34 +1,32 @@
 @section('title', 'Welcome')
 @section('description', "View Angus Goody's Portfolio and find out about his projects")
 <x-app-layout>
-  <div class="my-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:my-20 lg:px-8 xl:mt-28">
 
-    <div class="grid-cols-1 space-y-40">
-      <!--Text align div-->
-      <div class="sm:text-center lg:text-left">
-        <!--Title-->
-        <h1 class="text-4xl tracking-tight font-bold sm:text-5xl md:text-6xl">
-          <span class="block xl:inline">Welcome to my</span>
-          <span class="block text-golden xl:inline">website</span>
-        </h1>
-        <!--Subtitle-->
-        <p class="text-golden-dark mt-3 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-          I am a computer science student at The University Of Sheffield
-        </p>
-        <!--Buttons-->
-        <x-button-group class="mt-5 sm:mt-8 sm:justify-center lg:justify-start">
-          <a href="#" class="btn btn-primary sm:btn-lg">
+  <!-- Top hero-->
+  <div class="hero min-h-screen">
+    <div class="hero-content text-center">
+      <div class="lg:max-w-xl max-w-md">
+        <h1 class="text-5xl font-bold">Welcome to my website</h1>
+        <p class="py-6">I am a computer science student at The University Of Sheffield</p>
+        <x-button-group class="mt-5 sm:mt-8 justify-center">
+          <a href="{{route("projects.index")}}" class="btn btn-primary sm:btn-lg">
             Projects
           </a>
-          <a href="#" class="btn btn btn-secondary sm:btn-lg">
+          <a href="{{route("contact")}}" class="btn btn btn-secondary sm:btn-lg">
             Contact
           </a>
-          <a href="#" class="btn btn btn-accent sm:btn-lg">
+          <a href="{{route("about")}}" class="btn btn btn-accent sm:btn-lg">
             About
           </a>
         </x-button-group>
       </div>
+    </div>
+  </div>
 
+  <div class="mb-40 mx-auto max-w-7xl px-4 sm:px-6">
+
+    <div class="grid-cols-1 space-y-40">
+    
       @if(count($skillSections) > 0)
         <div id="skillSection">
           <!--Skills section-->
@@ -79,6 +77,8 @@
           </div>
         @endif
       </div>
+
+    </div>
 
   </div>
 
