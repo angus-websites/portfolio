@@ -3280,6 +3280,20 @@ body[dir="rtl"] .checkbox:checked,
   --tw-text-opacity: 1;
   color: hsl(var(--inc, var(--nc)) / var(--tw-text-opacity));
 }
+.badge-success {
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--su) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--suc, var(--nc)) / var(--tw-text-opacity));
+}
+.badge-warning {
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--wa) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--wac, var(--nc)) / var(--tw-text-opacity));
+}
 .badge-error {
   border-color: transparent;
   --tw-bg-opacity: 1;

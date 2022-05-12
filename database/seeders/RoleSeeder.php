@@ -28,17 +28,27 @@ class RoleSeeder extends Seeder
       //Roles
       Role::create([
         'name' => "Super Admin",
+        'code' => "Sam",
+        'description' => "The Goat",
         'changeable' => 0,
       ]);
       
       Role::create([
         'name' => "Admin",
+        'code' => "Am",
+        'description' => "As an admin you have full control of the application",
       ]);
+
+      Role::create([
+        'name' => "Proof Reader",
+        'code' => "Pr",
+        'description' => "As a proof reader you can view content not yet visible to the public and check for errors",
+      ]);
+
       Role::create([
         'name' => "User",
-      ]);
-      Role::create([
-        'name' => "Client",
+        'code' => "Usr",
+        'description' => "Currently, users cannot do much, lol",
       ]);
     }
 }

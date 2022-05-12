@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
 
       $superAdminRole=Role::where('name', '=', 'Super Admin')->firstOrFail();
       $adminRole = Role::where('name', '=', 'Admin')->firstOrFail();
-      $userRole = Role::where('name', '=', 'User')->firstOrFail();
+      $proofRole = Role::where('name', '=', 'Proof Reader')->firstOrFail();
 
       if(config('admin.admin_name')) {
         $admin=User::create([
@@ -56,11 +56,11 @@ class UserSeeder extends Seeder
       ]);
 
 
-      // Create Charlie the User
+      // Create Charlie the Proof Reader
       $charlie = User::create([
         'name' => 'Charlie',
         'email' => 'charlie@gmail.com',
-        'role_id' => $userRole->id,
+        'role_id' => $proofRole->id,
         'password' => 'password123'
       ]);
       
