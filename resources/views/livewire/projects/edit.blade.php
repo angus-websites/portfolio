@@ -184,7 +184,7 @@
                             </div>
                         @else
                             <div class="flex flex-col gap-y-2 mx-auto">
-                                <x-button wire:click="createTag()" class=" btn-sm btn-outline btn-info mx-auto" type="button">
+                                <x-button wire:click="createTag()" class=" btn-sm btn-info mx-auto" type="button">
                                     Create "{{$tag_search}}"
                                 </x-button>
                                 
