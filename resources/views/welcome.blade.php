@@ -3,7 +3,7 @@
 <x-app-layout>
 
   <!-- Top hero-->
-  <div class="hero min-h-screen">
+  <div class="hero lg:min-h-screen my-20 lg:my-0 xl:my-20 xl:min-h-[50%]">
     <div class="hero-content text-center">
       <div class="lg:max-w-xl max-w-md">
         <h1 class="text-5xl font-bold">Welcome to my website</h1>
