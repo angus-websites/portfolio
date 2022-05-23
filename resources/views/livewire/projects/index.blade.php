@@ -24,7 +24,7 @@
             </div>
         </div>
     @endif
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 xl:gap-8">
       @forelse ($projects as $project)
         <x-cards.project-card  :project="$project"/>
       @empty
@@ -39,7 +39,7 @@
       <div class="my-20">
         <p class="text-center text-lg font-semibold"> Inactive projects </p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 xl:gap-8">
         @forelse ($hidden as $hidden_project)
           <x-cards.project-card  :project="$hidden_project"/>
         @empty
