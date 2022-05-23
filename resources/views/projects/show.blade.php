@@ -59,6 +59,12 @@
             </div>
             <p class="leading-relaxed">{{$project->short_desc}}</p>
             @if($project->tags()->count() > 0)
+
+              {{-- Push meta tags to header --}}
+              @push('meta')
+                  <meta name="keywords" content="{{$project->tags()->get()->pluck('name')->join(',')}}">
+              @endpush
+
               <div class="flex mt-6 items-center pb-5 border-b-2 mb-5 space-x-2">
                 <!--Tags-->
                 @foreach($project->tags()->get() as $tag)
