@@ -4,8 +4,9 @@
   <nav class="navbar">
     <div class="container mx-auto px-6 md:px-3">
       <div class="flex-none">
-        <img class="block lg:hidden h-8 w-auto" width="196" height="60" src="/assets/images/core/logo.svg" alt="Workflow">
-        <img class="hidden lg:block h-8 w-auto" width="196" height="60" src="/assets/images/core/logo.svg" alt="Workflow">
+        <a href="/" class="btn btn-ghost">
+          <img class="h-8 w-auto" width="196" height="60" src="/assets/images/core/logo.svg" alt="Portfolio logo">
+        </a>
       </div> 
       <div class="flex-1 px-2 mx-2">
         <div class="items-stretch hidden lg:flex">
