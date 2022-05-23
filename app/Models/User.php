@@ -20,11 +20,10 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class)->first();
     }
 
-    /**
-     * Check if this user is an admin
-     * @return boolean
-     */
     public function is_admin($super=false){
+        /**
+         * Is this user admin or super admin?
+         */
         return $super ? $this->role()->name == "Super Admin" :  in_array($this->role()->name, ["Admin", "Super Admin"]);
     }
 
