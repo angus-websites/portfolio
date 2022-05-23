@@ -40,6 +40,9 @@
                 <textarea name="message" class="textarea textarea-bordered h-24" placeholder=""></textarea>
             </div>
           </div>
+          <div class="col-span-2 mt-8">
+            <x-button class="btn-primary btn-block">Send</x-button>
+          </div>
 
         </div>
       </div>
