@@ -75,6 +75,10 @@ class Edit extends Component
         if (!empty($this->project->web_link)){
             $this->has_web = true;
         }
+
+        if (!$project->exists){
+            $this->project->active = false;
+        }
     }
 
     public function render()

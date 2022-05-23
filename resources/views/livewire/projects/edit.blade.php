@@ -11,12 +11,14 @@
             <div class="form-control">
                 <div class="col-span-6 sm:col-span-4 flex items-start">
                   <div class="flex items-center h-5">
-                    <input wire:model="project.active" id="active" name="active" type="checkbox" class="checkbox checkbox-sm toggle_block"">
+                    <input wire:model="project.active" id="active" name="active" type="checkbox" class="checkbox checkbox-sm toggle_block">
                   </div>
                   <div class="ml-3 text-sm">
-                    <label for="has_git" class="font-medium text-gray-700">Active</label>
+                    <label for="active" class="font-medium text-gray-700">Active</label>
                     <p class="text-gray-500">Is this project active?</p>
+                    <x-input-error for="project.active" />
                   </div>
+
                 </div>
             </div>
 
