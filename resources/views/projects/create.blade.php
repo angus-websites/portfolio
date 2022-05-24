@@ -1,3 +1,5 @@
+@section('title', 'Create project')
+
 <x-app-layout>
   <x-page-container>
 
