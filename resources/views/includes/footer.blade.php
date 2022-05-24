@@ -15,6 +15,6 @@
     </div>
   </div> 
   <div>
-    <p>Copyright © {{now()->year}} - All right reserved by Angus Goody</p>
+    <p>Copyright © {{now()->year}} - Angus Goody</p>
   </div>
 </footer>

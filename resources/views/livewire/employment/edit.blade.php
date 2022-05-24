@@ -136,7 +136,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-2">
-                                        <x-button wire:click="discardUploadedLogo" type="button" class="btn-sm btn-error">Discard</x-button>
+                                        <x-button wire:click="discardUploadedIcon" type="button" class="btn-sm btn-error">Discard</x-button>
                                     </div>
                                 </div>
                             @endif

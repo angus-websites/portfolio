@@ -9,7 +9,7 @@
         <div class="flex-none">
           @if($icon)
             <div class="avatar">
-              <div class="rounded-full w-10 h-10">
+              <div class="rounded-full w-10 h-10 border">
                 <img src="{{$icon}}" />
               </div>
             </div>  
@@ -51,7 +51,7 @@
       <div class="flex-none">
         @if($icon)
           <div class="avatar">
-            <div class="rounded-full w-10 h-10">
+            <div class="rounded-full w-10 h-10 border">
               <img src="{{$icon}}" />
             </div>
           </div>  

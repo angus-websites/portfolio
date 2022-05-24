@@ -62,9 +62,14 @@ class ProjectPolicy
      */
     public function view(?User $user, Project $project)
     {
-        return in_array($user->role()->code, $this::$proofing)
-            ? Response::allow()
-            : ($project->active ? Response::allow() : abort(404) );
+        if ($user){
+            if (in_array($user->role()->code, $this::$proofing)){
+               return Response::allow(); 
+            }
+        }
+
+        return $project->active ? Response::allow() : abort(404);
+        
     }
 
     /**

@@ -95,6 +95,17 @@ class Edit extends Component
         session()->flash('info', 'Icon reset to default');
     }
 
+    public function discardUploadedIcon()
+    {
+        /**
+         * Remove reference to the logo
+         * the user uploaded so it is
+         * not saved
+         */
+        $this->uploaded_icon = null;
+        $this->is_uploaded_icon_valid = false;
+    }
+
 
 
     public function render()
