@@ -2,6 +2,8 @@
 
     <x-alerts.all />
 
+    <a class="link">I'm a simple link</a>
+    
     <form wire:submit.prevent="saveEmployment">
 
         <div class="grid grid-cols-1 gap-y-16">
@@ -152,7 +154,6 @@
                 </div>
             </div>
         </div>
-
     </form>
 
     @push('stylesheets')
