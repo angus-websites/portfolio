@@ -2,6 +2,14 @@
     
     <x-alerts.all />
 
+    @if (session()->has('success'))
+        @can("view", $project)
+            <div class="p-4 text-center">
+                <a href="{{route("projects.show", ["project" => $project])}}" class="btn btn-sm">Preview</a>
+            </div>
+        @endcan
+    @endif
+
     <form wire:submit.prevent="{{$this->is_create ? 'createProject' : 'updateProject'}}">
 
         <h2 class="text-lg font-medium">Basic details</h2>
