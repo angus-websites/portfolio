@@ -17,6 +17,10 @@
                         @can("update", $entry)
                             <x-link-button href="{{route('entries.edit', ['entry' => $entry])}}" class="btn-sm btn-warning">Edit</x-link-button>
                         @endcan
+
+                        @can("delete", $entry)
+                            <x-button wire:click="showDelete" class="btn-sm btn-error">Delete</x-button>
+                        @endcan
                     </td>
                 </tr>
             @empty

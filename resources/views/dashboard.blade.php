@@ -64,6 +64,14 @@
                   </a>
                 </li>
               @endcan
+            @can('viewAny', App\Models\Entry::class)
+                <li>
+                    <a class="flex flex-row items-center" href="{{route('entries.index')}}">
+                        <span class="flex-1">Entries</span>
+                        <span class="badge">{{\App\Models\Entry::count()}}</span>
+                    </a>
+                </li>
+            @endcan
             </ul>
           </div>
           <!-- Info -->
