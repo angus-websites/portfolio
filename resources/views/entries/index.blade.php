@@ -1,5 +1,5 @@
-@section('title', 'Projects')
-@section('description', 'View my projects on my portfolio site')
+@section('title', 'Entries')
+@section('description', 'View my dissertation entries on my portfolio site')
 
 <x-app-layout>
   <x-page-container>
@@ -7,7 +7,7 @@
 
     <!--Projects-->
     <div class="py-20">
-{{--      @livewire("projects.index")--}}
+      @livewire("entry.index")
     </div>
 
   </x-page-container>
