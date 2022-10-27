@@ -28,7 +28,7 @@ class EducationSeeder extends Seeder
 
         // Polesworth
         Education::create([
-            'institute' => "Polesworth School",
+            'institute' => "School Name",
             'level' => "GCSE",
             'start_date' => Carbon::parse('2011-01-09'),
             'end_date' => Carbon::parse('2016-01-07'),
@@ -37,7 +37,7 @@ class EducationSeeder extends Seeder
 
         // KEC
         Education::create([
-            'institute' => "King Edward VI College",
+            'institute' => "College Name",
             'level' => "A level",
             'start_date' => Carbon::parse('2016-01-09'),
             'end_date' => Carbon::parse('2018-01-07'),
@@ -46,7 +46,7 @@ class EducationSeeder extends Seeder
 
         // Sheffield
         Education::create([
-            'institute' => "University of Sheffield",
+            'institute' => "University name",
             'level' => "Bsc Computer Science",
             'start_date' => Carbon::parse('2019-01-09'),
             'description' => "Seshfield mate"
