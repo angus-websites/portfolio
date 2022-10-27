@@ -5,10 +5,25 @@ namespace App\Policies;
 use App\Models\Entry;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class EntryPolicy
 {
     use HandlesAuthorization;
+
+    /**
+     * Perform pre-authorization checks.
+     *
+     * @param  \App\Models\User  $user
+     * @param  string  $ability
+     * @return Response
+     */
+    public function before(User $user, $ability)
+    {
+        if ($user->is_admin(true)) {
+            return Response::allow();
+        }
+    }
 
     /**
      * Determine whether the user can view any models.
@@ -18,7 +33,7 @@ class EntryPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return Response::deny('You cannot view entries');
     }
 
     /**
@@ -30,7 +45,7 @@ class EntryPolicy
      */
     public function view(User $user, Entry $entry)
     {
-        //
+        return Response::deny('You cannot view this entry');
     }
 
     /**
@@ -41,7 +56,7 @@ class EntryPolicy
      */
     public function create(User $user)
     {
-        //
+        return Response::deny('You cannot create entries');
     }
 
     /**
@@ -53,7 +68,7 @@ class EntryPolicy
      */
     public function update(User $user, Entry $entry)
     {
-        //
+        return Response::deny('You cannot update entries');
     }
 
     /**
@@ -65,7 +80,7 @@ class EntryPolicy
      */
     public function delete(User $user, Entry $entry)
     {
-        //
+        return Response::deny('You cannot delete entries');
     }
 
     /**
@@ -77,7 +92,7 @@ class EntryPolicy
      */
     public function restore(User $user, Entry $entry)
     {
-        //
+        return Response::deny('You cannot restore entries');
     }
 
     /**
@@ -89,6 +104,6 @@ class EntryPolicy
      */
     public function forceDelete(User $user, Entry $entry)
     {
-        //
+        return Response::deny('You cannot delete entries');
     }
 }
