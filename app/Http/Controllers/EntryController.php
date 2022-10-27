@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entry;
 use Illuminate\Http\Request;
 
 class EntryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Entry::class);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,7 @@ class EntryController extends Controller
      */
     public function index()
     {
-        //
+        return view('entries.index');
     }
 
     /**

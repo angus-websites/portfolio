@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EntryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ContactController;
@@ -37,7 +38,7 @@ Route::get('/dashboard', function () {
 Route::get('user/account', [UserController::class, 'viewAccount'])->name("user.account");
 
 
-// Resource Controllers 
+// Resource Controllers
 Route::resource('projects', ProjectController::class);
 Route::resource('skills', SkillController::class);
 Route::resource('categories', CategoryController::class);
@@ -45,6 +46,7 @@ Route::resource('tags', TagController::class);
 Route::resource('employment', EmploymentController::class);
 Route::resource('education', EducationController::class);
 Route::resource('users', UserController::class);
+Route::resource('entries', EntryController::class);
 
 //Contact
 Route::get('/contact', function () {
