@@ -1,5 +1,5 @@
 <div>
-    
+
     <x-alerts.all />
 
     @if (session()->has('success'))
@@ -59,9 +59,9 @@
                 <x-label for="category" :value="__('Category')" />
                 <x-select wire:model="project.category_id"
                           error="project.category_id"
-                          id="category" 
-                          name="category_id" 
-                          class="select-bordered w-full" 
+                          id="category"
+                          name="category_id"
+                          class="select-bordered w-full"
                           required>
                   <option selected>Choose a category</option>
                   @foreach($categories as $category)
@@ -92,7 +92,7 @@
                     input="trix"
                     wire:model.debounce.500ms="project.long_desc"
                     class="font-sans bg-white prose max-w-none">
-                        
+
                 </trix-editor>
             </div>
         </div>
@@ -164,7 +164,7 @@
                                id="tagSearch"
                                class="input-bordered"
                                type="text"
-                               /> 
+                               />
                 </div>
                 <div class="divider">Results</div>
                 <!-- Search results -->
@@ -181,14 +181,14 @@
                                 <x-button wire:click="createTag()" class=" btn-sm btn-info mx-auto" type="button">
                                     Create "{{$tag_search}}"
                                 </x-button>
-                                
+
                                 @error('tag_search')
                                     <label class="label">
                                         <span class="label-text text-error-content">{{ $message }}</span>
                                     </label>
                                 @enderror
                             </div>
-                        @endif                        
+                        @endif
                     @endforelse
                 </div>
 
@@ -214,7 +214,7 @@
 
         <h2 class="text-lg font-medium mt-7">Images</h2>
         <div class="grid md:grid-cols-2 gap-4 p-4">
-            
+
             <!-- Logo upload -->
             <div class="form-control"
                  x-data="{ isUploading: false, progress: 0 }"
@@ -226,7 +226,7 @@
                 <input type="file" wire:model="uploaded_logo">
                 <!-- Progress bar -->
                 <div x-show="isUploading">
-                    <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>    
+                    <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>
                 </div>
 
                 @error('uploaded_logo')
@@ -240,24 +240,24 @@
             <div>
                 <div class="flex flex-row items-start justify-around">
                     <!-- Current logo section -->
-                    <div class="flex flex-col gap-y-2 justify-center"> 
+                    <div class="flex flex-col gap-y-2 justify-center">
                         <h3 class="mb-4 font-medium text-center">Current logo</h3>
                         <div class="avatar mx-auto">
                             <div class="rounded-full w-24 h-24 shadow-md">
                                 <img src="{{$this->project->getLogo()}}">
                             </div>
-                        </div> 
+                        </div>
 
                         @if(!empty($this->project->logo))
                             <div class="text-center mt-2">
                                 <x-button wire:click="resetLogo" type="button" class="btn-sm btn-error">Reset</x-button>
                             </div>
-                        @endif    
+                        @endif
                     </div>
 
                     @if($is_uploaded_logo_valid && $uploaded_logo)
                         <!-- Uploaded logo section-->
-                        <div class="flex flex-col gap-y-2 justify-center"> 
+                        <div class="flex flex-col gap-y-2 justify-center">
                             <h3 class="mb-4 font-medium text-center">Uploaded logo</h3>
                             <div class="avatar mx-auto">
                                 <div class="rounded-full w-24 h-24 shadow-md">
@@ -283,7 +283,7 @@
                 <input type="file" wire:model="uploaded_image">
                 <!-- Progress bar -->
                 <div x-show="isUploading">
-                    <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>    
+                    <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>
                 </div>
 
                 @error('uploaded_image')
@@ -297,27 +297,27 @@
             <div>
                 <div class="flex flex-row items-start justify-around">
                     <!-- Current image section -->
-                    <div class="flex flex-col gap-y-2 justify-center"> 
+                    <div class="flex flex-col gap-y-2 justify-center">
                         <h3 class="mb-4 font-medium text-center">Current Image</h3>
                         <div class="mx-auto">
                             <img class="object-cover h-48 w-96" src="{{$this->project->getImage()}}">
-                        </div> 
+                        </div>
                         @if(!empty($this->project->img))
                             <div class="text-center mt-2">
                                 <x-button wire:click="resetImage" type="button" class="btn-sm btn-error">Reset</x-button>
                             </div>
                         @endif
-                        
+
                     </div>
 
                     @if($is_uploaded_image_valid && $uploaded_image)
 
                         <!-- Uploaded image section-->
-                        <div class="flex flex-col gap-y-2 justify-center"> 
+                        <div class="flex flex-col gap-y-2 justify-center">
                             <h3 class="mb-4 font-medium text-center">Uploaded image</h3>
                             <div class="mx-auto">
                                 <img class="object-cover h-48 w-96" src="{{$uploaded_image->temporaryUrl()}}">
-                            </div> 
+                            </div>
                             <div class="text-center mt-2">
                                 <x-button wire:click="discardUploadedImage" type="button" class="btn-sm btn-error">Discard</x-button>
                             </div>
@@ -338,7 +338,7 @@
                 <input id="coverUpload" type="file" wire:model="uploaded_cover">
                 <!-- Progress bar -->
                 <div x-show="isUploading">
-                    <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>    
+                    <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>
                 </div>
 
                 @error('uploaded_cover')
@@ -352,27 +352,27 @@
             <div>
                 <div class="flex flex-row items-start justify-around">
                     <!-- Current image section -->
-                    <div class="flex flex-col gap-y-2 justify-center"> 
+                    <div class="flex flex-col gap-y-2 justify-center">
                         <h3 class="mb-4 font-medium text-center">Current Cover</h3>
                         <div class="mx-auto">
                             <img class="object-cover h-48 w-96" src="{{$this->project->getCover()}}">
-                        </div> 
+                        </div>
                         @if(!empty($this->project->cover))
                             <div class="text-center mt-2">
                                 <x-button wire:click="resetCover" type="button" class="btn-sm btn-error">Reset</x-button>
                             </div>
                         @endif
-                        
+
                     </div>
 
                     @if($is_uploaded_cover_valid && $uploaded_cover)
 
                         <!-- Uploaded image section-->
-                        <div class="flex flex-col gap-y-2 justify-center"> 
+                        <div class="flex flex-col gap-y-2 justify-center">
                             <h3 class="mb-4 font-medium text-center">Uploaded cover</h3>
                             <div class="mx-auto">
                                 <img class="object-cover h-48 w-96" src="{{$uploaded_cover->temporaryUrl()}}">
-                            </div> 
+                            </div>
                             <div class="text-center mt-2">
                                 <x-button wire:click="discardUploadedCover" type="button" class="btn-sm btn-error">Discard</x-button>
                             </div>
@@ -406,7 +406,7 @@
 
 
     @push('stylesheets')
-      <link rel="stylesheet" type="text/css" href="https://www.unpkg.com/trix@1.3.1/dist/trix.css">
+      <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@1.3.1/dist/trix.css">
       <style type="text/css">
         trix-toolbar [data-trix-button-group="file-tools"] {
           display: none;
@@ -416,7 +416,7 @@
 
     @push('scripts')
       <!--JS for Trix editor-->
-      <script type="text/javascript" src="https://www.unpkg.com/trix@1.3.1/dist/trix.js"></script>
+      <script type="text/javascript" src="https://unpkg.com/trix@1.3.1/dist/trix.js"></script>
       <script type="text/javascript">
         document.addEventListener("trix-file-accept", event => {
           event.preventDefault()

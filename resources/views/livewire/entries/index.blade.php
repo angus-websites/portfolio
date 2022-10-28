@@ -7,9 +7,11 @@
 
         @can("create", App\Models\Entry::class)
             <div>
-                <x-button wire:click="add"  class="btn btn-primary">
+                <x-link-button href="{{route('entries.create') }}"  class="btn btn-primary">
                     Create Entry
-                </x-button>
+                </x-link-button>
+
+
             </div>
         @endcan
     </div>

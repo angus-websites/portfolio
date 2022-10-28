@@ -31,9 +31,9 @@ class EntryPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
-        return Response::deny('You cannot view entries');
+        return Response::allow();
     }
 
     /**
@@ -43,9 +43,11 @@ class EntryPolicy
      * @param  \App\Models\Entry  $entry
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Entry $entry)
+    public function view(?User $user, Entry $entry)
     {
-        return Response::deny('You cannot view this entry');
+
+        return $entry->active ? Response::allow() : abort(404);
+
     }
 
     /**
