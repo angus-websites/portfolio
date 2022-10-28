@@ -6,7 +6,7 @@
         <input id="trix" type="hidden">
         <trix-editor
             input="trix"
-            wire:model.debounce.500ms="project.long_desc"
+            wire:model.debounce.500ms="entry.content"
             class="font-sans bg-white prose max-w-none">
 
         </trix-editor>
