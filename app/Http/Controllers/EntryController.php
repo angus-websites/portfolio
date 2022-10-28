@@ -31,19 +31,10 @@ class EntryController extends Controller
      */
     public function create()
     {
-        //
+        $entry = new Entry();
+        return view('entries.create',["entry" => $entry]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -51,9 +42,9 @@ class EntryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Entry $entry)
     {
-        //
+        return view('entries.show',["entry" => $entry]);
     }
 
     /**
@@ -62,9 +53,9 @@ class EntryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Entry $entry)
     {
-        //
+        return view('entries.edit',["entry" => $entry]);
     }
 
     /**

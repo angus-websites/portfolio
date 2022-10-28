@@ -7,7 +7,7 @@
 
     <!--Projects-->
     <div class="py-20">
-      @livewire("entry.index")
+      @livewire("entries.index")
     </div>
 
   </x-page-container>

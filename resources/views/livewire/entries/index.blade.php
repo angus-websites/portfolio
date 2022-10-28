@@ -1,4 +1,19 @@
 <div>
+
+    <x-alerts.all />
+
+    <!--Button flexbox -->
+    <div class="flex flex-col gap-y-4 md:flex-row md:justify-around my-8">
+
+        @can("create", App\Models\Entry::class)
+            <div>
+                <x-button wire:click="add"  class="btn btn-primary">
+                    Create Entry
+                </x-button>
+            </div>
+        @endcan
+    </div>
+
     <!-- Content -->
     <div class="overflow-x-auto">
         <table class="table w-full">

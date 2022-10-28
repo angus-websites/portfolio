@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Entry;
+namespace App\Http\Livewire\Entries;
 
 use App\Models\Entry;
 use Livewire\Component;
@@ -12,7 +12,7 @@ class Index extends Component
 
         $entries = Entry::all();
 
-        return view("livewire.entry.index", [
+        return view("livewire.entries.index", [
             "entries" => $entries,
         ]);
 
@@ -21,5 +21,10 @@ class Index extends Component
     public function showDelete()
     {
         echo "hi";
+    }
+
+    public function add()
+    {
+        echo "added";
     }
 }
