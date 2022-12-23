@@ -36,4 +36,8 @@ class Edit extends Component
     {
         return view('livewire.entries.edit');
     }
+
+    public function deleteEntry(){
+        echo "nah";
+    }
 }

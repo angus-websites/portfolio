@@ -6,9 +6,9 @@
 
     <!--Edit-->
     <div class="my-10">
-      <pre>
-          {{$entry->content}}
-      </pre>
+      <article class="prose w-full">
+          {!! $entry->content !!}
+      </article>
     </div>
   </x-page-container>
 

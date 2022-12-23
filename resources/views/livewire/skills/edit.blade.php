@@ -35,7 +35,7 @@
                     @endforeach
                   </x-select>
               </div>
-              
+
 
               <!-- Description -->
               <div class="form-control mb-4">
@@ -60,7 +60,7 @@
                   <input type="file" wire:model="uploaded_icon">
                   <!-- Progress bar -->
                   <div x-show="isUploading">
-                      <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>    
+                      <progress class="progress progress-success w-56 my-2" x-bind:value="progress" max="100"></progress>
                   </div>
 
                   @error('uploaded_icon')
@@ -73,7 +73,7 @@
               <!-- Icon previews -->
               <div class="flex flex-row items-start justify-around">
                   <!-- Current image section -->
-                  <div class="flex flex-col gap-y-2 justify-center"> 
+                  <div class="flex flex-col gap-y-2 justify-center">
                       <h3 class="mb-4 font-medium text-center">Current Icon</h3>
                       <div class="avatar mx-auto bg-white">
                         <div class="w-32 rounded">
@@ -90,7 +90,7 @@
                   @if($is_uploaded_icon_valid && $uploaded_icon)
 
                       <!-- Uploaded image section-->
-                      <div class="flex flex-col gap-y-2 justify-center"> 
+                      <div class="flex flex-col gap-y-2 justify-center">
                           <h3 class="mb-4 font-medium text-center">Uploaded Icon</h3>
                           <div class="avatar mx-auto bg-white">
                             <div class="w-32 rounded">
@@ -131,7 +131,7 @@
           </div>
 
         </div>
-      
+
     </form>
 
 
