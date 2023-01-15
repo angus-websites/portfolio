@@ -65,7 +65,7 @@
         @endif
       </div>
 
-      @if(count($skillSections) > 0)
+      @if(count($skillSections) > 0 && $showSkills)
 
         <div id="skillSection">
           <!--Skills section-->

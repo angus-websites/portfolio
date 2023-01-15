@@ -19,6 +19,6 @@ class HomeController extends Controller
       $skillSections = SkillSection::all();
       $employment=Employment::orderBy('start_date', 'desc')->get();
       $education=Education::orderBy('start_date', 'desc')->get();
-      return view('welcome',["skillSections" => $skillSections, "employment" => $employment, "education" => $education]);
+      return view('welcome',["skillSections" => $skillSections, "employment" => $employment, "education" => $education, 'showSkills' => env('SHOW_SKILLS', true),]);
     }
 }
