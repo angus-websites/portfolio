@@ -9,9 +9,7 @@ use Illuminate\Auth\Access\Response;
 
 class RolePolicy
 {
-
     use HandlesAuthorization;
-
     /**
      * Determine whether the user can update the model.
      *

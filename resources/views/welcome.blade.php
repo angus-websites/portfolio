@@ -25,9 +25,9 @@
 
   <div class="mb-40 mx-auto max-w-7xl px-4 sm:px-6">
 
-    <div class="grid-cols-1 space-y-40">
+    <div class="grid-cols-1 sm:space-y-32 space-y-20">
     
-      <div id="employmentEducationSection" class="grid grid-cols-1 gap-y-16 gap-x-10 lg:grid-cols-2">
+      <div id="employmentEducationSection" class="grid grid-cols-1 gap-y-10 gap-x-10 lg:grid-cols-2">
         @if(count($employment) > 0)
           <!--Employment section-->
           <div>
@@ -66,20 +66,20 @@
       </div>
 
       @if(count($skillSections) > 0)
+
         <div id="skillSection">
           <!--Skills section-->
           <h2 class="text-2xl font-bold sm:text-3xl text-center">My Skills</h2>
-          <div class="flex flex-wrap justify-around gap-x-6 gap-y-10 my-16">
-            @foreach($skillSections as $section)
+          @foreach($skillSections as $section)
+            @if(count($section->skills()->get()) > 0)
               <!--Section container-->
-              <x-cards.skill-section-card :section="$section" class="basis-full xs:basis-1/3 lg:basis-1/4 flex-1"/>
-            @endforeach
-          </div>
+              <x-cards.skill-section-card :section="$section" class=""/>
+            @endif
+          @endforeach
         </div>
       @endif
 
     </div>
-
   </div>
 
 </x-app-layout>
