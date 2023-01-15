@@ -1,7 +1,22 @@
 <div {{$attributes->merge(['class' => ""])}}>
     <!--Section name-->
     <div class="flex-0">
-        <p class="my-8 text-xl font-bold tracking-tight sm:text-2xl">{{$name}}</p>
+        <!-- Divider -->
+        <div class="my-8 hidden sm:block">
+          <p class="mb-4 text-lg font-bold tracking-tight sm:text-xl">{{$name}}</p>
+          <hr class="py-4">
+        </div>
+
+        <!-- Mobile divider -->
+        <div class="relative my-8 sm:hidden">
+          <div class="absolute inset-0 flex items-center" aria-hidden="true">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span class="bg-white px-3 text-lg font-bold tracking-tight">{{$name}}</span>
+          </div>
+        </div>
+
     </div>
     <!-- Content for skills-->
 
@@ -9,7 +24,7 @@
 
       @forelse($skills as $skill)
         <!-- Each skill -->
-        <div class="pt-6">
+        <div class="pt-5">
           <div class="flow-root rounded-lg sm:bg-gray-50 sm:border px-6 pb-8">
             <div class="-mt-6">
               <div class="">
@@ -20,12 +35,12 @@
                   </div>
                   @else
                     <span class="inline-flex h-10 w-10 items-center justify-center">
-                      <span class="text-sm font-medium leading-none">{{ strtoupper(substr($skill->name, 0, 1)) }}</span>
+                      <span class="text-xs font-medium leading-none">{{ strtoupper(substr($skill->name, 0, 1)) }}</span>
                     </span>
                   @endif
                 </div>
               </div>
-              <p class="mt-8 text-lg font-semibold leading-8 tracking-tight">{{$skill->name}}</p>
+              <p class="mt-8 sm:text-lg text-md sm:font-semibold leading-8 tracking-tight">{{$skill->name}}</p>
             </div>
           </div>
         </div>
