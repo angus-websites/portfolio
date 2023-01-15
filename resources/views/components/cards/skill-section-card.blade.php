@@ -1,11 +1,38 @@
-<div {{$attributes->merge(['class' => "border rounded-lg p-5 pb-0 flex flex-col"])}}>
+<div {{$attributes->merge(['class' => ""])}}>
     <!--Section name-->
     <div class="flex-0">
-        <p class="uppercase text-lg font-bold mb-2 text-center">{{$name}}</p>
-        <hr>
+        <p class="my-8 text-xl font-bold tracking-tight sm:text-2xl">{{$name}}</p>
     </div>
     <!-- Content for skills-->
-    <div class="flex-1">
+
+    <div class="grid grid-cols-2 gap-5 sm:gap-12 sm:grid-cols-3 lg:grid-cols-4 text-center">
+
+      @forelse($skills as $skill)
+        <!-- Each skill -->
+        <div class="pt-6">
+          <div class="flow-root rounded-lg sm:bg-gray-50 sm:border px-6 pb-8">
+            <div class="-mt-6">
+              <div class="">
+                <div class="inline-flex items-center justify-center rounded-xl bg-white p-2 shadow-lg border">
+                  @if($skill->hasIcon())
+                  <div class="w-10 h-10 ">
+                      <img src={{$skill->getIcon()}}>
+                  </div>
+                  @else
+                    <span class="inline-flex h-10 w-10 items-center justify-center">
+                      <span class="text-sm font-medium leading-none">{{ strtoupper(substr($skill->name, 0, 1)) }}</span>
+                    </span>
+                  @endif
+                </div>
+              </div>
+              <p class="mt-8 text-lg font-semibold leading-8 tracking-tight">{{$skill->name}}</p>
+            </div>
+          </div>
+        </div>
+      @endforeach
+
+    </div>
+    {{-- <div class="flex-1">
         <!--Grid -->
         <div class="flex flex-wrap gap-x-5 gap-y-8 justify-around my-5" >
           @forelse($skills as $skill)
@@ -37,5 +64,5 @@
             </div>
           @endforelse
         </div>
-    </div>
+    </div> --}}
   </div>

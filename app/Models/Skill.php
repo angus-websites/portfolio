@@ -29,6 +29,13 @@ class Skill extends Model
       });
     }
 
+    public function hasIcon(){
+      if (ResourceManager::getResource($this::$iconsPath, $this->icon) ){
+        return true;
+      }
+      return false;
+    }
+
     /**
      * Get the icon for this Skill
      */
