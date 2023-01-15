@@ -25,7 +25,7 @@
 
   <div class="mb-40 mx-auto max-w-7xl px-4 sm:px-6">
 
-    <div class="grid-cols-1 space-y-32">
+    <div class="grid-cols-1 sm:space-y-32 space-y-20">
     
       <div id="employmentEducationSection" class="grid grid-cols-1 gap-y-10 gap-x-10 lg:grid-cols-2">
         @if(count($employment) > 0)
