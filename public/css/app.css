@@ -3808,6 +3808,9 @@ html {
 .h-10 {
   height: 2.5rem;
 }
+.h-9 {
+  height: 2.25rem;
+}
 .h-24 {
   height: 6rem;
 }
@@ -3828,9 +3831,6 @@ html {
 }
 .h-screen {
   height: 100vh;
-}
-.h-9 {
-  height: 2.25rem;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -3856,6 +3856,12 @@ html {
 .w-10 {
   width: 2.5rem;
 }
+.w-8 {
+  width: 2rem;
+}
+.w-9 {
+  width: 2.25rem;
+}
 .w-56 {
   width: 14rem;
 }
@@ -3877,17 +3883,11 @@ html {
 .w-14 {
   width: 3.5rem;
 }
-.w-8 {
-  width: 2rem;
-}
 .w-16 {
   width: 4rem;
 }
 .w-screen {
   width: 100vw;
-}
-.w-9 {
-  width: 2.25rem;
 }
 .max-w-none {
   max-width: none;
@@ -4230,17 +4230,11 @@ html {
 .p-4 {
   padding: 1rem;
 }
-.p-1 {
-  padding: 0.25rem;
-}
 .p-6 {
   padding: 1.5rem;
 }
 .p-5 {
   padding: 1.25rem;
-}
-.p-3 {
-  padding: 0.75rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -4333,10 +4327,6 @@ html {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -4344,6 +4334,10 @@ html {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 .text-5xl {
   font-size: 3rem;
@@ -4832,11 +4826,6 @@ html {
     line-height: 1.75rem;
   }
 
-  .sm\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-
   .sm\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
@@ -4845,6 +4834,11 @@ html {
   .sm\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .sm\:font-semibold {

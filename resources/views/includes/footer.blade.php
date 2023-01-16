@@ -17,4 +17,5 @@
   <div>
     <p>Copyright © {{now()->year}} - Angus Goody</p>
   </div>
+  @stack('foot-scripts')
 </footer>

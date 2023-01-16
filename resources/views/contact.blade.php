@@ -2,6 +2,26 @@
 @section('title', 'Contact')
 @section('description', 'Feel free to contact me using the form below')
 
+@push('foot-scripts')
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        let isCaptchaValidated = false;
+        let form = document.getElementById("contact-form");
+
+        function onCaptchaValidated() {
+            isCaptchaValidated = true;
+            form.submit();
+        }
+
+        form.addEventListener("submit", function (event) {
+            if (!isCaptchaValidated) {
+                event.preventDefault();
+                grecaptcha.execute();
+            }
+        });
+    </script>
+@endpush
+
 <x-app-layout>
   <x-page-container>
     @if ($errors->any())
@@ -15,10 +35,16 @@
     </div>
     @endif
     <x-page-title title="Contact me" subtitle="Do you have a question? Get in touch. Use the form below to send me a message" />
-    <form method="POST" action="/contact">
+    <form method="POST" action="/contact" id="contact-form">
       @csrf
-      <div class="lg:w-1/2 md:w-2/3 mx-auto">
+      <!-- Captcha -->
+      <div class="g-recaptcha"
+            data-sitekey=""
+            data-callback="onCaptchaValidated"
+            data-size="invisible">
+      </div>
 
+      <div class="lg:w-1/2 md:w-2/3 mx-auto">
         <!--Contact grid-->
         <div class="grid grid-cols-2 gap-y-2 gap-x-4">
           <div class="col-span-2 sm:col-span-1">
@@ -41,7 +67,7 @@
             </div>
           </div>
           <div class="col-span-2 mt-8">
-            <x-button class="btn-primary btn-block">Send</x-button>
+            <x-button type="submit" class="btn-primary btn-block">Send</x-button>
           </div>
 
         </div>
