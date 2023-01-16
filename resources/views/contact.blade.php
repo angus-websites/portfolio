@@ -39,7 +39,7 @@
       @csrf
       <!-- Captcha -->
       <div class="g-recaptcha"
-            data-sitekey=""
+            data-sitekey="{{$sitekey}}"
             data-callback="onCaptchaValidated"
             data-size="invisible">
       </div>

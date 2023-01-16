@@ -15,7 +15,7 @@ class ContactController extends Controller
      */
     public function show()
     {
-      return view('contact');
+      return view('contact', ["sitekey" => env('RECAPTCHA_SITE_KEY')]);
     }
 
     /**
