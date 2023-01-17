@@ -1,4 +1,5 @@
 @props(["links" => true])
+@stack('foot-scripts')
 <footer class="footer footer-center p-10 bg-base-200 text-base-content border-t">
   @if($links)
     <div class="grid grid-flow-col gap-4">
