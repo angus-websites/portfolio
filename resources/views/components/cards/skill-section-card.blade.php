@@ -31,7 +31,7 @@
                 <div class="inline-flex items-center justify-center rounded-xl bg-white p-2 shadow-lg border">
                   @if($skill->hasIcon())
                   <div class="w-8 h-8">
-                      <img src={{$skill->getIcon()}}>
+                      <img src={{$skill->getIcon()}} alt="Logo for {{$skill->name}}">
                   </div>
                   @else
                     <span class="inline-flex h-9 w-9 items-center justify-center">
