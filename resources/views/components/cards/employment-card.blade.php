@@ -11,7 +11,7 @@
           @if($icon)
             <div class="avatar">
               <div class="rounded-full w-10 h-10 border">
-                <img src="{{$icon}}" />
+                <img src="{{$icon}}" alt="Logo for {{$employer}}"/>
               </div>
             </div>  
           @else
@@ -53,7 +53,7 @@
         @if($icon)
           <div class="avatar">
             <div class="rounded-full w-10 h-10 border">
-              <img src="{{$icon}}" />
+              <img src="{{$icon}}" alt="Logo for {{$employer}}" />
             </div>
           </div>  
         @else
