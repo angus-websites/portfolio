@@ -24,6 +24,7 @@ class Project extends Model
 
     protected $casts = [
       'active' => 'boolean',
+      'coming_soon' => 'boolean'
     ];
 
     protected static function boot()

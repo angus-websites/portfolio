@@ -29,11 +29,15 @@ class ProjectCard extends Component
       $this->category = "Category";
       $this->link = route("projects.show",["project" => $project]);
       $this->imagePath = $project->getCover();
-      
+
     }
 
     public function getAlt(){
       return "Image for ".$this->title;
+    }
+
+    public function is_coming(){
+      return $this->is_coming;
     }
 
     /**

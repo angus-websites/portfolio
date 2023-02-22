@@ -44,6 +44,7 @@ class Edit extends Component
             'project.name' => ["required", "string", "min:1", "unique:projects,name,". $this->project->id],
             'project.date_made' => 'nullable|date',
             'project.active' => 'required|boolean',
+            'project.coming_soon' => 'required|boolean',
             'project.category_id' => 'required|exists:categories,id',
             'project.short_desc' => 'nullable|string',
             'project.long_desc' => 'nullable|string',
