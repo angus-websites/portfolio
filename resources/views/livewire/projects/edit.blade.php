@@ -89,7 +89,11 @@
                 <x-label for="editor" :value="__('Long project description')" />
                 <input id="trix" type="hidden">
                 <trix-editor
+                    x-data
+                    x-on:trix-change="$dispatch('input', event.target.value)"
+                    x-ref="trix"
                     input="trix"
+                    wire:key="projectEdit"
                     wire:model.debounce.500ms="project.long_desc"
                     class="font-sans bg-white prose max-w-none">
                         
