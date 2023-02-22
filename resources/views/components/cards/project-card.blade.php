@@ -9,7 +9,11 @@
           <div class="flex flex-row">
             <p class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1 flex-1">{{$project->category()->short_name}}</p>
             <div class="divider divider-horizontal"></div>
+            @if ($project->coming_soon)
+            <div class="badge badge-info">Coming soon</div>
+            @else
             <p class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1 flex-1 text-right">{{$project->yearMade()}}</p>
+            @endif
           </div>
           <p class="leading-relaxed">{{$description}}</p>
         </div>
