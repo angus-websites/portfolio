@@ -27,7 +27,7 @@ use Illuminate\Http\Request;
 */
 
 // Index
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name("index");
 
 // Sitemap
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.index');

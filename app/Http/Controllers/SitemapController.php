@@ -22,6 +22,6 @@ class SitemapController extends Controller
     public function projects()
     {
       return response()->view(
-        'sitemap.projects',['projects' => Project::all()])->header('Content-Type', 'text/xml');
+        'sitemap.projects',['projects' => Project::where("active", "1")->get()])->header('Content-Type', 'text/xml');
     }
 }
