@@ -10,6 +10,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\EmploymentController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SitemapController;
 
 use Illuminate\Http\Request;
 
@@ -25,10 +26,15 @@ use Illuminate\Http\Request;
 |
 */
 
-
+// Index
 Route::get('/', [HomeController::class, 'index']);
 
+// Sitemap
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.index');
+Route::get('/sitemapGeneral.xml', [SitemapController::class, 'general'])->name('sitemap.general');
+Route::get('/sitemapProjects.xml', [SitemapController::class, 'projects'])->name('sitemap.projects');
 
+// Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

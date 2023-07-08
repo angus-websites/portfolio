@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Sitemap: https://angusgoody.com/sitemap.xml
