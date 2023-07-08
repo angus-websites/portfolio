@@ -8,7 +8,7 @@
     <div class="flex flex-col">
       <article class="prose">
         <h2>About me</h2>
-        <p>My name is Angus, I am currently a student at The University of Sheffield where I study computer science.</p>
+        <p>My name is Angus, I am a recent graduate of The University of Sheffield where I studied computer science.</p>
         <p>I have been coding since I was 12 years old, since then I have written countless programs, learned numerous skills and languages and worked in teams to create real world applications.</p>
 
         <h3>Hobbies etc</h3>

@@ -7,7 +7,7 @@
     <div class="hero-content text-center">
       <div class="lg:max-w-xl max-w-md">
         <h1 class="text-5xl font-bold">Welcome to my website</h1>
-        <p class="py-6">I am a computer science student at The University Of Sheffield</p>
+        <p class="py-6">I am a software engineer that likes to make websites</p>
         <x-button-group class="mt-5 sm:mt-8 justify-center">
           <a href="{{route("projects.index")}}" class="btn btn-primary sm:btn-lg">
             Projects
