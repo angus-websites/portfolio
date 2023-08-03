@@ -39,7 +39,7 @@ php artisan migrate --force
 
 php artisan optimize
 
-chmod -R 775 storage
+chmod -R 777 storage
 
 # Finally, start PHP-FPM and nginx
 php-fpm -D &&  nginx -g "daemon off;"
