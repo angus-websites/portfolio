@@ -121,9 +121,3 @@ Seed the database tables
 ```bash
 php artisan db:seed
 ```
-
-## Build production Dockerfile
-
-```bash
-docker build -t portfolio-image .
-```
