@@ -18,6 +18,17 @@ echo "ADMIN_NAME=${ADMIN_NAME}" >> .env
 echo "ADMIN_EMAIL=${ADMIN_EMAIL}" >> .env
 echo "ADMIN_PASSWORD=${ADMIN_PASSWORD}" >> .env
 
+echo "RECAPTCHA_SITE_KEY=${RECAPTCHA_SITE_KEY}" >> .env
+echo "RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY}" >> .env
+
+echo "MAIL_MAILER=${MAIL_MAILER}" >> .env
+echo "MAIL_HOST=${MAIL_HOST}" >> .env
+echo "MAIL_PORT=${MAIL_PORT}" >> .env
+echo "MAIL_USERNAME=${MAIL_USERNAME}" >> .env
+echo "MAIL_PASSWORD=${MAIL_PASSWORD}" >> .env
+echo "MAIL_ENCRYPTION=${MAIL_ENCRYPTION}" >> .env
+echo "MAIL_FROM_ADDRESS=${MAIL_FROM_ADDRESS}" >> .env
+echo "MAIL_FROM_NAME=${MAIL_FROM_NAME}" >> .env
 
 # Run our artisan commands
 
