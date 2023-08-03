@@ -1,7 +1,0 @@
-Dockerfile
-docker-compose.yml
-README.md
-composer.lock
-node_modules
-tests
-.env
