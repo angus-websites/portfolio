@@ -52,9 +52,8 @@ WORKDIR /var/www/html
 RUN mkdir -p storage bootstrap/cache
 
 # Set folder permissions for Laravel
-RUN chown -R www-data:www-data /var/www
-RUN chmod -R 775 /var/www/html/storage
-RUN chmod -R 775 /var/www/html/bootstrap/cache
+RUN chmod -R 777 /var/www/html/storage 
+RUN chmod -R 777 /var/www/html/bootstrap/cache
 
 # Copy our prod script and set permissions
 COPY prod.sh /start.sh
