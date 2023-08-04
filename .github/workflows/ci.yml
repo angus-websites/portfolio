@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - master
-
+  pull_request:
+      branches:
+        - master
 env:
-  IMAGE_NAME: your-image-name
+  IMAGE_NAME: portfolio-test-image
   REGISTRY: ghcr.io
 
 jobs:
