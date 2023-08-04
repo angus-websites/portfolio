@@ -18,7 +18,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Decode .env.testing file
+      - name: create env.testing file
         run: echo "${{ secrets.ENV_FILE_TESTING }}" > .env.testing
 
       - name: Build Docker image
@@ -31,7 +31,7 @@ jobs:
           
       - name: Run Tests
         run: |
-        docker run --env-file .env.testing -d ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME }}:testing
+          docker run --env-file .env.testing -d ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME }}:testing
           # Your command to run tests in the Docker container
 
   build-and-push:
@@ -42,7 +42,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Decode .env file
+      - name: create .env file
         run: echo "${{ secrets.ENV_FILE_PRODUCTION }}"  > .env
 
       - name: Log in to GitHub Container Registry
