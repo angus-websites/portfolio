@@ -56,7 +56,7 @@ RUN chmod -R 777 /var/www/html/storage
 RUN chmod -R 777 /var/www/html/bootstrap/cache
 
 # Copy our prod script and set permissions
-COPY prod.sh /start.sh
+COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
 # Copy Nginx config file
