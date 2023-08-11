@@ -32,7 +32,6 @@ class EmploymentSeeder extends Seeder
             'role' => "Stock Management",
             'start_date' => Carbon::parse('2018-01-10'),
             'end_date' => Carbon::parse('2019-01-01'),
-            'description' => "Worked at John Lewis bruv"
         ]);
 
 
@@ -42,7 +41,6 @@ class EmploymentSeeder extends Seeder
             'role' => "Waiter",
             'start_date' => Carbon::parse('2016-01-08'),
             'end_date' => Carbon::parse('2017-01-01'),
-            'description' => "Worked at the Rose Inn"
         ]);
 
         // ONS
