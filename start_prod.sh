@@ -3,9 +3,6 @@
 # Create .env file from environment variables
 printenv | awk -F "=" 'NF==2 && $2 !~ /[\n\t ]/' > .env
 
-# Ensure php-fpm runs in the web group
-sed -i 's/^group =.*/group = web/' /usr/local/etc/php-fpm.d/www.conf
-
 # Run our artisan commands
 php artisan route:clear
 php artisan config:clear
