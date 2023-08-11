@@ -12,7 +12,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Schema;
 
 class ProjectSeeder extends Seeder
 {
@@ -25,10 +25,10 @@ class ProjectSeeder extends Seeder
     {
 
       //Clear data
-      DB::statement('SET FOREIGN_KEY_CHECKS=0');
-      Project::truncate();
-      DB::table('project_tags')->truncate();
-      DB::statement('SET FOREIGN_KEY_CHECKS=1');
+      Schema::disableForeignKeyConstraints();
+      Project::query()->delete();
+      DB::table('project_tags')->delete();
+      Schema::enableForeignKeyConstraints();
 
       //Redwood
       $redwood=Project::create([
@@ -47,7 +47,7 @@ class ProjectSeeder extends Seeder
       $data = [
           ['project_id'=> $redwood->id, 'tag_id'=> Tag::where('name', '=', 'Web')->firstOrFail()->id],
           ['project_id'=> $redwood->id, 'tag_id'=> Tag::where('name', '=', 'PHP')->firstOrFail()->id],
-          ['project_id'=> $redwood->id, 'tag_id'=> Tag::where('name', '=', 'BOOTSTRAP')->firstOrFail()->id],
+          ['project_id'=> $redwood->id, 'tag_id'=> Tag::where('name', '=', 'Bootstrap')->firstOrFail()->id],
       ];
       DB::table('project_tags')->insert($data);
 

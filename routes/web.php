@@ -11,6 +11,7 @@ use App\Http\Controllers\EmploymentController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\StorageController;
 
 use Illuminate\Http\Request;
 
@@ -33,6 +34,10 @@ Route::get('/', [HomeController::class, 'index'])->name("index");
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.index');
 Route::get('/sitemapGeneral.xml', [SitemapController::class, 'general'])->name('sitemap.general');
 Route::get('/sitemapProjects.xml', [SitemapController::class, 'projects'])->name('sitemap.projects');
+
+//Storage
+Route::get('/images/{path}', [StorageController::class, 'image'])->where('path', '.*');
+Route::get('/storage/{path}', [StorageController::class, 'storage'])->where('path', '.*');
 
 // Dashboard
 Route::get('/dashboard', function () {
