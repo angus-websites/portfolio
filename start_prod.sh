@@ -8,8 +8,6 @@ php artisan route:clear
 php artisan config:clear
 php artisan view:clear
 
-php artisan storage:link
-
 php artisan migrate --force
 
 # Finally, start PHP-FPM and nginx
