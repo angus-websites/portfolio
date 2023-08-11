@@ -27,8 +27,9 @@ class SkillSeeder extends Seeder
         //Get skill sections
         $front_end=SkillSection::where('name', '=', 'Front end')->firstOrFail();
         $back_end=SkillSection::where('name', '=', 'Back end')->firstOrFail();
-        $designer=SkillSection::where('name', '=', 'Design')->firstOrFail();
         $frameworks=SkillSection::where('name', '=', 'Frameworks')->firstOrFail();
+        $devops=SkillSection::where('name', '=', 'DevOps')->firstOrFail();
+
 
         //Generate some skills
         Skill::create(['skill_section_id' => $front_end->id, "Name" => "Javascript"]);
@@ -37,14 +38,19 @@ class SkillSeeder extends Seeder
 
         Skill::create(['skill_section_id' => $back_end->id, "Name" => "PHP"]);
         Skill::create(['skill_section_id' => $back_end->id, "Name" => "MYSQL"]);
+        Skill::create(['skill_section_id' => $back_end->id, "Name" => "Python"]);
+        Skill::create(['skill_section_id' => $back_end->id, "Name" => "Java"]);
+        Skill::create(['skill_section_id' => $back_end->id, "Name" => "Ruby"]);
 
-        Skill::create(['skill_section_id' => $designer->id, "Name" => "Sketch"]);
-        Skill::create(['skill_section_id' => $designer->id, "Name" => "Affinity"]);
 
         Skill::create(['skill_section_id' => $frameworks->id, "Name" => "Laravel"]);
         Skill::create(['skill_section_id' => $frameworks->id, "Name" => "Rails"]);
+        Skill::create(['skill_section_id' => $frameworks->id, "Name" => "Django"]);
 
-
+        Skill::create(['skill_section_id' => $devops->id, "Name" => "Git"]);
+        Skill::create(['skill_section_id' => $devops->id, "Name" => "Docker"]);
+        Skill::create(['skill_section_id' => $devops->id, "Name" => "Jenkins"]);
+        Skill::create(['skill_section_id' => $devops->id, "Name" => "GCP"]);
 
     }
 }

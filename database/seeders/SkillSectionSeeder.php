@@ -27,7 +27,8 @@ class SkillSectionSeeder extends Seeder
         //Skill sections
         SkillSection::create(['name' => "Front end"]);
         SkillSection::create(['name' => "Back end"]);
-        SkillSection::create(['name' => "Design"]);
         SkillSection::create(['name' => "Frameworks"]);
+        SkillSection::create(['name' => "DevOps"]);
+
     }
 }
