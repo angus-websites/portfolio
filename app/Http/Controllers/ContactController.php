@@ -25,6 +25,11 @@ class ContactController extends Controller
      */
     public function send(Request $request){
 
+      // If legacy mode is enabled just return an error
+      if (config('app.legacy')) {
+        return redirect()->back()->with('error', 'Form is disabled');
+      }
+
       // Normal validation
       $request->validate([
         'name' => 'required',
@@ -53,8 +58,8 @@ class ContactController extends Controller
       }else{
         return redirect()->back()->with('error', 'Captcha failed');
       }
-      
 
-      
+
+
     }
 }

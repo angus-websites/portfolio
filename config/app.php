@@ -15,6 +15,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'legacy' => (bool) env('LEGACY_MODE', true),
     /*
     |--------------------------------------------------------------------------
     | Application Environment
