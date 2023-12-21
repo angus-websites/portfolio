@@ -45,6 +45,14 @@
       </div>
 
       <div class="lg:w-1/2 md:w-2/3 mx-auto">
+          @if(config('app.legacy'))
+          <div class="alert alert-info shadow-lg mb-5">
+              <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  <span>This site is in legacy mode and this form is now disabled</span>
+              </div>
+          </div>
+            @endif
         <!--Contact grid-->
         <div class="grid grid-cols-2 gap-y-2 gap-x-4">
           <div class="col-span-2 sm:col-span-1">
@@ -67,7 +75,16 @@
             </div>
           </div>
           <div class="col-span-2 mt-8">
-            <x-button type="submit" class="btn-primary btn-block">Send</x-button>
+              @if(config('app.legacy'))
+                <x-button type="submit" class="btn-primary btn-block" disabled>
+                    Send
+                </x-button>
+              @else
+                <x-button type="submit" class="btn-primary btn-block">
+                    Send
+                </x-button>
+              @endif
+              
           </div>
 
         </div>
