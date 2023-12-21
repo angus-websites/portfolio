@@ -84,7 +84,7 @@
                     Send
                 </x-button>
               @endif
-              
+
           </div>
 
         </div>
